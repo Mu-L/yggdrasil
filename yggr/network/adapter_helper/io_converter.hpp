@@ -58,7 +58,7 @@ private:
 
 public:
 
-	template<typename Real_Data_Type, typename Src>
+	template<typename Real_Data_Type, typename Src> inline
 	static conv_to_send_result_type conv_to_send(Src& src, conv_to_send_arg_data_type data)
 	{
 		Real_Data_Type rdata;
@@ -71,7 +71,7 @@ public:
 		return true;
 	}
 
-	template<typename Real_Data_Type>
+	template<typename Real_Data_Type> inline
 	static conv_from_recv_result_type conv_from_recv(conv_from_recv_arg_data_type tk)
 	{
 		task_real_data_getter_type getter;

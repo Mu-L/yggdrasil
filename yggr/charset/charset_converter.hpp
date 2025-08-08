@@ -34,6 +34,7 @@ THE SOFTWARE.
 #include <yggr/utility/swap.hpp>
 
 #include <yggr/mplex/static_assert.hpp>
+#include <yggr/func/foo_t_info.hpp>
 
 #include <yggr/nonable/noncopyable.hpp>
 #include <yggr/nonable/nonmoveable.hpp>
@@ -51,6 +52,7 @@ THE SOFTWARE.
 
 #include <boost/utility/enable_if.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include <boost/type_traits/remove_pointer.hpp>
 #include <boost/mpl/bool.hpp>
 
 #include <cassert>
@@ -66,6 +68,57 @@ THE SOFTWARE.
 !!! example: {L'a', L'b', L'c'}->utf8{'a', 'b', 'c'}->store_to ucs-2le wchar_t[2] = {'ab','c0'}		!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 */
+
+namespace yggr
+{
+namespace charset
+{
+namespace detail
+{
+
+// check and fix function iconv arg2 char** or const char**
+// size_t iconv (iconv_t cd,  char* * inbuf, size_t *inbytesleft, char* * outbuf, size_t *outbytesleft); or
+// size_t iconv (iconv_t cd, const char* * inbuf, size_t *inbytesleft, char* * outbuf, size_t *outbytesleft);
+
+struct iconv_caller
+{
+
+private:
+	typedef iconv_caller this_type;
+
+private:
+	template<typename T1, typename T2> inline
+	static typename boost::enable_if<boost::is_same<T1, T2>, T1>::type
+		cast_args2(T2 arg)
+	{
+		return arg;
+	}
+
+	template<typename T1, typename T2> inline
+	static typename boost::disable_if<boost::is_same<T1, T2>, T1>::type 
+		cast_args2(T2 arg)
+	{
+		return const_cast<T1>(arg);
+	}
+
+public:
+	template<typename F> inline
+	size_t operator()(F /*piconv*/, iconv_t cd, const char** inbuf, size_t* inbytesleft, char** outbuf, size_t* outbytesleft) const
+	{
+		typedef F f_type;
+		typedef typename boost::remove_pointer<f_type>::type foo_iconv_type;
+		typedef func::foo_t_info<foo_iconv_type> foo_iconv_info_type;
+
+		typedef typename foo_iconv_info_type::template arg<1>::type arg2_type;
+
+		return iconv(cd, this_type::cast_args2<arg2_type>(inbuf), inbytesleft, outbuf, outbytesleft);
+	}
+};
+
+} // namespace detail
+} // namespace charset
+} // namespace yggr
+
 
 namespace yggr
 {
@@ -357,24 +410,46 @@ private:
 		assert(_cd != iconv_t(-1));
 	}
 
+
+//	inline bool prv_conv(const char* input, std::size_t& ilen_byte, char* output, std::size_t& olen_byte) const
+//	{
+//		assert(is_validate());
+//
+//		if(!olen_byte)
+//		{
+//			return true;
+//		}
+//#	if defined(_LIBICONV_VERSION) && (_LIBICONV_VERSION <= 0x0109)
+//		const char **pin = &input;
+//#	else
+//		char **pin = const_cast<char**>(&input);
+//#	endif //_LIBICONV_VERSION
+//
+//		//char **pout = &output;
+//		char **pout = &output;
+//		memset(output, 0, sizeof(char) * olen_byte);
+//
+//		return !(static_cast<size_t>(-1) == iconv(_cd, pin, &ilen_byte, pout, &olen_byte));
+//	}
+
 	inline bool prv_conv(const char* input, std::size_t& ilen_byte, char* output, std::size_t& olen_byte) const
 	{
+		typedef detail::iconv_caller iconv_caller_type;
+
 		assert(is_validate());
 
 		if(!olen_byte)
 		{
 			return true;
 		}
-#	if defined(_LIBICONV_VERSION) && (_LIBICONV_VERSION <= 0x0109)
-		const char **pin = &input;
-#	else
-		char **pin = const_cast<char**>(&input);
-#	endif //_LIBICONV_VERSION
 
+		const char **pin = &input;
 		char **pout = &output;
 		memset(output, 0, sizeof(char) * olen_byte);
 
-		return !(static_cast<size_t>(-1) == iconv(_cd, pin, &ilen_byte, pout, &olen_byte));
+		iconv_caller_type caller;
+
+		return !(static_cast<size_t>(-1) == caller(&iconv, _cd, pin, &ilen_byte, pout, &olen_byte));
 	}
 
 private:
@@ -383,7 +458,7 @@ private:
 	iconv_t _cd;
 };
 
-} // charset
+} // namespace charset
 } // namespace yggr
 
 #endif //__YGGR_CHARSET_CHARSET_CONVERTER_HPP__

@@ -41,6 +41,7 @@ THE SOFTWARE.
 #include <yggr/serialization/nvp.hpp>
 
 #include <yggr/any_val/detail/boost_any_ex.hpp>
+#include <yggr/any_val/detail/stl_any_ex.hpp>
 #include <yggr/any_val/any_check.hpp>
 
 #include <boost/ref.hpp>
@@ -335,6 +336,11 @@ public: // queries
 	inline bool empty(void) const
 	{
 		return !_content;
+	}
+
+	inline bool has_value(void) const
+	{
+		return !!_content;
 	}
 
 	inline const std::type_info& type(void) const

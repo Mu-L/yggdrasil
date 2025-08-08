@@ -108,6 +108,7 @@
     <ClInclude Include="algorithm\shuffle.hpp" />
     <ClInclude Include="any_val\any.hpp" />
     <ClInclude Include="any_val\any_check.hpp" />
+    <ClInclude Include="any_val\any_has_value_empty.hpp" />
     <ClInclude Include="any_val\any_operator_mgr.hpp" />
     <ClInclude Include="any_val\any_operator_mgr_basic_t_reg.hpp" />
     <ClInclude Include="any_val\any_operator_mgr_boost_basic_t_reg.hpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="any_val\any_set.hpp" />
     <ClInclude Include="any_val\detail\any_check.hpp" />
     <ClInclude Include="any_val\detail\boost_any_ex.hpp" />
+    <ClInclude Include="any_val\detail\stl_any_ex.hpp" />
     <ClInclude Include="any_val\operator_wrap.hpp" />
     <ClInclude Include="any_val\params.hpp" />
     <ClInclude Include="archive\archive_data_wrap_traits.hpp" />
@@ -321,6 +323,7 @@
     <ClInclude Include="compile_link\pc_exception.hpp" />
     <ClInclude Include="compile_link\pc_ibm_icu.hpp" />
     <ClInclude Include="compile_link\pc_iconv.hpp" />
+    <ClInclude Include="compile_link\pc_iconv_static.hpp" />
     <ClInclude Include="compile_link\pc_ids.hpp" />
     <ClInclude Include="compile_link\pc_legacy_stdio_definitions.hpp" />
     <ClInclude Include="compile_link\pc_log.hpp" />
@@ -1356,9 +1359,14 @@
     <ClInclude Include="proxy\proxy_dispatcher.hpp" />
     <ClInclude Include="proxy\proxy_mode\basic_proxy_mode.hpp" />
     <ClInclude Include="proxy\proxy_mode\proxy_modes.hpp" />
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_reduce.hpp" />
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_blanace.hpp" />
     <ClInclude Include="proxy\proxy_mode\proxy_mode_creator.hpp" />
     <ClInclude Include="proxy\proxy_mode\proxy_mode_def.hpp" />
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_forward.hpp" />
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_monopolize.hpp" />
     <ClInclude Include="proxy\proxy_mode\proxy_mode_owner_id_store.hpp" />
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_source_hash.hpp" />
     <ClInclude Include="proxy\proxy_mode\proxy_mode_tactics.hpp" />
     <ClInclude Include="proxy\proxy_msg\proxy_mode_change_back_msg.hpp" />
     <ClInclude Include="proxy\proxy_msg\proxy_mode_change_msg.hpp" />

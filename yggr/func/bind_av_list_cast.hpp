@@ -28,6 +28,7 @@ THE SOFTWARE.
 #define __YGGR_FUNC_BIND_AV_LIST_CAST_HPP__
 
 #include <yggr/mplex/cast_to_t_container.hpp>
+#include <yggr/type_traits/native_t.hpp>
 
 namespace yggr
 {
@@ -45,6 +46,17 @@ struct bind_av_list_cast<boost::_bi::bind_t<R, F, L> >
 	: public mplex::cast_to_vector<L>
 {
 };
+
+#if !defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES)
+
+template<template<typename _R, typename _F, typename ..._Args> class BindT,
+			typename R, typename F, typename ...Args>
+struct bind_av_list_cast< BindT<R, F, Args... > >
+	: public boost::mpl::vector<Args...>::type
+{
+};
+
+#endif // YGGR_NO_CXX11_VARIADIC_TEMPLATES
 
 } // namespace func
 } // namespace yggr

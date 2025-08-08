@@ -32,11 +32,11 @@ cp -f libicu_vc143_ver/lib64/* %var_dir_lib64%/
 cp -f libicu_vc143_ver/bin/* %var_dir_bin%/
 cp -f libicu_vc143_ver/lib/* %var_dir_lib%/
 
-cp -f libicu_mgw14_x64/lib/*.dll %var_dir_bin64%/
-cp -f libicu_mgw14_x64/lib/*.a %var_dir_lib64%/
+cp -f libicu_mgw15_x64/lib/*.dll %var_dir_bin64%/
+cp -f libicu_mgw15_x64/lib/*.a %var_dir_lib64%/
 
-cp -f libicu_mgw14_x32/lib/*.dll %var_dir_bin%/
-cp -f libicu_mgw14_x32/lib/*.a %var_dir_lib%/
+cp -f libicu_mgw15_x32/lib/*.dll %var_dir_bin%/
+cp -f libicu_mgw15_x32/lib/*.a %var_dir_lib%/
 
 touch %var_dir_root%/libicu_mix.txt
 

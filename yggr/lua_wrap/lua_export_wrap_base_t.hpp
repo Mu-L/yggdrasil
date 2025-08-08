@@ -201,7 +201,7 @@ luabind::class_<T, X1, X2, X3>&
 
 		.def("bitwise_right_shift", static_cast<wrap_base_type (wrap_base_type::*)(bool) const>(&wrap_base_type::template bitwise_right_shift<bool>))
 		.def("bitwise_right_shift", static_cast<wrap_base_type (wrap_base_type::*)(double) const>(&wrap_base_type::template bitwise_right_shift<double>))
-		.def("bitwise_right_shift", static_cast<wrap_base_type (wrap_base_type::*)(const wrap_base_type&) const>(&wrap_base_type::template bitwise_right_shift))
+		.def("bitwise_right_shift", static_cast<wrap_base_type (wrap_base_type::*)(const wrap_base_type&) const>(&wrap_base_type::bitwise_right_shift))
 
 		.def("bitwise_right_shift_set", static_cast<wrap_base_type& (wrap_base_type::*)(bool)>(&wrap_base_type::template bitwise_right_shift_set<bool>))
 		.def("bitwise_right_shift_set", static_cast<wrap_base_type& (wrap_base_type::*)(double)>(&wrap_base_type::template bitwise_right_shift_set<double>))

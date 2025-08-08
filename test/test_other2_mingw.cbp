@@ -112,7 +112,7 @@
 			<Add directory="../"/>
 			<Add directory="../yggr_lua_base_type"/>
 		</Compiler>
-		<Unit filename="nsql_database_system/c_bson_binary_buffer_ref_operator_set_test_liner_only.cpp"/>
+		<Unit filename="func/foo_t_info_test.cpp"/>
 		<Unit filename="wait_any_key/wait_any_key.hpp"/>
 		<Extensions>
 			<lib_finder disable_auto="1"/>

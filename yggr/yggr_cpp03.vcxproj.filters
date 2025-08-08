@@ -637,6 +637,9 @@
     <Filter Include="Header Files\seh\ipps">
       <UniqueIdentifier>{e762639c-b9ff-4d51-8b58-87986d3e01ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\proxy\proxy_route_forward">
+      <UniqueIdentifier>{1875f932-701f-4ce6-8c46-3fbcb7476015}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="network\balance_io_service.hpp">
@@ -8414,6 +8417,30 @@
     </ClInclude>
     <ClInclude Include="database_system\dtl_installer.hpp">
       <Filter>Header Files\database_system</Filter>
+    </ClInclude>
+    <ClInclude Include="any_val\detail\stl_any_ex.hpp">
+      <Filter>Header Files\any_val\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="any_val\any_has_value_empty.hpp">
+      <Filter>Header Files\any_val</Filter>
+    </ClInclude>
+    <ClInclude Include="compile_link\pc_iconv_static.hpp">
+      <Filter>Header Files\compile_link</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_forward.hpp">
+      <Filter>Header Files\proxy\proxy_mode</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_blanace.hpp">
+      <Filter>Header Files\proxy\proxy_mode</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_monopolize.hpp">
+      <Filter>Header Files\proxy\proxy_mode</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_source_hash.hpp">
+      <Filter>Header Files\proxy\proxy_mode</Filter>
+    </ClInclude>
+    <ClInclude Include="proxy\proxy_mode\proxy_mode_reduce.hpp">
+      <Filter>Header Files\proxy\proxy_mode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -40,9 +40,9 @@ yggr::string get_file_dir(const yggr::string& file_path)
 	std::size_t pos1 = file_path.rfind('/');
 	std::size_t pos2 = file_path.rfind('\\');
 
-	std::size_t pos = 
+	std::size_t pos =
 		(std::max)(
-			(pos1 == yggr::string::npos? 0 : pos1), 
+			(pos1 == yggr::string::npos? 0 : pos1),
 			(pos2 == yggr::string::npos? 0 : pos2));
 
 	return pos == 0?  yggr::string(".") : file_path.substr(0, pos);
@@ -53,9 +53,9 @@ yggr::string get_file_name(const yggr::string& file_path)
 	std::size_t pos1 = file_path.rfind('/');
 	std::size_t pos2 = file_path.rfind('\\');
 
-	std::size_t pos = 
+	std::size_t pos =
 		(std::max)(
-			(pos1 == yggr::string::npos? 0 : pos1), 
+			(pos1 == yggr::string::npos? 0 : pos1),
 			(pos2 == yggr::string::npos? 0 : pos2));
 
 	if(pos < file_path.size())
@@ -93,7 +93,7 @@ yggr::utf8_string get_file_name_no_ext(const yggr::utf8_string& file_path)
 }
 
 bool is_yggr_proj_check(const yggr::string& proj_dir)
-{	
+{
 	try
 	{
 		if(proj_dir[proj_dir.size() - 1] == '\\'
@@ -113,7 +113,7 @@ bool is_yggr_proj_check(const yggr::string& proj_dir)
 }
 
 bool is_yggr_sln_check(const yggr::string& sln_dir)
-{	
+{
 	try
 	{
 		if(sln_dir[sln_dir.size() - 1] == '\\'
@@ -134,8 +134,8 @@ bool is_yggr_sln_check(const yggr::string& sln_dir)
 
 bool is_parent_path(const fsys_path_type& lpath, const fsys_path_type& rpath)
 {
-	return 
-		lpath.has_filename() 
+	return
+		lpath.has_filename()
 		&& rpath.has_filename()
 		&& rpath.has_parent_path()
 		&& lpath == rpath.parent_path();
@@ -158,7 +158,7 @@ bool check_file_ext(const fsys_path_type& fpath, const yggr::string& str_ext)
 
 bool copy_file(const yggr::utf8_string& src, const yggr::utf8_string& dst)
 {
-	std::size_t write_byte_size = 0;
+	//std::size_t write_byte_size = 0;
 	try
 	{
 		return

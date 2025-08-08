@@ -136,6 +136,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tool_remove_duplicate_files
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tool_conv_to_darwin_cmakelists_txt", "tool_conv_to_darwin_cmakelists_txt\tool_conv_to_darwin_cmakelists_txt_cpp14.vcxproj", "{08E4B941-C37F-440B-8E83-31DBC8E6EC99}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tool_splice_copilot_gendoc", "tool_splice_copilot_gendoc\tool_splice_copilot_gendoc_cpp14.vcxproj", "{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -203,6 +205,7 @@ Global
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Debug|Win32.ActiveCfg = Debug|Win32
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Debug|Win32.Build.0 = Debug|Win32
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Debug|x64.ActiveCfg = Debug|x64
+		{255D468D-3ADF-42CA-BA45-A0756703D518}.Debug|x64.Build.0 = Debug|x64
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Release|Win32.ActiveCfg = Release|Win32
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Release|Win32.Build.0 = Release|Win32
 		{255D468D-3ADF-42CA-BA45-A0756703D518}.Release|x64.ActiveCfg = Release|x64
@@ -473,6 +476,14 @@ Global
 		{08E4B941-C37F-440B-8E83-31DBC8E6EC99}.Release|Win32.ActiveCfg = Release|Win32
 		{08E4B941-C37F-440B-8E83-31DBC8E6EC99}.Release|Win32.Build.0 = Release|Win32
 		{08E4B941-C37F-440B-8E83-31DBC8E6EC99}.Release|x64.ActiveCfg = Release|x64
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Debug|Win32.Build.0 = Debug|Win32
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Debug|x64.ActiveCfg = Debug|x64
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Debug|x64.Build.0 = Debug|x64
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Release|Win32.ActiveCfg = Release|Win32
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Release|Win32.Build.0 = Release|Win32
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Release|x64.ActiveCfg = Release|x64
+		{F51C65E6-A71E-4B9B-BF78-0967453C8CF4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

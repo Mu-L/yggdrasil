@@ -61,6 +61,16 @@
 			<Depends filename="yggr_system_controller/yggr_system_controller_mingw_cpp17.cbp"/>
 			<Depends filename="yggr_time/yggr_time_mingw_cpp17.cbp"/>
 		</Project>
+		<Project filename="tool_splice_copilot_gendoc/tool_splice_copilot_gendoc_mingw_cpp17.cbp">
+			<Depends filename="yggr_base/yggr_base_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_charset/yggr_charset_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_compatibility/yggr_compatibility_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_encryption_tool/yggr_encryption_tool_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_exception/yggr_exception_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_ids/yggr_ids_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_system_controller/yggr_system_controller_mingw_cpp17.cbp"/>
+			<Depends filename="yggr_time/yggr_time_mingw_cpp17.cbp"/>
+		</Project>
 		<Project filename="tool_suo_batch_build_selector/tool_suo_batch_build_selector_mingw_cpp17.cbp">
 			<Depends filename="yggr_base/yggr_base_mingw_cpp17.cbp"/>
 			<Depends filename="yggr_charset/yggr_charset_mingw_cpp17.cbp"/>

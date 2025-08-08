@@ -165,7 +165,8 @@ typedef unsigned    long fexcept_t;
 typedef unsigned bid__int64 fexcept_t;
 #endif
 #else
-#ifdef __QNX__
+//#ifdef __QNX__
+#if defined(__QNX__) || defined(__MINGW32__) && defined(__GNUC__) && (15 <= __GNUC__)
 #include <fenv.h>
 #else
 typedef unsigned short int fexcept_t;

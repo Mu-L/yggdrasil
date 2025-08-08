@@ -62,7 +62,7 @@ local android_python_include_dir = $(android_python_root_dir)/include ;
 local android_python_lib_dir = $(android_python_root_dir)/lib/$(android_python_target)/$(android_api) ;
 
 
-using python : 3.12
+using python : 3.13
 : $(android_python_root_dir)
 : $(android_python_include_dir)
 : $(android_python_lib_dir)

@@ -1,6 +1,6 @@
 
 
-call "D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
+:rem call "D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
 
 cd /d %~dp0
 

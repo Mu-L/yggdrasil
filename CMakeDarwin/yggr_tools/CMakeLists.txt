@@ -204,6 +204,9 @@ add_dependencies(tool_format_vcxproj ${var_proj_deps_a})
 add_subdirectory(tool_remove_duplicate_files)
 add_dependencies(tool_remove_duplicate_files ${var_proj_deps_a})
 
+add_subdirectory(tool_splice_copilot_gendoc)
+add_dependencies(tool_splice_copilot_gendoc ${var_proj_deps_a})
+
 add_subdirectory(tool_suo_batch_build_selector)
 add_dependencies(tool_suo_batch_build_selector ${var_proj_deps_a})
 

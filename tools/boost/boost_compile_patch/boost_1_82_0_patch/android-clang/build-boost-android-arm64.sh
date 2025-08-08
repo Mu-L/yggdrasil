@@ -15,7 +15,7 @@ export PlatformOS=windows
 
 export AndroidPythonTargetVersion=${var_android_api}
 export PythonAndroidTarget=${AndroidTarget}
-export AndroidPythonRootDir=${AndroidNDKRoot}/../../../../ndk_third_part_local/python3.12.1
+export AndroidPythonRootDir=${AndroidNDKRoot}/../../../../ndk_third_part_local/python
 
 icu_dir=${AndroidNDKRoot}/../../../../ndk_third_part_local/libicu
 boost_thread_part_dir=thrid_part

@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database_system\database_accesser_test.cpp">
+    <ClCompile Include="charset\utf8_string_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

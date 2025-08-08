@@ -91,5 +91,5 @@
 # Configure specific Python version.
 # using python : 3.1 : /usr/bin/python3 : /usr/include/python3.1 : /usr/lib ;
 
-using python : 3.12 : D:\\Python312 : D:\\Python312\\include : D:\\Python312\\libs ;
+using python : 3.13 : D:\\Python313 : D:\\Python313\\include : D:\\Python313\\libs ;
 using mpi ;

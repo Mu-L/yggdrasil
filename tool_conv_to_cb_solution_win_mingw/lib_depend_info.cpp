@@ -15,7 +15,7 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 {
 	_str_boost_ver = "1_82";
 	_str_lua_ver = "503";
-	_str_python_ver = "312";
+	_str_python_ver = "313";
 
 	// marks_depend
 	{
@@ -44,6 +44,7 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 		_marks_dep["encryption_tool"].insert("ws2_32");
 
 		_marks_dep["exception"].insert("yggr_exception");
+		_marks_dep["exception"].insert("boost_thread");
 
 		_marks_dep["ids"].insert("yggr_ids");
 
@@ -176,6 +177,7 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 		_marks_dep["active_svr_test"].insert("Bcrypt");
 
 		_marks_dep["lua_calculator"].insert("Bcrypt");
+		_marks_dep["yggr_lua_base_type"].insert("boost_thread");
 
 		_marks_dep["encryption_tool_clt_test"].insert("blowfish");
 		_marks_dep["encryption_tool_clt_test"].insert("md5");
@@ -767,7 +769,7 @@ lib_depend_info::string_type
 		std::size_t pos = tmp_str.find(python_ver_mark);
 		if(pos != string_type::npos)
 		{
-			tmp_str.replace(tmp_str.begin() + pos , tmp_str.begin() + (pos + python_ver_mark.size()), str_python_ver);
+			tmp_str.replace(tmp_str.begin() + pos , tmp_str.begin() + (pos + python_ver_mark.size()), str_python_ver.substr(0, 1));
 		}
 	}
 

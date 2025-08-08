@@ -22,4 +22,4 @@ mkdir -p "${var_dir}/data/out/tmp/rbnf"
 mkdir -p "${var_dir}/data/out/tmp/translit"
 mkdir -p "${var_dir}/data/out/tmp/brkitr"
 
-./icu4c_build_mingw_tpl.sh "${var_dir}/../libicu_mgw14_x32"
+./icu4c_build_mingw_tpl.sh "${var_dir}/../libicu_mgw15_x32"

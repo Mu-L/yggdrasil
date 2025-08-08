@@ -4,24 +4,84 @@
 #include <cassert>
 #include <utility>
 #include <yggr/any_val/any.hpp>
+#include <yggr/any_val/any_has_value_empty.hpp>
 
 #ifdef _MSC_VER
 #include <vld.h>
 #endif // _MSC_VER
 
+#if (!defined(BOOST_NO_CXX17_HDR_ANY) \
+			&& (YGGR_CPP_VER_14 < YGGR_CPP_VER) )
+
+#	define YGGR_TEST_STL_ANY() 1
+
+#else
+
+#	define YGGR_TEST_STL_ANY() 0
+
+#endif // BOOST_NO_CXX17_HDR_ANY
+
 void test_construct_small(void)
 {
 	typedef yggr::u64 data_type;
+
+#if YGGR_TEST_STL_ANY()
+	// any()
+	{
+		std::any any;
+		yggr_test_assert(!any.has_value());
+		yggr_test_assert(yggr::any_val::any_empty(any));
+		yggr_test_assert(!yggr::any_val::any_has_value(any));
+	}
+#endif // YGGR_TEST_STL_ANY()
+
 	// any()
 	{
 		boost::any any;
 		yggr_test_assert(any.empty());
+		yggr_test_assert(yggr::any_val::any_empty(any));
+		yggr_test_assert(!yggr::any_val::any_has_value(any));
 	}
+
+	// any()
+	{
+		yggr::any any;
+		yggr_test_assert(any.empty());
+		yggr_test_assert(yggr::any_val::any_empty(any));
+		yggr_test_assert(!yggr::any_val::any_has_value(any));
+	}
+
+#if YGGR_TEST_STL_ANY()
+	// any<ValueType>
+	{
+		std::any any(data_type(10));
+		yggr_test_assert(10 == std::any_cast<data_type>(any));
+		yggr_test_assert(10 == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
+
+	}
+#endif // YGGR_TEST_STL_ANY()
+
 
 	// any<ValueType>
 	{
 		boost::any any(data_type(10));
+		yggr_test_assert(10 == boost::any_cast<data_type>(any));
 		yggr_test_assert(10 == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
+	}
+
+	// any<ValueType>
+	{
+		yggr::any any(data_type(10));
+		yggr_test_assert(10 == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
 	}
 
 	// any(BOOST_RV_REF(this_type))
@@ -59,11 +119,35 @@ void test_construct_big(void)
 {
 	typedef std::pair<yggr::u64, yggr::u64> data_type;
 
+#if YGGR_TEST_STL_ANY()
+	// any()
+	{
+		std::any any(data_type(10, 20));
+		yggr_test_assert(data_type(10, 20) == std::any_cast<data_type>(any));
+		yggr_test_assert(data_type(10, 20) == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
+	}
+#endif // YGGR_TEST_STL_ANY()
 
 	// any<ValueType>
 	{
 		boost::any any(data_type(10, 20));
+		yggr_test_assert(data_type(10, 20) == boost::any_cast<data_type>(any));
 		yggr_test_assert(data_type(10, 20) == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
+	}
+
+	// any<ValueType>
+	{
+		yggr::any any(data_type(10, 20));
+		yggr_test_assert(data_type(10, 20) == yggr::any_cast<data_type>(any));
+
+		yggr_test_assert(!yggr::any_val::any_empty(any));
+		yggr_test_assert(yggr::any_val::any_has_value(any));
 	}
 
 	// any(BOOST_RV_REF(this_type))

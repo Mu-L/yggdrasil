@@ -23,4 +23,4 @@ mkdir -p "${var_dir}/data/out/tmp/translit"
 mkdir -p "${var_dir}/data/out/tmp/brkitr"
 
 
-./icu4c_build_linux_tpl.sh "${var_dir}/libicu58_gcc14_x64" "-m64" "-m64"
+./icu4c_build_linux_tpl.sh "${var_dir}/libicu58_gcc15_x64" "-m64" "-m64"

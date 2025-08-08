@@ -116,5 +116,8 @@
 		<Extensions>
 			<lib_finder disable_auto="1"/>
 		</Extensions>
+		<Linker>
+			<Add option="-lws2_32"/>
+		</Linker>
 	</Project>
 </CodeBlocks_project_file>

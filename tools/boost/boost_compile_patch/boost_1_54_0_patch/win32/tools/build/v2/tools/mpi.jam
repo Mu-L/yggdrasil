@@ -246,7 +246,7 @@ rule init ( mpicxx ? : options * : mpirun-with-options * )
   if ! $(mpicxx) && [ os.on-windows ]
   {
     # Try to auto-configure to the Microsoft Compute Cluster Pack
-    local cluster_pack_path_native = "D:\\Program Files (x86)\\Microsoft Compute Cluster Pack" ;
+    local cluster_pack_path_native = "D:\\Program Files\\Microsoft HPC Pack 2008 SDK" ;
     local cluster_pack_path = [ path.make $(cluster_pack_path_native) ] ;
     if [ GLOB $(cluster_pack_path_native)\\Include : mpi.h ]
     {

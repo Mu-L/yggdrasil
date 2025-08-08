@@ -23,4 +23,4 @@ mkdir -p "${var_dir}/data/out/tmp/translit"
 mkdir -p "${var_dir}/data/out/tmp/brkitr"
 
 
-./icu4c_build_mingw-cross_tpl.sh "${var_dir}/libicu_mgw14_x64"
+./icu4c_build_mingw-cross_tpl.sh "${var_dir}/libicu_mgw15_x64"

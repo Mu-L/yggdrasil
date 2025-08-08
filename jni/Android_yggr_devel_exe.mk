@@ -38,6 +38,7 @@ subdirs := \
 	$(LOCAL_PATH)/../tool_downgrade_vcxproj/Android_tool_downgrade_vcxproj.mk \
 	$(LOCAL_PATH)/../tool_format_vcxproj/Android_tool_format_vcxproj.mk \
 	$(LOCAL_PATH)/../tool_remove_duplicate_files/Android_tool_remove_duplicate_files.mk \
+	$(LOCAL_PATH)/../tool_splice_copilot_gendoc/Android_tool_splice_copilot_gendoc.mk \
 	$(LOCAL_PATH)/../tool_suo_batch_build_selector/Android_tool_suo_batch_build_selector.mk \
 	$(LOCAL_PATH)/../tool_test_project_maker/Android_tool_test_project_maker.mk \
 	$(LOCAL_PATH)/../tool_test_search_files/Android_tool_test_search_files.mk \

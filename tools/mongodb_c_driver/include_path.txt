@@ -1,0 +1,10 @@
+D:\third_part\mongodbc\include;
+D:\third_part\mongodbc\include\bson;
+D:\third_part\mongodbc\include\common;
+D:\third_part\mongodbc\include\jsonsl;
+D:\third_part\mongodbc\include\kms_message;
+D:\third_part\mongodbc\include\mongo_crypt;
+D:\third_part\mongodbc\include\mongoc;
+D:\third_part\mongodbc\include\mongocrypt;
+D:\third_part\mongodbc\include\mongocrypt\unicode;
+D:\third_part\mongodbc\include\utf8proc;

@@ -650,8 +650,7 @@ template<typename Src,
 			typename ID_Parser_Def,
 			template<typename _Send_Std_Data,
 						typename _Std_Data,
-						typename _Recv_Rst_Data>
-			class Conver,
+						typename _Recv_Rst_Data> class Conver,
 			typename Mutex = boost::shared_mutex>
 class adapter_mgr
 	: public

@@ -29,13 +29,13 @@ void out_input_menu(void)
 	E_proxy_mode_monopolize,
 		E_proxy_mode_source_hash,
 		E_proxy_mode_blanace,
-		E_proxy_mode_all,
+		E_proxy_mode_reduce,
 	*/
 	std::cout << "proxy_state:\n"
 				<< "1: mode_monopolize\n"
 				<< "2: mode_source_hash\n"
 				<< "3: mode_blance\n"
-				<< "4: mode_all" << std::endl;
+				<< "4: mode_reduce" << std::endl;
 }
 
 int main(int argc, char* argv[])

@@ -174,36 +174,61 @@ namespace detail
 
 // boost::bind holder_list helper
 template<typename T>
-struct is_boost_arg
+struct is_placeholder_arg_detail
 	: public boost::mpl::false_
 {
 };
 
 template<int N>
-struct is_boost_arg< boost::arg<N> >
+struct is_placeholder_arg_detail< boost::mpl::arg<N> >
+	: public boost::mpl::false_
+{
+};
+
+
+template<template<int _N> class Holder, int N>
+struct is_placeholder_arg_detail< Holder<N> >
 	: public boost::mpl::true_
 {
 };
 
 template<typename T>
-struct boost_arg_N
+struct is_placeholder_arg
+	: public is_placeholder_arg_detail<typename native_t<T>::type>::type
+{
+};
+
+template<typename T>
+struct placeholder_arg_N_detail
 	: public boost::mpl::int_<-1>
 {
 };
 
 template<int N>
-struct boost_arg_N<boost::arg<N> >
+struct placeholder_arg_N_detail< boost::mpl::arg<N> >
+	: public boost::mpl::int_<-1>
+{
+};
+
+template<template<int _N> class Holder, int N>
+struct placeholder_arg_N_detail< Holder<N> >
 	: public boost::mpl::int_<N>
 {
 };
 
+template<typename T>
+struct placeholder_arg_N
+	: public placeholder_arg_N_detail<typename native_t<T>::type>::type
+{
+};
+
 template<typename L, typename R>
-struct boost_arg_less
+struct placeholder_arg_less
 	: public
 		boost::mpl::less
 		<
-			typename boost_arg_N<L>::type,
-			typename boost_arg_N<R>::type
+			typename placeholder_arg_N<L>::type,
+			typename placeholder_arg_N<R>::type
 		>
 {
 };
@@ -940,7 +965,7 @@ private:
 		boost::mpl::copy_if
 		<
 			av_list_type,
-			detail::is_boost_arg<boost::mpl::_>,
+			detail::is_placeholder_arg<boost::mpl::_>,
 			boost::mpl::back_inserter< boost::mpl::vector<> >
 		>::type nord_av_arg_list_type;
 
@@ -948,7 +973,7 @@ private:
 		boost::mpl::sort
 		<
 			nord_av_arg_list_type,
-			detail::boost_arg_less<boost::mpl::_1, boost::mpl::_2>
+			detail::placeholder_arg_less<boost::mpl::_1, boost::mpl::_2>
 		>::type ord_av_arg_list_type;
 
 	typedef typename
@@ -1007,7 +1032,107 @@ public:
 	typedef foo_type type;
 };
 
+// std::bind
 
+#if !defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES)
+
+template<template<typename _R, typename _F, typename ..._Args> class BindT,
+			typename R, typename F, typename ...Args>
+struct foo_t_info_detail< BindT<R, F, Args...> >
+{
+private:
+	typedef foo_t_info_detail<F> base_type;
+	typedef BindT<R, F, Args...> tpl_arg_type;
+
+public:
+	typedef typename base_type::null_type null_type;
+
+	typedef typename base_type::result_type result_type;
+
+	typedef boost::mpl::true_ is_callable_type;
+	typedef boost::mpl::false_ is_native_foo_type;
+	typedef typename base_type::is_member_foo_type is_member_foo_type;
+	typedef typename base_type::has_va_list_type has_va_list_type;
+
+	typedef typename base_type::class_type class_type;
+
+	typedef typename base_type::arg_list_type arg_list_type;
+
+private:
+	typedef typename ::yggr::func::bind_av_list_cast<tpl_arg_type>::type av_list_type;
+
+	typedef typename
+		boost::mpl::copy_if
+		<
+			av_list_type,
+			detail::is_placeholder_arg<boost::mpl::_>,
+			boost::mpl::back_inserter< boost::mpl::vector<>::type >
+		>::type nord_av_arg_list_type;
+
+	typedef typename
+		boost::mpl::sort
+		<
+			nord_av_arg_list_type,
+			detail::placeholder_arg_less<boost::mpl::_1, boost::mpl::_2>
+		>::type ord_av_arg_list_type;
+
+	typedef typename
+		boost::mpl::if_
+		<
+			is_member_foo_type,
+			typename
+				boost::mpl::push_front
+				<
+					arg_list_type,
+					tag_object_reference
+					<
+						typename
+							boost::mpl::if_
+							<
+								typename base_type::is_const_type,
+								const class_type,
+								class_type
+							>::type
+					>
+				>::type,
+			arg_list_type
+		>::type av_arg_list_type;
+
+public:
+	typedef typename
+		mplex::revert_to_vector
+		<
+			typename
+				boost::mpl::transform
+				<
+					ord_av_arg_list_type,
+					detail::conv_to_arg
+					<
+						boost::mpl::_1,
+						av_list_type,
+						av_arg_list_type
+					>
+				>::type 
+		>::type arg_holder_list_type;
+
+	typedef typename base_type::is_const_type is_const_type;
+	typedef typename base_type::is_volatile_type is_volatile_type;
+	typedef typename base_type::is_noexcept_type is_noexcept_type;
+	typedef typename base_type::arg_list_size_type arg_list_size_type;
+	typedef boost::mpl::size_t<boost::mpl::size<arg_holder_list_type>::value> arg_holder_list_size_type;
+
+	typedef tpl_arg_type foo_type;
+	typedef typename boost::add_pointer<foo_type>::type foo_pointer_type;
+	typedef typename boost::add_reference<foo_type>::type foo_reference_type;
+
+	typedef typename base_type::foo_type native_foo_type;
+	typedef typename base_type::foo_pointer_type native_foo_pointer_type;
+	typedef typename base_type::foo_reference_type native_foo_reference_type;
+
+	typedef foo_type type;
+};
+
+#endif // YGGR_NO_CXX11_VARIADIC_TEMPLATES
 
 } // namespace detail
 
@@ -1146,7 +1271,7 @@ std::basic_ostream<Char, Traits>&
 		<< "arg_holder_list_type = { " << typeid(arg_holder_list_type).name() << " };\n"
 		<< "is_const_type = { " << typeid(is_const_type).name() << " };\n"
 		<< "is_volatile_type = { " << typeid(is_volatile_type).name() << " };\n"
-		<< "is_volatile_type = { " << typeid(is_noexcept_type).name() << " };\n"
+		<< "is_noexcept_type = { " << typeid(is_noexcept_type).name() << " };\n"
 		<< "arg_list_size_type = { " << typeid(arg_list_size_type).name() << " };\n"
 		<< "arg_holder_list_size_type = { " << typeid(arg_holder_list_size_type).name() << " };\n"
 		<< "-------------------------------------------------------------\n";

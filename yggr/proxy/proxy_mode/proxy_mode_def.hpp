@@ -43,12 +43,14 @@ struct proxy_mode_def
 {
 
 	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_failed = 0);
+
 	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_monopolize = 1);
 	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_source_hash = 2);
 	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_blanace = 3);
-	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_all = 4);
+	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_reduce = 4); // forwards the received packet to all servers (old name "proxy_mode_all")
+	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_forward = 5);
 
-	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_extern = 5);
+	YGGR_STATIC_CONSTANT(u32, E_proxy_mode_extern = 0x000000ff);
 };
 
 } // namespace proxy_mode

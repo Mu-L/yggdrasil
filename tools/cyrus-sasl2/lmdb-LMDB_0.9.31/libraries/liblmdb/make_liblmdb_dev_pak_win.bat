@@ -27,7 +27,7 @@ goto make_no_vcver_lib64_end
 
 :make_no_vcver_lib64_end
 
-if exist "%out_dir%/lib64/liblmdb-mgw14.a" (cp "%out_dir%/lib64/liblmdb-mgw14.a" "%out_dir%/lib64/liblmdb.a")
+if exist "%out_dir%/lib64/liblmdb-mgw15.a" (cp "%out_dir%/lib64/liblmdb-mgw15.a" "%out_dir%/lib64/liblmdb.a")
 
 :rem fix lib
 
@@ -47,7 +47,7 @@ goto make_no_vcver_lib_end
 
 :make_no_vcver_lib_end
 
-if exist "%out_dir%/lib/liblmdb-mgw14.a" (cp "%out_dir%/lib/liblmdb-mgw14.a" "%out_dir%/lib/liblmdb.a")
+if exist "%out_dir%/lib/liblmdb-mgw15.a" (cp "%out_dir%/lib/liblmdb-mgw15.a" "%out_dir%/lib/liblmdb.a")
 
 
 cp "./lmdb.h" "%out_dir%/include/"

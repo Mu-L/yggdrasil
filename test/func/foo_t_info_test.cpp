@@ -2299,6 +2299,79 @@ void test_callable_foo(void)
 #endif // _DEBUG
 }
 
+#if !defined(BOOST_NO_LAMBDAS)
+
+template<typename Lambda>
+void test_lambda_detail(const Lambda& lam)
+{
+	typedef Lambda now_foo_type;
+
+	typedef boost::add_pointer<now_foo_type>::type now_foo_ptr_type;
+	typedef boost::add_reference<now_foo_type>::type now_foo_ref_type;
+
+	typedef yggr::func::foo_t_info<now_foo_type> info_type;
+
+
+	BOOST_MPL_ASSERT((info_type::is_callable_type));
+	BOOST_MPL_ASSERT_NOT((info_type::is_native_foo_type));
+	BOOST_MPL_ASSERT_NOT((info_type::is_member_foo_type));
+	BOOST_MPL_ASSERT((info_type::is_const_type));
+	BOOST_MPL_ASSERT_NOT((info_type::is_volatile_type));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::result_type, bool>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::class_type, now_foo_type >));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_list_type, boost::mpl::vector<const int&, const int&>::type >));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_holder_list_type, boost::mpl::vector<const int&, const int&>::type >));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_type, now_foo_type>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_pointer_type, now_foo_ptr_type>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_reference_type, now_foo_ref_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_type, info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_pointer_type, info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_reference_type, info_type::null_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::type, now_foo_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_list_size_type, boost::mpl::size_t<2> >));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_holder_list_size_type, boost::mpl::size_t<2> >));
+
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_native_foo>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
+
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_const>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 2>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 2>));
+
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<0>::type, const int&>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<1>::type, const int&>));
+	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<2>::type, info_type::null_type>));
+
+#ifdef _DEBUG
+	std::cout << info_type() << std::endl;
+#endif // _DEBUG
+
+}
+
+void test_lambda_foo(void)
+{
+	//struct callable
+	//{
+	//    bool operator()(const int&, const int&) const
+	//    {
+	//        return false;
+	//    }
+	//};
+
+	int a = 10, b = 20;
+	test_lambda_detail( [a, b](const int&, const int&)->bool { return false; } );
+}
+
+#endif // #if !defined(BOOST_NO_LAMBDAS)
+
+
 int main(int argc, char* argv[])
 {
 	test_not_foo(0);
@@ -2345,6 +2418,19 @@ int main(int argc, char* argv[])
 	//a.cvfoo2(10, 20);
 	//boost::bind(&A::cvfoo2, &a, 10, 20)();
 
+#if !(YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+	b_test2_1(std::bind(&foo2, std::placeholders::_1, std::placeholders::_2), &foo2);
+	b_test2_2(std::bind(&foo2, 10, 20), &foo2);
+
+	bm_test2_1(std::bind(&A::foo2, &a, 10, 20), &A::foo2);
+	bm_test2_2(std::bind(&A::foo2, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3), &A::foo2);
+	bm_test2_3(std::bind(&A::foo2, std::placeholders::_3, std::placeholders::_2, std::placeholders::_1), &A::foo2);
+
+	bcm_test2_1(std::bind(&A::cfoo2, &a, 10, 20), &A::cfoo2);
+	bcm_test2_2(std::bind(&A::cfoo2, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3), &A::cfoo2);
+	bcm_test2_3(std::bind(&A::cfoo2, std::placeholders::_3, std::placeholders::_2, std::placeholders::_1), &A::cfoo2);
+#endif // #if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+
 #if (YGGR_CPP_VERSION < YGGR_CPP_VER_17)
 	test_unary_function();
 #endif // #if (YGGR_CPP_VERSION < YGGR_CPP_VER_17)
@@ -2363,8 +2449,17 @@ int main(int argc, char* argv[])
 	test_bind_functional_0(boost::bind(std::less<int>(), 1, 2), std::less<int>());
 	test_bind_functional_1(boost::bind(std::less<int>(), _1, _2), std::less<int>());
 
+#if !(YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+	test_bind_functional_0(boost::bind(std::less<int>(), 1, 2), std::less<int>());
+	test_bind_functional_1(boost::bind(std::less<int>(), std::placeholders::_1, std::placeholders::_2), std::less<int>());
+#endif // #if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+
 	test_not_callable_foo();
 	test_callable_foo();
+
+#if !defined(BOOST_NO_LAMBDAS)
+	test_lambda_foo();
+#endif // #if !defined(BOOST_NO_LAMBDAS)
 
 	wait_any_key(argc, argv);
 	return 0;

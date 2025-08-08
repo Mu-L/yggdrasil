@@ -374,6 +374,14 @@
 			<Depends filename="pyd_export/pyd_export_mingw_cpp03.cbp"/>
 			<Depends filename="yggr_lua_base_type/yggr_lua_base_type_mingw_cpp03.cbp"/>
 		</Project>
+		<Project filename="tool_splice_copilot_gendoc/tool_splice_copilot_gendoc_mingw_cpp03.cbp">
+			<Depends filename="dll_cal_test/dll_cal_test_mingw_cpp03.cbp"/>
+			<Depends filename="lua_cal_svr_procotol/lua_cal_svr_procotol_mingw_cpp03.cbp"/>
+			<Depends filename="lua_calculator/lua_calculator_mingw_cpp03.cbp"/>
+			<Depends filename="lua_hello_dll/lua_hello_dll_mingw_cpp03.cbp"/>
+			<Depends filename="pyd_export/pyd_export_mingw_cpp03.cbp"/>
+			<Depends filename="yggr_lua_base_type/yggr_lua_base_type_mingw_cpp03.cbp"/>
+		</Project>
 		<Project filename="tool_suo_batch_build_selector/tool_suo_batch_build_selector_mingw_cpp03.cbp">
 			<Depends filename="dll_cal_test/dll_cal_test_mingw_cpp03.cbp"/>
 			<Depends filename="lua_cal_svr_procotol/lua_cal_svr_procotol_mingw_cpp03.cbp"/>

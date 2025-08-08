@@ -1,5 +1,5 @@
 Install Microsoft HPC Pack 2008 SDK // 64-bit MPI (in D:/Program Files/Microsoft HPC Pack 2008 SDK)
-Install Microsoft Compute Cluster Pack // 32-bit MPI under the direct zip package decompression configuration (in the configuration D:/Program Files (x86)/Microsoft Compute Cluster Pack)
+//Install Microsoft Compute Cluster Pack // 32-bit MPI under the direct zip package decompression configuration (in the configuration D:/Program Files (x86)/Microsoft Compute Cluster Pack)
 Install PYTHON  and copy the yggdrasil/tools/python file to the corresponding directory in python // Please distinguish between versions
 Install and configure the ICU
 Unzip zlib

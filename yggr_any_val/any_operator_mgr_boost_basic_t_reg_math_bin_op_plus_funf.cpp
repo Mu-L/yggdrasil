@@ -130,6 +130,47 @@ bool any_operator_mgr_boost_basic_t_reg::prv_s_register_base_type_plus_zwei(void
 #endif // !(defined(YGGR_NO_WSTRING) || defined(YGGR_AT_ANDROID))
 
 #if !defined(YGGR_NO_CHAR8_T)
+	//std::u8string boost::container::u8string charset::u8string
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u8string, c8);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u8string, std::u8string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u8string, charset::utf8_string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u8string, c8);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u8string, boost::container::u8string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u8string, charset::utf8_string);
+#endif // YGGR_NO_CHAR8_T
+
+#if !defined(YGGR_NO_CHAR16_T)
+	//std::u16string boost::container::u16string charset::u16string
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u16string, c16);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u16string, std::u16string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u16string, charset::utf8_string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u16string, c16);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u16string, boost::container::u16string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u16string, charset::utf8_string);
+#endif // YGGR_NO_CHAR16_T
+
+#if !defined(YGGR_NO_CHAR32_T)
+	//std::u32string boost::container::u32string charset::u32string
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u32string, c32);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u32string, std::u32string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, std::u32string, charset::utf8_string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u32string, c32);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u32string, boost::container::u32string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, boost::container::u32string, charset::utf8_string);
+#endif // YGGR_NO_CHAR32_T
+
+	// yggr::utf8_string
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, char);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, std::string);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, boost::container::string);
+
+#if !(defined(YGGR_NO_WSTRING) || defined(YGGR_AT_ANDROID))
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, wchar_t);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, std::wstring);
+	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, boost::container::wstring);
+#endif // !(defined(YGGR_NO_WSTRING) || defined(YGGR_AT_ANDROID))
+
+#if !defined(YGGR_NO_CHAR8_T)
 	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, c8);
 	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, std::u8string);
 	bright = bright && YGGR_PP_ANY_VAL_REGISTER_BINARY_OPERATOR(pmgr, plus, charset::utf8_string, boost::container::u8string);

@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="nsql_database_system\mongo_accesser_test_of_connection_pool_mt.cpp">
+    <ClCompile Include="ppex\has_member_check_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

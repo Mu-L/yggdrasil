@@ -1,0 +1,12 @@
+org:
+https://github.com/roboticslibrary/libiconv
+
+binary:
+https://github.com/ShiftMediaProject/libiconv
+
+
+devel:
+
+https://github.com/kiyolee/libiconv-win-build //(recommend)
+https://github.com/winlibs/libiconv
+https://github.com/pffang/libiconv-for-Windows

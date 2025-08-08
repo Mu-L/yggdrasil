@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database_system\test_database_accesser_excel.cpp">
+    <ClCompile Include="ppex\has_member_check_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

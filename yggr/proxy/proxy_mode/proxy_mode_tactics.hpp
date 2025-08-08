@@ -53,7 +53,7 @@ struct proxy_mode_tactics
 				return mode_def_type::E_proxy_mode_blanace;
 			case mode_def_type::E_proxy_mode_source_hash:
 				return mode_def_type::E_proxy_mode_source_hash;
-			case mode_def_type::E_proxy_mode_all:
+			case mode_def_type::E_proxy_mode_reduce:
 				break;
 			}
 			break;
@@ -65,7 +65,7 @@ struct proxy_mode_tactics
 				return mode_def_type::E_proxy_mode_source_hash;
 			case mode_def_type::E_proxy_mode_blanace:
 				return mode_def_type::E_proxy_mode_blanace;
-			case mode_def_type::E_proxy_mode_all:
+			case mode_def_type::E_proxy_mode_reduce:
 				break;
 			}
 			break;
@@ -77,17 +77,25 @@ struct proxy_mode_tactics
 				return mode_def_type::E_proxy_mode_blanace;
 			case mode_def_type::E_proxy_mode_source_hash:
 				return mode_def_type::E_proxy_mode_source_hash;
-			case mode_def_type::E_proxy_mode_all:
+			case mode_def_type::E_proxy_mode_reduce:
 				break;
 			}
 			break;
-		case mode_def_type::E_proxy_mode_all:
-			switch(new_mode)
-			{
-			case mode_def_type::E_proxy_mode_all:
-				return mode_def_type::E_proxy_mode_all;
-			}
-			break;
+		// !!!using default rule!!!
+		//case mode_def_type::E_proxy_mode_reduce:
+		//	switch(new_mode)
+		//	{
+		//	case mode_def_type::E_proxy_mode_reduce:
+		//		return mode_def_type::E_proxy_mode_reduce;
+		//	}
+		//	break;
+		//case mode_def_type::E_proxy_mode_forward:
+		//	switch(new_mode)
+		//	{
+		//	case mode_def_type::E_proxy_mode_forward:
+		//		return mode_def_type::E_proxy_mode_forward;
+		//	}
+		//	break;
 		default:
 			return old_mode == new_mode? old_mode : 0;
 		};

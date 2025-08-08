@@ -18,7 +18,7 @@ NDK_CFLAGS="\
     -I${AndroidThridPartLocal}/libunwind/include \
     "
 
-PythonToolChain=/d/Python312/python
+PythonToolChain=/d/Python313/python
 
  AndroidTarget_list="
     aarch64-linux-android
@@ -78,6 +78,7 @@ do
     mkdir -p ${prefix_dir_lib}
     cp -fr ${prefix_tmp_dir}/lib/* ${prefix_dir_lib}/
     ln -s libpython3.12.a ${prefix_dir_lib}/libpython312.a
+    ln -s libpython3.12.a ${prefix_dir_lib}/libpython3.a
     make clean
     rm -fr ${prefix_tmp_dir}
 done

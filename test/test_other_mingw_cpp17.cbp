@@ -112,7 +112,7 @@
 			<Add directory="../"/>
 			<Add directory="../yggr_lua_base_type"/>
 		</Compiler>
-		<Unit filename="database_system/test_database_accesser_excel_extern_file.cpp"/>
+		<Unit filename="any_val/yggr_any_test.cpp"/>
 		<Unit filename="wait_any_key/wait_any_key.hpp"/>
 		<Extensions>
 			<lib_finder disable_auto="1"/>

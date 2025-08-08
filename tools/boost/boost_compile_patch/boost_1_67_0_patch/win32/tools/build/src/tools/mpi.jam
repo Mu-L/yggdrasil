@@ -250,7 +250,7 @@ rule init ( mpicxx ? : options * : mpirun-with-options * )
     local ms_mpi_sdk_path_native = "D:\\Program Files (x86)\\Microsoft SDKs\\MPI" ;
 
     # Path for Microsoft Compute Cluster Pack
-    local cluster_pack_path_native = "D:\\Program Files (x86)\\Microsoft Compute Cluster Pack" ;
+    local cluster_pack_path_native = "D:\\Program Files\\Microsoft HPC Pack 2008 SDK" ;
 
     # Try to auto-configure Microsoft MPI
     if [ GLOB $(ms_mpi_path_native)\\Bin : mpiexec.exe ] &&

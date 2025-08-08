@@ -1,9 +1,9 @@
 <lib_depend_info_cfg class_id="0" tracking_level="0" version="0">
 	<_str_boost_ver>1_82</_str_boost_ver>
 	<_str_lua_ver>503</_str_lua_ver>
-	<_str_python_ver>312</_str_python_ver>
+	<_str_python_ver>313</_str_python_ver>
 	<_marks_dep>
-		<count>101</count>
+		<count>102</count>
 		<bucket_count>193</bucket_count>
 		<item_version>0</item_version>
 		<item>
@@ -203,10 +203,20 @@
 		<item>
 			<first>exception</first>
 			<second>
+				<count>2</count>
+				<bucket_count>13</bucket_count>
+				<item_version>0</item_version>
+				<item>boost_thread</item>
+				<item>yggr_exception</item>
+			</second>
+		</item>
+		<item>
+			<first>yggr_lua_base_type</first>
+			<second>
 				<count>1</count>
 				<bucket_count>13</bucket_count>
 				<item_version>0</item_version>
-				<item>yggr_exception</item>
+				<item>boost_thread</item>
 			</second>
 		</item>
 		<item>

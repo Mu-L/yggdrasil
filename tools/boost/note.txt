@@ -11,7 +11,7 @@ rm d:/boost  (must delete now grobal boost config)
 bjam xxx --build-type=completed address-model=64
 bjam toolset=msvc-10.0 -sICU_PATH=d:/libicu  --build-type=complete address-model=64
 bjam toolset=msvc-10.0 -sICONV_PATH=d:/libiconv_1_13_1 -sICU_PATH=d:/libicu --build-type=complete address-model=64
-bjam -j12 toolset=msvc-10.0 -sZLIB_SOURCE=e:/devel/build_tmp/zlib-1.2.12  -sICU_PATH=d:/libicu --build-type=complete address-model=64
+bjam -j12 toolset=msvc-10.0 -sZLIB_SOURCE=%~dp0/../zlib-1.2.12  -sICU_PATH=d:/libicu --build-type=complete address-model=64
 
 
 high version mingw gcc:

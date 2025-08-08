@@ -228,7 +228,7 @@ typedef boost::mpl::vector
 							proxy_mode_data_store_type
 						>,
 
-						yggr::proxy::proxy_mode::proxy_mode_all
+						yggr::proxy::proxy_mode::proxy_mode_reduce
 						<
 							proxy_mode_data_store_type
 						>

@@ -112,7 +112,7 @@
 			<Add directory="../"/>
 			<Add directory="../yggr_lua_base_type"/>
 		</Compiler>
-		<Unit filename="nsql_database_system/mongo_accesser_test_of_connection_pool_mt.cpp"/>
+		<Unit filename="ppex/has_member_check_test.cpp"/>
 		<Unit filename="wait_any_key/wait_any_key.hpp"/>
 		<Extensions>
 			<lib_finder disable_auto="1"/>

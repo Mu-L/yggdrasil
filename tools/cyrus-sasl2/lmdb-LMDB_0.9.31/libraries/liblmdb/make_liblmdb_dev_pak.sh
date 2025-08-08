@@ -29,12 +29,12 @@ else
     fi
 fi
 
-if [ -f "${var_outdir}/lib64/liblmdb-mgw14.a" ]; then
-    cp -f "${var_outdir}/lib64/liblmdb-mgw14.a" "${var_outdir}/lib64/liblmdb.a"
+if [ -f "${var_outdir}/lib64/liblmdb-mgw15.a" ]; then
+    cp -f "${var_outdir}/lib64/liblmdb-mgw15.a" "${var_outdir}/lib64/liblmdb.a"
 fi
 
-if [ -f "${var_outdir}/lib/liblmdb-mgw14.a" ]; then
-    cp -f "${var_outdir}/lib/liblmdb-mgw14.a" "${var_outdir}/lib/liblmdb.a"
+if [ -f "${var_outdir}/lib/liblmdb-mgw15.a" ]; then
+    cp -f "${var_outdir}/lib/liblmdb-mgw15.a" "${var_outdir}/lib/liblmdb.a"
 fi
 
 if [ -f "${var_outdir}/lib64/liblmdb-gcc14.a" ]; then
