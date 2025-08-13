@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="any_val\yggr_any_test.cpp">
+    <ClCompile Include="safe_container\safe_multi_index_container_base_test_part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

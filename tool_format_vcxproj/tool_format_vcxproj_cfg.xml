@@ -1,10 +1,10 @@
 <tool_format_vcxproj_cfg class_id="0" tracking_level="0" version="0">
-	<root_dir_>../tools/lzma/lzma2408-compile/C/Util/LzmaLib</root_dir_>
+	<root_dir_>../tools/lua/lua5_46</root_dir_>
 	<dir_filter_>
 		<count>20</count>
 		<bucket_count>37</bucket_count>
 		<item_version>0</item_version>
-    <item>test_data</item>
+		<item>test_data</item>
 		<item>lib</item>
 		<item>lib64</item>
 		<item>test_out</item>

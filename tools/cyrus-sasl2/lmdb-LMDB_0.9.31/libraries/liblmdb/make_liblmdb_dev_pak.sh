@@ -37,12 +37,12 @@ if [ -f "${var_outdir}/lib/liblmdb-mgw15.a" ]; then
     cp -f "${var_outdir}/lib/liblmdb-mgw15.a" "${var_outdir}/lib/liblmdb.a"
 fi
 
-if [ -f "${var_outdir}/lib64/liblmdb-gcc14.a" ]; then
-    ln -s "liblmdb-gcc14.a" "${var_outdir}/lib64/liblmdb.a"
+if [ -f "${var_outdir}/lib64/liblmdb-gcc15.a" ]; then
+    ln -s "liblmdb-gcc15.a" "${var_outdir}/lib64/liblmdb.a"
 fi
 
-if [ -f "${var_outdir}/lib/liblmdb-gcc14.a" ]; then
-    ln -s "liblmdb-gcc14.a" "${var_outdir}/lib/liblmdb.a"
+if [ -f "${var_outdir}/lib/liblmdb-gcc15.a" ]; then
+    ln -s "liblmdb-gcc15.a" "${var_outdir}/lib/liblmdb.a"
 fi
 
 cp "${var_dir}/lmdb.h" "${var_outdir}/include/"

@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ppex\has_member_check_test.cpp">
+    <ClCompile Include="safe_container\safe_multi_index_container_base_test_part1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

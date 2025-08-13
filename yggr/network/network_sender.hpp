@@ -28,6 +28,7 @@ THE SOFTWARE.
 #define __YGGR_NETWORK_NETWORK_SENDER_HPP__
 
 #include <yggr/base/ptr_single.hpp>
+#include <yggr/network/sender_checker/sender_non_checker.hpp>
 
 namespace yggr
 {
@@ -35,15 +36,19 @@ namespace network
 {
 
 // network_sender
-template<typename NetEntity, 
+template<typename NetEntity,
+			typename Checker = sender_checker::sender_non_checker,
 			typename Mutex = boost::shared_mutex,
 			yggr::u32 version = 0,
-			template<typename _T, typename _Mutex, yggr::u32 _version>
-				class Getter = ptr_single>
+			template<
+				typename _T, 
+				typename _Mutex, 
+				yggr::u32 _version> class Getter = ptr_single >
 class network_sender
 {
 public:
 	typedef NetEntity net_entity_type;
+	typedef Checker checker_type;
 	typedef Getter<net_entity_type, Mutex, version> getter_type;
 	typedef typename getter_type::obj_ptr_type net_entity_ptr_type;
 
@@ -83,22 +88,35 @@ public:
 	template<typename Key, typename NetInfo, typename Data, typename Handler> inline
 	static bool send_packet(const Key& key, const NetInfo& netinfo, const Data& data, const Handler& handler)
 	{
+		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
-		return ptr && ptr->send_packet(key, netinfo, data, handler);
+		return 
+			ptr
+			&& chker(ptr, key, netinfo, data, handler)
+			&& ptr->send_packet(key, netinfo, data, handler);
 	}
 
 	template<typename Key, typename Pak, typename Handler> inline
 	static bool send_packet(const Key& key, Pak& pak, const Handler& handler)
 	{
+		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
-		return ptr && ptr->send_packet(key, pak, handler);
+		return 
+			ptr
+			&& chker(ptr, key, pak, handler)
+			&& ptr->send_packet(key, pak, handler);
 	}
 
 	template<typename Key, typename Pak> inline
 	static bool send_packet(const Key& key, Pak& pak)
 	{
+		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
-		return ptr && ptr->send_packet(key, pak);
+
+		return 
+			ptr 
+			&& chker(ptr, key, pak, handler)
+			&& ptr->send_packet(key, pak);
 	}
 
 	inline static void non_handler_send(const boost::system::error_code&) {}

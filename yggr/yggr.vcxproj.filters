@@ -637,8 +637,8 @@
     <Filter Include="Header Files\seh\ipps">
       <UniqueIdentifier>{e762639c-b9ff-4d51-8b58-87986d3e01ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\proxy\proxy_route_forward">
-      <UniqueIdentifier>{1875f932-701f-4ce6-8c46-3fbcb7476015}</UniqueIdentifier>
+    <Filter Include="Header Files\network\sender_checker">
+      <UniqueIdentifier>{81f31270-8e73-4cb2-a8ae-9585c25c75d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -8441,6 +8441,15 @@
     </ClInclude>
     <ClInclude Include="proxy\proxy_mode\proxy_mode_reduce.hpp">
       <Filter>Header Files\proxy\proxy_mode</Filter>
+    </ClInclude>
+    <ClInclude Include="adapter\adapter_default_tag_def.hpp">
+      <Filter>Header Files\adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="network\sender_checker\sender_adapter_checker.hpp">
+      <Filter>Header Files\network\sender_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="network\sender_checker\sender_non_checker.hpp">
+      <Filter>Header Files\network\sender_checker</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

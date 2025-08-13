@@ -3,7 +3,7 @@
 var_local_dir=$(cd `dirname $0`; pwd)
 
 AndroidNDK=/d/android_devel/Android/Sdk/ndk/28.0.12674087
-AndroidThridPartLocal=${AndroidNDK}/../../../../ndk_third_part_local
+AndroidThirdPartLocal=${AndroidNDK}/../../../../ndk_third_part_local
 
 AndroidAPI=21
 AndroidToolChainPlatfrom=windows-x86_64
@@ -11,11 +11,11 @@ AndroidToolChainPlatfrom=windows-x86_64
 NDK_CFLAGS="\
     -fPIC \
     -Dasm=__asm__ \
-    -I${AndroidThridPartLocal}/bzip2/include \
-    -I${AndroidThridPartLocal}/liblzma_xz/include \
-    -I${AndroidThridPartLocal}/readline/include \
-    -I${AndroidThridPartLocal}/libffi/include \
-    -I${AndroidThridPartLocal}/libunwind/include \
+    -I${AndroidThirdPartLocal}/bzip2/include \
+    -I${AndroidThirdPartLocal}/liblzma_xz/include \
+    -I${AndroidThirdPartLocal}/readline/include \
+    -I${AndroidThirdPartLocal}/libffi/include \
+    -I${AndroidThirdPartLocal}/libunwind/include \
     "
 
 PythonToolChain=/d/Python313/python
@@ -54,11 +54,11 @@ do
     fi 
 
     NDK_LDFLAGS="\
-        -L${AndroidThridPartLocal}/bzip2/lib/${var_target}/${USED_AndroidAPI} \
-        -L${AndroidThridPartLocal}/liblzma_xz/lib/${var_target}/${USED_AndroidAPI} \
-        -L${AndroidThridPartLocal}/readline/lib/${var_target}/${USED_AndroidAPI} \
-        -L${AndroidThridPartLocal}/libffi/lib/${var_target}/${USED_AndroidAPI} \
-        -L${AndroidThridPartLocal}/libunwind/lib/${var_target}/${USED_AndroidAPI} \
+        -L${AndroidThirdPartLocal}/bzip2/lib/${var_target}/${USED_AndroidAPI} \
+        -L${AndroidThirdPartLocal}/liblzma_xz/lib/${var_target}/${USED_AndroidAPI} \
+        -L${AndroidThirdPartLocal}/readline/lib/${var_target}/${USED_AndroidAPI} \
+        -L${AndroidThirdPartLocal}/libffi/lib/${var_target}/${USED_AndroidAPI} \
+        -L${AndroidThirdPartLocal}/libunwind/lib/${var_target}/${USED_AndroidAPI} \
         "
 
     make clean

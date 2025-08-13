@@ -1,6 +1,6 @@
 #!/bin/sh
 
-var_ndk_root=/d/android_devel/Android/Sdk/ndk/28.0.12674087
+var_ndk_root=/d/android_devel/Android/Sdk/ndk/current
 var_ndk_build_cmd=${var_ndk_root}/ndk-build.cmd
 
 var_lua_ver=$1
@@ -14,15 +14,15 @@ var_middir_local=${var_middir_root}/local
 if [ "${var_lua_ver}" = "501" ]; then
     var_outdir=${var_outdir_root}/luabind_lua501
 elif [ "${var_lua_ver}" = "502" ]; then
-     var_outdir=${var_outdir_root}/luabind_lua502
+    var_outdir=${var_outdir_root}/luabind_lua502
 elif [ "${var_lua_ver}" = "503" ]; then
-     var_outdir=${var_outdir_root}/luabind_lua503
-#elif [ "${var_lua_ver}" = "504" ]; then
-#     var_outdir=${var_outdir_root}/luabind_lua504
+    var_outdir=${var_outdir_root}/luabind_lua503
+elif [ "${var_lua_ver}" = "504" ]; then
+    var_outdir=${var_outdir_root}/luabind_lua504
 elif [ "${var_lua_ver}" = "jit501" ]; then
-     var_outdir=${var_outdir_root}/luabind_luajit21
+    var_outdir=${var_outdir_root}/luabind_luajit21
 else
-     var_outdir=${var_outdir_root}/luabind
+    var_outdir=${var_outdir_root}/luabind
 fi
 
 var_outdir_include=${var_outdir}/include

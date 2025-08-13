@@ -39,8 +39,10 @@ THE SOFTWARE.
 #			pragma comment YGGR_COMPILE_LINK_LIB(lua501)
 #		elif (502 <= LUA_VERSION_NUM && LUA_VERSION_NUM < 503)
 #			pragma comment YGGR_COMPILE_LINK_LIB(lua502)
-#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 503)
+#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM < 504)
 #			pragma comment YGGR_COMPILE_LINK_LIB(lua503)
+#		elif (504 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 504)
+#			pragma comment YGGR_COMPILE_LINK_LIB(lua504)
 #		else
 #			pragma comment YGGR_COMPILE_LINK_NRULE_LIB(lua)
 #		endif //LUA_VERSION_NUM
@@ -49,7 +51,9 @@ THE SOFTWARE.
 #			pragma comment YGGR_COMPILE_LINK_LIB(luajit501)
 #		elif (502 <= LUA_VERSION_NUM && LUA_VERSION_NUM < 503)
 #		pragma comment YGGR_COMPILE_LINK_LIB(luajit502)
-#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 503)
+#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM < 504)
+#			pragma comment YGGR_COMPILE_LINK_LIB(luajit503)
+#		elif (504 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 504)
 #			pragma comment YGGR_COMPILE_LINK_LIB(luajit503)
 #		else
 #			pragma comment YGGR_COMPILE_LINK_NRULE_LIB(luajit)

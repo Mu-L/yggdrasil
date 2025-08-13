@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeBlocks_workspace_file>
+	<Workspace title="yggr_test_only_linux">
+		<Project filename="test/lua_lua_base_type_test_d32_linux.cbp"/>
+		<Project filename="test/lua_lua_base_type_test_d64_linux.cbp"/>
+		<Project filename="test/lua_lua_base_type_test_type_info_linux.cbp"/>
+		<Project filename="test/lua_lua_debug_helper_test_linux.cbp"/>
+		<Project filename="test/lua_lua_export_any_test_linux.cbp"/>
+		<Project filename="test/lua_lua_export_inner_process_id_linux.cbp"/>
+		<Project filename="test/lua_lua_export_pair_test_linux.cbp"/>
+		<Project filename="test/lua_lua_export_params_test_linux.cbp"/>
+		<Project filename="test/lua_lua_export_uuid_test_linux.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_performance_test_linux.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test_linux.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test2_linux.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test3_linux.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test_same_id_and_out_linux.cbp"/>
+		<Project filename="test/lua_lua_script_test_linux.cbp"/>
+		<Project filename="test/lua_lua_wrap_boost_size_test_linux.cbp"/>
+		<Project filename="test/lua_luabind_exports_any_link_error_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_allcator_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_base_t_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_bidirectional_iterator_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_deque_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_list_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_pair_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_random_access_iterator_test_part1_linux.cbp"/>
+		<Project filename="test/lua_wrap_random_access_iterator_test_part2_linux.cbp"/>
+		<Project filename="test/lua_wrap_reverse_iterator_test_linux.cbp"/>
+		<Project filename="test/lua_wrap_vector_test_linux.cbp"/>
+	</Workspace>
+</CodeBlocks_workspace_file>

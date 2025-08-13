@@ -14,7 +14,7 @@ lib_depend_info::lib_depend_info(void)
 lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 {
 	_str_boost_ver = "1_82";
-	_str_lua_ver = "503";
+	_str_lua_ver = "504";
 	_str_python_ver = "313";
 
 	// marks_depend
@@ -217,14 +217,19 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 		_marks_dep["luabind_test"].insert("lua");
 		_marks_dep["luabind_test"].insert("luabind09");
 
+		_marks_dep["lua504"].insert("lua504");
 		_marks_dep["lua503"].insert("lua503");
 		_marks_dep["lua502"].insert("lua502");
 		_marks_dep["lua501"].insert("lua501");
+		_marks_dep["luajit501"].insert("luajit501");
 
+		_marks_dep["lua504-s"].insert("lua504-s");
 		_marks_dep["lua503-s"].insert("lua503-s");
 		_marks_dep["lua502-s"].insert("lua502-s");
 		_marks_dep["lua501-s"].insert("lua501-s");
+		_marks_dep["luajit501-s"].insert("luajit501-s");
 
+		_marks_dep["lua504_ts-s"].insert("lua504_ts-s");
 		_marks_dep["lua503_ts-s"].insert("lua503_ts-s");
 		_marks_dep["lua502_ts-s"].insert("lua502_ts-s");
 		_marks_dep["lua501_ts-s"].insert("lua501_ts-s");
@@ -378,14 +383,19 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 		_marks_lv["lua_s"] = 13;
 		_marks_lv["lua_ts"] = 13;
 
+		_marks_lv["lua504"] = 13;
 		_marks_lv["lua503"] = 13;
 		_marks_lv["lua502"] = 13;
 		_marks_lv["lua501"] = 13;
+		_marks_lv["luajit501"] = 13;
 
+		_marks_lv["lua504-s"] = 13;
 		_marks_lv["lua503-s"] = 13;
 		_marks_lv["lua502-s"] = 13;
 		_marks_lv["lua501-s"] = 13;
+		_marks_lv["luajit501-s"] = 13;
 
+		_marks_lv["lua504_ts-s"] = 13;
 		_marks_lv["lua503_ts-s"] = 13;
 		_marks_lv["lua502_ts-s"] = 13;
 		_marks_lv["lua501_ts-s"] = 13;
@@ -491,14 +501,19 @@ lib_depend_info::lib_depend_info(lib_depend_info_cfg_sample)
 		_marks_name["lua_s"] = "-llua%(lua_version)$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua_ts"] = "-llua%(lua_version)_ts$(#COMPILER_VERSION_TAG)-s%(debug)";
 
+		_marks_name["lua504"] = "-llua504$(#COMPILER_VERSION_TAG)%(debug).dll";
 		_marks_name["lua503"] = "-llua503$(#COMPILER_VERSION_TAG)%(debug).dll";
 		_marks_name["lua502"] = "-llua502$(#COMPILER_VERSION_TAG)%(debug).dll";
 		_marks_name["lua501"] = "-llua501$(#COMPILER_VERSION_TAG)%(debug).dll";
+		_marks_name["luajit501"] = "-lluajit501$(#COMPILER_VERSION_TAG)%(debug).dll";
 
+		_marks_name["lua504-s"] = "-llua504$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua503-s"] = "-llua503$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua502-s"] = "-llua502$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua501-s"] = "-llua501$(#COMPILER_VERSION_TAG)-s%(debug)";
+		_marks_name["luajit501-s"] = "-lluajit501$(#COMPILER_VERSION_TAG)-s%(debug)";
 
+		_marks_name["lua504_ts-s"] = "-llua504_ts$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua503_ts-s"] = "-llua503_ts$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua502_ts-s"] = "-llua502_ts$(#COMPILER_VERSION_TAG)-s%(debug)";
 		_marks_name["lua501_ts-s"] = "-llua501_ts$(#COMPILER_VERSION_TAG)-s%(debug)";
@@ -669,7 +684,7 @@ lib_depend_info::string_type
 
 	// %(debug) // -d or nil
 	// %(sdebug) // -sd or -s
-	// %(lua_version) // 501 502 503
+	// %(lua_version) // 501 502 503 504 jit501
 	// %(addr_model) // -x32 -x64
 	// %(python_main_version)
 

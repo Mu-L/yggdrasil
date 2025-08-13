@@ -7,6 +7,7 @@ set dir3=\.\.\/tools\/dtl
 set dir5=\.\.\/tools\/lua\/lua5_14
 set dir6=\.\.\/tools\/lua\/lua5_21
 set dir7=\.\.\/tools\/lua\/lua5_34
+set dir7_1=\.\.\/tools\/lua\/lua5_46
 :rem set dir8=\.\.\/tools\/lua\/luabind503p
 :rem set dir9=\.\.\/tools\/lzma\/lzma2408-compile\/C\/Util\/LzmaLib
 set dir10=\.\.\/tools\/md5
@@ -34,6 +35,9 @@ set dir13=\.\.
 :rem tool_conv_to_jni_mk.exe tool_conv_to_jni_mk_cfg.xml
 
 :rem sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>%dir7%<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml
+:rem tool_conv_to_jni_mk.exe tool_conv_to_jni_mk_cfg.xml
+
+:rem sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>%dir7_1%<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml
 :rem tool_conv_to_jni_mk.exe tool_conv_to_jni_mk_cfg.xml
 
 :rem sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>%dir8%<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml

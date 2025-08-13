@@ -637,11 +637,33 @@ ptree_string_type& conv_to_proj_cmakelists_txt(ptree_string_type& out,
 		;
 
 	// macro
-	ss << "set(var_proj_c_defineds \""
-		<< make_cmake_l_multi_item_line(infos.cdefined_proj_, " ", "", "${USRDEF_CMAKE_DEFINEDS}") 
-		<< "\")\n\n"
 
-		<< "set(var_proj_c_defineds_debug \""
+	if(infos.cdefined_proj_.find("-DLUA_USE_MACOSX") == infos.cdefined_proj_.end())
+	{
+		ss << "set(var_proj_c_defineds \""
+			<< make_cmake_l_multi_item_line(infos.cdefined_proj_, " ", "", "${USRDEF_CMAKE_DEFINEDS}") 
+			<< "\")\n\n"
+			;
+	}
+	else
+	{
+		cb::cb_infos::string_set_type tmp_set(infos.cdefined_proj_);
+		tmp_set.erase("-DLUA_USE_MACOSX");
+
+		ss << "set(var_proj_c_defineds_tmp \""
+			<< make_cmake_l_multi_item_line(tmp_set, " ", "", "${USRDEF_CMAKE_DEFINEDS}") 
+			<< "\")\n\n"
+			;
+
+		ss << "if(\"${USRDEF_CMAKE_OSX_SDK_NAME}\" STREQUAL \"macosx\")\n"
+			<<"\tset(var_proj_c_defineds \"-DLUA_USE_MACOSX ${var_proj_c_defineds_tmp}\")\n"
+			<< "else()\n"
+			<<"\tset(var_proj_c_defineds \"-DLUA_USE_IOS ${var_proj_c_defineds_tmp}\")\n"
+			<< "endif()\n\n"
+			;
+	}
+
+	ss << "set(var_proj_c_defineds_debug \""
 		<< make_cmake_l_multi_item_line(infos.cdefined_proj_debug_, " ", "", "${USRDEF_CMAKE_DEFINEDS_DEBUG}") 
 		<< "\")\n\n"
 

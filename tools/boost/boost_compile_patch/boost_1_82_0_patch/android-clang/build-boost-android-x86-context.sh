@@ -18,7 +18,7 @@ export PythonAndroidTarget=${AndroidTarget}
 export AndroidPythonRootDir=${AndroidNDKRoot}/../../../../ndk_third_part_local/python
 
 icu_dir=${AndroidNDKRoot}/../../../../ndk_third_part_local/libicu
-boost_thread_part_dir=thrid_part
+boost_thread_part_dir=third_part
 icu_boost_dir=${boost_thread_part_dir}/libicu_boost
 
 rm -fr ${icu_boost_dir}

@@ -23,7 +23,7 @@
 					<Add option="-m32"/>
 					<Add option="-lyggr_script_lua$(#COMPILER_VERSION_TAG)-d"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)-d"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib"/>
 				</Linker>
 			</Target>
@@ -43,7 +43,7 @@
 					<Add option="-s"/>
 					<Add option="-lyggr_script_lua$(#COMPILER_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib"/>
 				</Linker>
 			</Target>
@@ -64,7 +64,7 @@
 					<Add option="-m64"/>
 					<Add option="-lyggr_script_lua$(#COMPILER_VERSION_TAG)-d"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)-d"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib64"/>
 				</Linker>
 			</Target>
@@ -84,7 +84,7 @@
 					<Add option="-s"/>
 					<Add option="-lyggr_script_lua$(#COMPILER_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib64"/>
 				</Linker>
 			</Target>

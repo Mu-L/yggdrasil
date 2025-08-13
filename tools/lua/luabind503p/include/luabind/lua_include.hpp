@@ -27,7 +27,7 @@
 #	if !defined(_WIN32)
 #		define _WIN32
 #	endif // _WIN32
-#elif (defined(__APPLE__) || defined(__APPLE_CC__))
+#elif (defined(__APPLE__) || defined(__APPLE_CC__)) // lua5.4 LUA_USE_IOS only using Ioslib.c file, so using lua using LUA_USE_MACOSX
 #	if !defined(LUA_USE_MACOSX)
 #		define LUA_USE_MACOSX
 #	endif // LUA_USE_MACOSX

@@ -90,7 +90,7 @@ typedef
 #endif // YGGR_TPL_CONFIG_USING_TPL
 
 } // namespace network_config
-} // namespace network_config
+} // namespace network
 } // namespace yggr
 
 #endif //__YGGR_NETWORK_NETWORK_CONFIG_NETWORK_UDP_CONFIG_HPP__

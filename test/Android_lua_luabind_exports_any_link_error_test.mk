@@ -132,7 +132,7 @@ ifeq ($(NDK_DEBUG), 1)
 	l_ldflags += \
 		-lyggr_script_lua$(USRDEF_APP_COMPILER_VERSION_TAG)-d \
 		-lluabind09$(USRDEF_APP_COMPILER_VERSION_TAG)-d \
-		-llua503$(USRDEF_APP_COMPILER_VERSION_TAG)-d \
+		-llua504$(USRDEF_APP_COMPILER_VERSION_TAG)-d \
 		$(USRDEF_APP_LDFLAGS_DEBUG) \
 
 else
@@ -141,7 +141,7 @@ else
 		-Wl,--gc-sections \
 		-lyggr_script_lua$(USRDEF_APP_COMPILER_VERSION_TAG) \
 		-lluabind09$(USRDEF_APP_COMPILER_VERSION_TAG) \
-		-llua503$(USRDEF_APP_COMPILER_VERSION_TAG) \
+		-llua504$(USRDEF_APP_COMPILER_VERSION_TAG) \
 		$(USRDEF_APP_LDFLAGS_RELEASE) \
 
 endif

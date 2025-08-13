@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeBlocks_workspace_file>
+	<Workspace title="yggr_test_only_mingw">
+		<Project filename="test/lua_lua_base_type_test_d32_mingw.cbp"/>
+		<Project filename="test/lua_lua_base_type_test_d64_mingw.cbp"/>
+		<Project filename="test/lua_lua_base_type_test_type_info_mingw.cbp"/>
+		<Project filename="test/lua_lua_debug_helper_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_export_any_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_export_inner_process_id_mingw.cbp"/>
+		<Project filename="test/lua_lua_export_pair_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_export_params_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_export_uuid_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_performance_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test2_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test3_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_mgr_test_same_id_and_out_mingw.cbp"/>
+		<Project filename="test/lua_lua_script_test_mingw.cbp"/>
+		<Project filename="test/lua_lua_wrap_boost_size_test_mingw.cbp"/>
+		<Project filename="test/lua_luabind_exports_any_link_error_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_allcator_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_base_t_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_bidirectional_iterator_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_deque_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_list_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_pair_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_random_access_iterator_test_part1_mingw.cbp"/>
+		<Project filename="test/lua_wrap_random_access_iterator_test_part2_mingw.cbp"/>
+		<Project filename="test/lua_wrap_reverse_iterator_test_mingw.cbp"/>
+		<Project filename="test/lua_wrap_vector_test_mingw.cbp"/>
+	</Workspace>
+</CodeBlocks_workspace_file>

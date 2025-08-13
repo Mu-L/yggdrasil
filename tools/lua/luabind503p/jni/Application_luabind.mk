@@ -48,6 +48,11 @@ ifeq ("$(USRDEF_APP_LUA_VERSION)", "503")
 	USRDEF_APP_LUABIND_OUT_DIR := luabind_lua503
 endif
 
+ifeq ("$(USRDEF_APP_LUA_VERSION)", "504")
+	USRDEF_APP_LUA_DIR := lua5_46
+	USRDEF_APP_LUABIND_OUT_DIR := luabind_lua504
+endif
+
 ifeq ("$(USRDEF_APP_LUA_VERSION)", "jit501")
 	USRDEF_APP_LUA_DIR := luajit21
 	USRDEF_APP_LUABIND_OUT_DIR := luabind_luajit21

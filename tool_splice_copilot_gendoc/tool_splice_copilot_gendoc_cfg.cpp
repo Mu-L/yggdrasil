@@ -10,7 +10,17 @@ tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(void)
 {
 }
 
-#if defined(__MINGW32__)
+#if defined(_MSC_VER)
+
+tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(tool_splice_copilot_gendoc_cfg_sample)
+	: file_md_("./test_data/all.md"),
+		sp_beg1_("# "),
+         sp_beg2_(L" 文档"),
+		sp_end_(L"alucard-dracula: 为这个文件生成文档")
+{
+}
+
+#else
 
 tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(tool_splice_copilot_gendoc_cfg_sample)
 	: file_md_("./test_data/all.md"),
@@ -20,17 +30,7 @@ tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(tool_splice_copil
 {
 }
 
-#else
-
-tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(tool_splice_copilot_gendoc_cfg_sample)
-	: file_md_("./test_data/all.md"),
-		sp_beg1_("# "),
-        sp_beg2_(L" 文档"),
-		sp_end_(L"alucard-dracula: 为这个文件生成文档")
-{
-}
-
-#endif // __MINGW32__
+#endif // _MSC_VER
 
 tool_splice_copilot_gendoc_cfg::tool_splice_copilot_gendoc_cfg(const this_type& right)
 	: file_md_(right.file_md_),

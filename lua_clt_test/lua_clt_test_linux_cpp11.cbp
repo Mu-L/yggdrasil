@@ -36,7 +36,7 @@
 					<Add option="-lboost_thread$(#COMPILER_VERSION_TAG)-mt-d-x32$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lboost_system$(#COMPILER_VERSION_TAG)-mt-d-x32$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)-d"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)-d"/>
 					<Add option="-lmd5$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib"/>
 				</Linker>
@@ -72,7 +72,7 @@
 					<Add option="-lboost_thread$(#COMPILER_VERSION_TAG)-mt-x32$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lboost_system$(#COMPILER_VERSION_TAG)-mt-x32$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)"/>
 					<Add option="-lmd5$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib"/>
 				</Linker>
@@ -108,7 +108,7 @@
 					<Add option="-lboost_thread$(#COMPILER_VERSION_TAG)-mt-d-x64$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lboost_system$(#COMPILER_VERSION_TAG)-mt-d-x64$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)-d"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)-d"/>
 					<Add option="-lmd5$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib64"/>
 				</Linker>
@@ -145,7 +145,7 @@
 					<Add option="-lboost_thread$(#COMPILER_VERSION_TAG)-mt-x64$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lboost_system$(#COMPILER_VERSION_TAG)-mt-x64$(#BOOST_VERSION_TAG)"/>
 					<Add option="-lluabind09$(#COMPILER_VERSION_TAG)"/>
-					<Add option="-llua503$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-llua504$(#COMPILER_VERSION_TAG)"/>
 					<Add option="-lmd5$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib64"/>
 				</Linker>

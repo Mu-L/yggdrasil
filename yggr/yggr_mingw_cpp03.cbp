@@ -82,6 +82,7 @@
 			<Add option="-Werror=reorder"/>
 			<Add option="-ftemplate-backtrace-limit=0"/>
 		</Compiler>
+		<Unit filename="adapter/adapter_default_tag_def.hpp"/>
 		<Unit filename="adapter/adapter_mgr.hpp"/>
 		<Unit filename="adapter/adapter_parser_helper.hpp"/>
 		<Unit filename="adapter/adapter_register_type_def.hpp"/>
@@ -1116,6 +1117,8 @@
 		<Unit filename="network/packets_support/packets_checker.hpp"/>
 		<Unit filename="network/packets_support/packets_crypher.hpp"/>
 		<Unit filename="network/packets_support/packets_queue.hpp"/>
+		<Unit filename="network/sender_checker/sender_adapter_checker.hpp"/>
+		<Unit filename="network/sender_checker/sender_non_checker.hpp"/>
 		<Unit filename="network/service_handler.hpp"/>
 		<Unit filename="network/service_handler_shared_wrap.hpp"/>
 		<Unit filename="network/session.hpp"/>

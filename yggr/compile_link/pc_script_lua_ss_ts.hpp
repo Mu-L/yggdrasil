@@ -46,8 +46,10 @@ THE SOFTWARE.
 #			pragma comment YGGR_COMPILE_LINK_STATIC_LIB(lua501_ts)
 #		elif ((502 <= LUA_VERSION_NUM) && (LUA_VERSION_NUM < 503))
 #			pragma comment YGGR_COMPILE_LINK_STATIC_LIB(lua502_ts)
-#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 503)
+#		elif (503 <= LUA_VERSION_NUM && LUA_VERSION_NUM < 504)
 #			pragma comment YGGR_COMPILE_LINK_STATIC_LIB(lua503_ts)
+#		elif (504 <= LUA_VERSION_NUM && LUA_VERSION_NUM <= 504)
+#			pragma comment YGGR_COMPILE_LINK_STATIC_LIB(lua504_ts)
 #		else
 #			pragma comment YGGR_COMPILE_LINK_NRULE_LIB(lua_ts)
 #		endif //LUA_VERSION_NUM

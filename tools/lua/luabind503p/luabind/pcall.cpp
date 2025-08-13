@@ -51,14 +51,18 @@ namespace luabind { namespace detail
 
 	int resume_impl(lua_State *L, int nargs, int)
 	{
-#if LUA_VERSION_NUM >=502
-        int res = lua_resume(L, 0, nargs);
-		return (res == LUA_YIELD) ? 0 : res;
+#if LUA_VERSION_NUM >503
+		int sat, res;
+		sat = lua_resume(L, 0, nargs, &res);
+		return (sat == LUA_YIELD) ? res : sat;
+#elif LUA_VERSION_NUM >=502
+        int sat = lua_resume(L, 0, nargs);
+		return (sat == LUA_YIELD) ? 0 : sat;
 #elif LUA_VERSION_NUM >= 501
 		// Lua 5.1 added  LUA_YIELD as a possible return value,
 		// this was causing crashes, because the caller expects 0 on success.
-		int res = lua_resume(L, nargs);
-		return (res == LUA_YIELD) ? 0 : res;
+		int sat = lua_resume(L, nargs);
+		return (sat == LUA_YIELD) ? 0 : sat;
 #else
 		return lua_resume(L, nargs);
 #endif

@@ -54,6 +54,8 @@ THE SOFTWARE.
 
 #include <yggr/adapter/adapter_parser_helper.hpp>
 #include <yggr/adapter/adapter_register_type_def.hpp>
+#include <yggr/adapter/adapter_default_tag_def.hpp>
+
 
 #include <boost/thread/shared_mutex.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -309,6 +311,11 @@ private:
 			return right.send_id;
 		}
 
+		inline bool check_enable(const outside_type& right) const
+		{
+			return !!(right.psend);
+		}
+
 		inline const fixer_type& fixer(const outside_type& right) const
 		{
 			return right.psend;
@@ -336,6 +343,11 @@ private:
 		inline const id_type& id(const outside_type& right) const
 		{
 			return right.recv_id;
+		}
+
+		inline bool check_enable(const outside_type& right) const
+		{
+			return !!(right.precv);
 		}
 
 		inline const fixer_type& fixer(const outside_type& right) const
@@ -449,6 +461,13 @@ public:
 	{
 		id_selector<Tag> selector;
 		return selector.id(*this);
+	}
+
+	template<typename Tag> inline
+	bool check_enable(void) const
+	{
+		id_selector<Tag> selector;
+		return selector.check_enable(*this);
 	}
 
 	template<typename Tag> inline
@@ -620,14 +639,115 @@ public:
 
 //---------------unregister_adapter_helper E---------------------
 
+//---------------check_enable_adapter_helper S---------------------
+
+template<typename Mapping,
+			typename SendAdapterID,
+			typename RecvAdapterID,
+			bool send_recv_id_same>
+class check_enable_adapter_helper;
+
+template<typename Mapping,
+			typename SendAdapterID,
+			typename RecvAdapterID>
+class check_enable_adapter_helper<Mapping, SendAdapterID, RecvAdapterID, true>
+{
+public:
+	typedef Mapping t_mapping_type;
+	typedef SendAdapterID send_adapter_id_type;
+	//typedef RecvAdapterID recv_adapter_id_type;
+	typedef adapter_register_type_def reg_def_type;
+
+private:
+	typedef unregister_adapter_helper this_type;
+
+public:
+	template<typename AdapterMgr> inline
+	bool operator()(AdapterMgr& outside, const send_adapter_id_type& id, u32 tag, u32 sat) const
+	{
+		assert(tag < 2);
+
+		switch(sat)
+		{
+		case reg_def_type::E_both:
+			return tag? outside.pro_check_enable_adapter_both_of_from_src(id)
+						: outside.pro_check_enable_adapter_both_of_to_src(id);
+
+		case reg_def_type::E_to_src:
+			return outside.template pro_check_enable_adapter_once<typename t_mapping_type::tag_send>(id);
+
+		case reg_def_type::E_from_src:
+			return outside.template pro_check_enable_adapter_once<typename t_mapping_type::tag_recv>(id);
+
+		default:
+			return false;
+		}
+	}
+};
+
+template<typename Mapping, typename SendAdapterID, typename RecvAdapterID>
+class check_enable_adapter_helper<Mapping, SendAdapterID, RecvAdapterID, false>
+{
+public:
+	typedef Mapping t_mapping_type;
+	typedef SendAdapterID send_adapter_id_type;
+	typedef RecvAdapterID recv_adapter_id_type;
+	typedef adapter_register_type_def reg_def_type;
+
+private:
+	typedef unregister_adapter_helper this_type;
+
+public:
+	template<typename AdapterMgr> inline
+	bool operator()(AdapterMgr& outside, const send_adapter_id_type& id, u32 /*tag*/, u32 sat) const
+	{
+		switch(sat)
+		{
+		case reg_def_type::E_both:
+			return outside.pro_check_enable_adapter_both_of_to_src(id);
+
+		case reg_def_type::E_to_src:
+			return outside.template pro_check_enable_adapter_once<typename t_mapping_type::tag_send>(id);
+
+		case reg_def_type::E_from_src:
+			return false;
+
+		default:
+			return false;
+		}
+	}
+
+	template<typename AdapterMgr> inline
+	bool operator()(AdapterMgr& outside, const recv_adapter_id_type& id, u32 /*tag*/, u32 sat) const
+	{
+		switch(sat)
+		{
+		case reg_def_type::E_both:
+			return outside.pro_check_enable_adapter_both_of_from_src(id);
+
+		case reg_def_type::E_to_src:
+			return false;
+
+		case reg_def_type::E_from_src:
+			return outside.template pro_check_enable_adapter_once<typename t_mapping_type::tag_recv>(id);
+
+		default:
+			return false;
+		}
+	}
+};
+
+//---------------check_enable_adapter_helper E---------------------
+
+
 template<typename ID, typename ChkID>
 struct default_tag_basic
 	: public
 		boost::mpl::if_
 		<
 			boost::is_same<ID, ChkID>,
-			boost::mpl::int_<0>,
-			boost::mpl::int_<1>
+			boost::mpl::int_<static_cast<int>(adapter_default_tag_def::E_tag_send)>, //0
+			boost::mpl::int_<static_cast<int>(adapter_default_tag_def::E_tag_recv)> // 1
 		>::type
 {
 };
@@ -707,6 +827,7 @@ private:
 			base_recv_adapter_type
 		> t_mapping_type;
 
+public:
 	typedef
 		adapter_id_parser
 		<
@@ -714,6 +835,8 @@ private:
 			typename t_mapping_type::tag_recv,
 			id_parser_def_type
 		> id_parser_type;
+
+private:
 
 	//---------------map_def S----------------------------------------------------------------
 
@@ -755,6 +878,13 @@ private:
 	ERROR_MAKER_END()
 
 	//class error E----------------------------------------------------------
+
+public:
+	template<typename ID>
+	struct default_tag
+		: public detail::default_tag_basic<ID, send_adapter_id_type>::type
+	{
+	};
 
 private:
 	typedef adapter_mgr this_type;
@@ -879,6 +1009,7 @@ public:
 		}
 	}
 
+
 	template<typename Real_Data> inline
 	bool unregister_adapter(u32 stat = reg_def_type::E_both)
 	{
@@ -922,13 +1053,6 @@ private:
 		> unregister_adapter_helper_type;
 
 public:
-	template<typename ID>
-	struct default_tag
-		: public detail::default_tag_basic<ID, send_adapter_id_type>::type
-	{
-	};
-
-public:
 	template<typename ID> inline
 	bool unregister_adapter(const ID& id,
 								u32 tag = default_tag<ID>::value,
@@ -938,6 +1062,62 @@ public:
 		return helper(*this, id, tag, sat);
 	}
 
+
+public:
+	template<typename Real_Data> inline
+	bool check_enable_adapter(u32 stat = reg_def_type::E_both)
+	{
+		typedef Real_Data real_data_type;
+
+		id_parser_type parser;
+
+		switch(stat)
+		{
+		case reg_def_type::E_both:
+			return
+				this_type::pro_check_enable_adapter_both_of_to_src(
+					parser.template reg_value_id<typename t_mapping_type::tag_send, real_data_type>());
+
+		case reg_def_type::E_to_src:
+			return
+				this_type::pro_check_enable_adapter_once<typename t_mapping_type::tag_send>(
+					parser.template reg_value_id<typename t_mapping_type::tag_send, real_data_type>());
+
+		case reg_def_type::E_from_src:
+			return
+				this_type::pro_check_enable_adapter_once<typename t_mapping_type::tag_recv>(
+					parser.template reg_value_id<typename t_mapping_type::tag_recv, real_data_type>());
+
+		default:
+			return false;
+		}
+	}
+
+private:
+	template<typename, typename, typename, bool>
+	friend class detail::check_enable_adapter_helper;
+
+	typedef
+		detail::check_enable_adapter_helper
+		<
+			t_mapping_type,
+			send_adapter_id_type,
+			recv_adapter_id_type,
+			boost::is_same<send_adapter_id_type, recv_adapter_id_type>::value
+		> check_enable_adapter_helper_type;
+
+public:
+	template<typename ID> inline
+	bool check_enable_adapter(const ID& id,
+								u32 tag = default_tag<ID>::value,
+								u32 sat = reg_def_type::E_both)
+	{
+		check_enable_adapter_helper_type helper;
+		return helper(*this, id, tag, sat);
+	}
+
+
+public:
 	void send(typename conver_type::conv_to_send_arg_data_type data)
 	{
 		id_parser_type parser;
@@ -1005,6 +1185,38 @@ public:
 	}
 
 protected:
+	// pro_check_enable_adapter
+	inline bool pro_check_enable_adapter_both_of_to_src(const send_adapter_id_type& send_id)
+	{
+		return 
+			_adapter_map.template get<0>().find(
+				send_id,
+				boost::bind(
+					&this_type::handler_check_enable_adapter<typename t_mapping_type::tag_send>, _1, _2));
+	}
+
+	inline bool pro_check_enable_adapter_both_of_from_src(const recv_adapter_id_type& recv_id)
+	{
+		return 
+			_adapter_map.template get<1>().find(
+				send_id,
+				boost::bind(
+					&this_type::handler_check_enable_adapter<typename t_mapping_type::tag_recv>, _1, _2));
+	}
+
+	template<typename Tag> inline
+	bool pro_check_enable_adapter_once(const typename Tag::id_type& id)
+	{
+		typedef Tag tag_type;
+
+		return 
+			_adapter_map.template get<tag_type>().find(
+				send_id,
+				boost::bind(
+					&this_type::handler_check_enable_adapter<tag_type>, _1, _2));
+	}
+
+	// pro_unregister_adapter
 	inline bool pro_unregister_adapter_both_of_to_src(const send_adapter_id_type& send_id)
 	{
 		return _adapter_map.template get<0>().erase(send_id);
@@ -1108,6 +1320,30 @@ protected:
 
 		return (rst.second == cont.template get<Tag>().end())?
 					ret_type() : (*rst.second).template fixer<Tag>();
+	}
+
+	template<typename Tag>
+	static bool handler_check_enable_adapter(const typename adapter_map_type::base_type& cont,
+												const
+													boost::fusion::pair
+													<
+														typename
+															safe_container::index
+															<
+																adapter_map_type,
+																Tag
+															>::type::index_id_type,
+														typename
+															safe_container::index
+															<
+																adapter_map_type,
+																Tag
+															>::type::const_iterator
+													>& rst)
+	{
+		return 
+			(!(rst.second == cont.template get<Tag>().end()))
+			&& (*rst.second).template check_enable<Tag>();
 	}
 
 	template<typename Tag>

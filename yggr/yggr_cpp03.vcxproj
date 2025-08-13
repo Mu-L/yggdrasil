@@ -95,6 +95,7 @@
 	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 </ItemDefinitionGroup>
 	<ItemGroup>
+		<ClInclude Include="adapter\adapter_default_tag_def.hpp"/>
 		<ClInclude Include="adapter\adapter_parser_helper.hpp"/>
 		<ClInclude Include="adapter\adapter_register_type_def.hpp"/>
 		<ClInclude Include="algorithm\boyer_moore.hpp"/>
@@ -1085,6 +1086,8 @@
 		<ClInclude Include="network\network_data_id_def.hpp"/>
 		<ClInclude Include="network\network_protocol.hpp"/>
 		<ClInclude Include="network\network_sender.hpp"/>
+		<ClInclude Include="network\sender_checker\sender_adapter_checker.hpp"/>
+		<ClInclude Include="network\sender_checker\sender_non_checker.hpp"/>
 		<ClInclude Include="network\service_handler_shared_wrap.hpp"/>
 		<ClInclude Include="network\session_helper\session_id_creator.hpp"/>
 		<ClInclude Include="network\session_helper\options_setter.hpp"/>

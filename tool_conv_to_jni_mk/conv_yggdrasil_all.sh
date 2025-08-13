@@ -7,6 +7,7 @@ dir3="\.\.\/tools\/dtl"
 dir5="\.\.\/tools\/lua\/lua5_14"
 dir6="\.\.\/tools\/lua\/lua5_21"
 dir7="\.\.\/tools\/lua\/lua5_34"
+dir7_1="\.\.\/tools\/lua\/lua5_46"
 #dir8="\.\.\/tools\/lua\/luabind503p"
 #dir9="\.\.\/tools\/lzma\/lzma2408-compile\/C\/Util\/LzmaLib"
 dir10="\.\.\/tools\/md5"
@@ -34,6 +35,9 @@ sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>${dir6}<\/root_dir_>/g" tool_con
 ./tool_conv_to_jni_mk tool_conv_to_jni_mk_cfg.xml
 
 sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>${dir7}<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml
+./tool_conv_to_jni_mk tool_conv_to_jni_mk_cfg.xml
+
+sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>${dir7_1}<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml
 ./tool_conv_to_jni_mk tool_conv_to_jni_mk_cfg.xml
 
 #sed -i "s/<root_dir_>.*<\/root_dir_>/<root_dir_>${dir8}<\/root_dir_>/g" tool_conv_to_jni_mk_cfg.xml

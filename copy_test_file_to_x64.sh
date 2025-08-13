@@ -1,6 +1,6 @@
 #!/bin/sh
 
-target_dir=./Release-x64/gcc14
+target_dir=./Release-x64/gcc15
 
 cp -f ./lua_hello_dll/test_lua_hello_dll.lua ${target_dir}/
 cp -f ./lua_active_svr_test/cal_num_test.lua ${target_dir}/

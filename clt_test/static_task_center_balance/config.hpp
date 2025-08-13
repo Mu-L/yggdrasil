@@ -4,6 +4,7 @@
 #define __CLT_TEST_STATIC_TASK_CENTER_BLANCE_CONFIG_HPP__
 
 #define YGGR_TEST_PP_USING_TIMEOUT() 0
+#define YGGR_TEST_USING_CHECK_SENDER() 0
 
 #include <yggr/thread/boost_thread_config.hpp>
 
@@ -57,6 +58,9 @@
 #include <yggr/network/session_state/session_state_checker.hpp>
 
 #include <yggr/network/network_sender.hpp>
+#if YGGR_TEST_USING_CHECK_SENDER()
+#	include <yggr/network/sender_checker.hpp>
+#endif // YGGR_TEST_USING_CHECK_SENDER()
 
 #include <yggr/client/client_config/client_tcp_config.hpp>
 #include <yggr/client/start_mode/client_passive_tcp_start_mode.hpp>
@@ -334,7 +338,15 @@ typedef yggr::client::client<network_handler_type> clt_type;
 typedef yggr::ptr_single<clt_type> clt_ptr_single_type;
 typedef clt_ptr_single_type::obj_ptr_type clt_ptr_type;
 
+#if YGGR_TEST_USING_CHECK_SENDER()
+
+typedef yggr::network::network_sender<clt_type, yggr::network::sender_checker::sender_adapter_checker> clt_sender_type;
+
+#else
+
 typedef yggr::network::network_sender<clt_type> clt_sender_type;
+
+#endif // YGGR_TEST_USING_CHECK_SENDER()
 
 // singles
 typedef yggr::ptr_single<task_center_type> task_center_single_type;

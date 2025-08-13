@@ -21,6 +21,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m32"/>
+					<Add option="-lyggr_base$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-lyggr_compatibility$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib"/>
 				</Linker>
 			</Target>
@@ -39,6 +41,8 @@
 					<Add option="-m32"/>
 					<Add option="-s"/>
 					<Add option="-Wl,--gc-sections"/>
+					<Add option="-lyggr_base$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-lyggr_compatibility$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib"/>
 				</Linker>
 			</Target>
@@ -58,6 +62,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m64"/>
+					<Add option="-lyggr_base$(#COMPILER_VERSION_TAG)-d"/>
+					<Add option="-lyggr_compatibility$(#COMPILER_VERSION_TAG)-d"/>
 					<Add directory="../lib64"/>
 				</Linker>
 			</Target>
@@ -77,6 +83,8 @@
 					<Add option="-m64"/>
 					<Add option="-s"/>
 					<Add option="-Wl,--gc-sections"/>
+					<Add option="-lyggr_base$(#COMPILER_VERSION_TAG)"/>
+					<Add option="-lyggr_compatibility$(#COMPILER_VERSION_TAG)"/>
 					<Add directory="../lib64"/>
 				</Linker>
 			</Target>
@@ -104,7 +112,7 @@
 			<Add directory="../"/>
 			<Add directory="../yggr_lua_base_type"/>
 		</Compiler>
-		<Unit filename="any_val/yggr_any_test.cpp"/>
+		<Unit filename="safe_container/safe_multi_index_container_base_test_part2.cpp"/>
 		<Unit filename="wait_any_key/wait_any_key.hpp"/>
 		<Extensions>
 			<lib_finder disable_auto="1"/>

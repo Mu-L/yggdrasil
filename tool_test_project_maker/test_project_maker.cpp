@@ -459,15 +459,15 @@ int main_detail(int argc, char* argv[])
 	std::stringstream ss_bat_vc143_x32d;
 	std::stringstream ss_bat_vc143_x32;
 
-	std::stringstream ss_bat_mgw14_x64d;
-	std::stringstream ss_bat_mgw14_x64;
-	std::stringstream ss_bat_mgw14_x32d;
-	std::stringstream ss_bat_mgw14_x32;
+	std::stringstream ss_bat_mgw15_x64d;
+	std::stringstream ss_bat_mgw15_x64;
+	std::stringstream ss_bat_mgw15_x32d;
+	std::stringstream ss_bat_mgw15_x32;
 
-	std::stringstream ss_sh_gcc14_x64d;
-	std::stringstream ss_sh_gcc14_x64;
-	std::stringstream ss_sh_gcc14_x32d;
-	std::stringstream ss_sh_gcc14_x32;
+	std::stringstream ss_sh_gcc15_x64d;
+	std::stringstream ss_sh_gcc15_x64;
+	std::stringstream ss_sh_gcc15_x32d;
+	std::stringstream ss_sh_gcc15_x32;
 
 	ss_bat_vc100_x64d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-x64/vc100/yggr_lua_base_type.dll ./\n";
 	ss_bat_vc100_x64 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-x64/vc100/yggr_lua_base_type.dll ./\n";
@@ -479,60 +479,60 @@ int main_detail(int argc, char* argv[])
 	ss_bat_vc143_x32d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-Win32/vc143/yggr_lua_base_type.dll ./\n";
 	ss_bat_vc143_x32 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-Win32/vc143/yggr_lua_base_type.dll ./\n";
 
-	ss_bat_mgw14_x64d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-x64/mgw14/yggr_lua_base_type.dll ./\n";
-	ss_bat_mgw14_x64 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-x64/mgw14/yggr_lua_base_type.dll ./\n";
-	ss_bat_mgw14_x32d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-Win32/mgw14/yggr_lua_base_type.dll ./\n";
-	ss_bat_mgw14_x32 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-Win32/mgw14/yggr_lua_base_type.dll ./\n";
+	ss_bat_mgw15_x64d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-x64/mgw15/yggr_lua_base_type.dll ./\n";
+	ss_bat_mgw15_x64 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-x64/mgw15/yggr_lua_base_type.dll ./\n";
+	ss_bat_mgw15_x32d << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Debug-Win32/mgw15/yggr_lua_base_type.dll ./\n";
+	ss_bat_mgw15_x32 << "cd /d %~dp0/test\n" << "rm -fr ../test_out\n" << "cp -fr ../Release-Win32/mgw15/yggr_lua_base_type.dll ./\n";
 
-	ss_sh_gcc14_x64d
+	ss_sh_gcc15_x64d
 		<< "#!/bin/sh\n" 
 		<< "source ./begin_test_env_x64d.sh\n"
-		<< "rm -f Debug-x64/gcc14/yggr_lua_base_type.so\n"
-		<< "rm -f Debug-x64/gcc14/mongo_crypt_v1.so\n"
-		<< "ln -s libyggr_lua_base_type.so Debug-x64/gcc14/yggr_lua_base_type.so\n" 
-		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so  Debug-x64/gcc14/mongo_crypt_v1.so\n" 
+		<< "rm -f Debug-x64/gcc15/yggr_lua_base_type.so\n"
+		<< "rm -f Debug-x64/gcc15/mongo_crypt_v1.so\n"
+		<< "ln -s libyggr_lua_base_type.so Debug-x64/gcc15/yggr_lua_base_type.so\n" 
+		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so  Debug-x64/gcc15/mongo_crypt_v1.so\n" 
 		<< "cd ./test\n"
 		<< "rm -fr ../test_out\n"
 		<< "rm -f yggr_lua_base_type.so\n"
 		<< "rm -f mongo_crypt_v1.so\n"
-		<< "ln -s ../Debug-x64/gcc14/libyggr_lua_base_type.so yggr_lua_base_type.so\n"
+		<< "ln -s ../Debug-x64/gcc15/libyggr_lua_base_type.so yggr_lua_base_type.so\n"
 		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so mongo_crypt_v1.so\n";
 
-	ss_sh_gcc14_x64
+	ss_sh_gcc15_x64
 		<< "#!/bin/sh\n" 
 		<< "source ./begin_test_env_x64.sh\n"
-		<< "rm -f Release-x64/gcc14/yggr_lua_base_type.so\n"
-		<< "rm -f Release-x64/gcc14/mongo_crypt_v1.so\n"
-		<< "ln -s libyggr_lua_base_type.so Release-x64/gcc14/yggr_lua_base_type.so\n" 
-		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so  Release-x64/gcc14/mongo_crypt_v1.so\n" 
+		<< "rm -f Release-x64/gcc15/yggr_lua_base_type.so\n"
+		<< "rm -f Release-x64/gcc15/mongo_crypt_v1.so\n"
+		<< "ln -s libyggr_lua_base_type.so Release-x64/gcc15/yggr_lua_base_type.so\n" 
+		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so  Release-x64/gcc15/mongo_crypt_v1.so\n" 
 		<< "cd ./test\n"
 		<< "rm -fr ../test_out\n"
 		<< "rm -f yggr_lua_base_type.so\n"
 		<< "rm -f mongo_crypt_v1.so\n"
-		<< "ln -s ../Release-x64/gcc14/libyggr_lua_base_type.so yggr_lua_base_type.so\n"
+		<< "ln -s ../Release-x64/gcc15/libyggr_lua_base_type.so yggr_lua_base_type.so\n"
 		<< "ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so mongo_crypt_v1.so\n";
 
-	ss_sh_gcc14_x32d
+	ss_sh_gcc15_x32d
 		<< "#!/bin/sh\n" 
 		<< "source ./begin_test_env_x32d.sh\n"
-		<< "rm -f Debug-x32/gcc14/yggr_lua_base_type.so\n"
-		<< "ln -s libyggr_lua_base_type.so Debug-x32/gcc14/yggr_lua_base_type.so\n"  
+		<< "rm -f Debug-x32/gcc15/yggr_lua_base_type.so\n"
+		<< "ln -s libyggr_lua_base_type.so Debug-x32/gcc15/yggr_lua_base_type.so\n"  
 		<< "cd ./test\n"
 		<< "rm -fr ../test_out\n"
 		<< "rm -f yggr_lua_base_type.so\n"
 		<< "rm -f mongo_crypt_v1.so\n"
-		<< "ln -s ../Debug-x32/gcc14/libyggr_lua_base_type.so yggr_lua_base_type.so\n";
+		<< "ln -s ../Debug-x32/gcc15/libyggr_lua_base_type.so yggr_lua_base_type.so\n";
 
-	ss_sh_gcc14_x32
+	ss_sh_gcc15_x32
 		<< "#!/bin/sh\n" 
 		<< "source ./begin_test_env_x32.sh\n"
-		<< "rm -f Release-x32/gcc14/yggr_lua_base_type.so\n"
-		<< "ln -s libyggr_lua_base_type.so Release-x32/gcc14/yggr_lua_base_type.so\n"  
+		<< "rm -f Release-x32/gcc15/yggr_lua_base_type.so\n"
+		<< "ln -s libyggr_lua_base_type.so Release-x32/gcc15/yggr_lua_base_type.so\n"  
 		<< "cd ./test\n"
 		<< "rm -fr ../test_out\n"
 		<< "rm -f yggr_lua_base_type.so\n"
 		<< "rm -f mongo_crypt_v1.so\n"
-		<< "ln -s ../Release-x32/gcc14/libyggr_lua_base_type.so yggr_lua_base_type.so\n";
+		<< "ln -s ../Release-x32/gcc15/libyggr_lua_base_type.so yggr_lua_base_type.so\n";
 
 	for(file_list_type::const_iterator i = file_list.begin(), isize = file_list.end(); i != isize; ++i)
 	{
@@ -571,15 +571,15 @@ int main_detail(int argc, char* argv[])
 		ss_bat_vc143_x32d << "\"../Debug-Win32/vc143/" << proj_name << ".exe\" --batch-test\n";
 		ss_bat_vc143_x32 << "\"../Release-Win32/vc143/" << proj_name << ".exe\" --batch-test\n";
 
-		ss_bat_mgw14_x64d << "\"../Debug-x64/mgw14/" << proj_name << ".exe\" --batch-test\n";
-		ss_bat_mgw14_x64 << "\"../Release-x64/mgw14/" << proj_name << ".exe\" --batch-test\n";
-		ss_bat_mgw14_x32d << "\"../Debug-Win32/mgw14/" << proj_name << ".exe\" --batch-test\n";
-		ss_bat_mgw14_x32 << "\"../Release-Win32/mgw14/" << proj_name << ".exe\" --batch-test\n";
+		ss_bat_mgw15_x64d << "\"../Debug-x64/mgw15/" << proj_name << ".exe\" --batch-test\n";
+		ss_bat_mgw15_x64 << "\"../Release-x64/mgw15/" << proj_name << ".exe\" --batch-test\n";
+		ss_bat_mgw15_x32d << "\"../Debug-Win32/mgw15/" << proj_name << ".exe\" --batch-test\n";
+		ss_bat_mgw15_x32 << "\"../Release-Win32/mgw15/" << proj_name << ".exe\" --batch-test\n";
 
-		ss_sh_gcc14_x64d << "../Debug-x64/gcc14/" << proj_name << " --batch-test\n";
-		ss_sh_gcc14_x64 << "../Release-x64/gcc14/" << proj_name << " --batch-test\n";
-		ss_sh_gcc14_x32d << "../Debug-x32/gcc14/" << proj_name << " --batch-test\n";
-		ss_sh_gcc14_x32 << "../Release-x32/gcc14/" << proj_name << " --batch-test\n";
+		ss_sh_gcc15_x64d << "../Debug-x64/gcc15/" << proj_name << " --batch-test\n";
+		ss_sh_gcc15_x64 << "../Release-x64/gcc15/" << proj_name << " --batch-test\n";
+		ss_sh_gcc15_x32d << "../Debug-x32/gcc15/" << proj_name << " --batch-test\n";
+		ss_sh_gcc15_x32 << "../Release-x32/gcc15/" << proj_name << " --batch-test\n";
 	}
 
 #if !ONLY_MAKE_RUN_TEST_BAT()
@@ -597,15 +597,15 @@ int main_detail(int argc, char* argv[])
 	ss_bat_vc143_x32d << "echo \'---------all test end-----------------\'\ncd ..\n";
 	ss_bat_vc143_x32 << "echo \'---------all test end-----------------\'\ncd ..\n";
 
-	ss_bat_mgw14_x64d << "echo \'---------all test end-----------------\'\ncd ..\n";
-	ss_bat_mgw14_x64 << "echo \'---------all test end-----------------\'\ncd ..\n";
-	ss_bat_mgw14_x32d << "echo \'---------all test end-----------------\'\ncd ..\n";
-	ss_bat_mgw14_x32 << "echo \'---------all test end-----------------\'\ncd ..\n";
+	ss_bat_mgw15_x64d << "echo \'---------all test end-----------------\'\ncd ..\n";
+	ss_bat_mgw15_x64 << "echo \'---------all test end-----------------\'\ncd ..\n";
+	ss_bat_mgw15_x32d << "echo \'---------all test end-----------------\'\ncd ..\n";
+	ss_bat_mgw15_x32 << "echo \'---------all test end-----------------\'\ncd ..\n";
 
-	ss_sh_gcc14_x64d << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
-	ss_sh_gcc14_x64 << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
-	ss_sh_gcc14_x32d << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
-	ss_sh_gcc14_x32 << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
+	ss_sh_gcc15_x64d << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
+	ss_sh_gcc15_x64 << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
+	ss_sh_gcc15_x32d << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
+	ss_sh_gcc15_x32 << "echo \"---------all test end-----------------\"\ncd ..\nsource end_test_env.sh\n";
 
 #if !ONLY_MAKE_RUN_TEST_BAT()
 //#if 1
@@ -619,15 +619,15 @@ int main_detail(int argc, char* argv[])
 	write_to_file(cfg.test_bat_fname_ + "_vc143_x32d.bat", yggr::string(ss_bat_vc143_x32d.str().c_str(), ss_bat_vc143_x32d.str().size()));
 	write_to_file(cfg.test_bat_fname_ + "_vc143_x32.bat", yggr::string(ss_bat_vc143_x32.str().c_str(), ss_bat_vc143_x32.str().size()));
 
-	write_to_file(cfg.test_bat_fname_ + "_mgw14_x64d.bat", yggr::string(ss_bat_mgw14_x64d.str().c_str(), ss_bat_mgw14_x64d.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_mgw14_x64.bat", yggr::string(ss_bat_mgw14_x64.str().c_str(), ss_bat_mgw14_x64.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_mgw14_x32d.bat", yggr::string(ss_bat_mgw14_x32d.str().c_str(), ss_bat_mgw14_x32d.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_mgw14_x32.bat", yggr::string(ss_bat_mgw14_x32.str().c_str(), ss_bat_mgw14_x32.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_mgw15_x64d.bat", yggr::string(ss_bat_mgw15_x64d.str().c_str(), ss_bat_mgw15_x64d.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_mgw15_x64.bat", yggr::string(ss_bat_mgw15_x64.str().c_str(), ss_bat_mgw15_x64.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_mgw15_x32d.bat", yggr::string(ss_bat_mgw15_x32d.str().c_str(), ss_bat_mgw15_x32d.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_mgw15_x32.bat", yggr::string(ss_bat_mgw15_x32.str().c_str(), ss_bat_mgw15_x32.str().size()));
 
-	write_to_file(cfg.test_bat_fname_ + "_gcc14_x64d.sh", yggr::string(ss_sh_gcc14_x64d.str().c_str(), ss_sh_gcc14_x64d.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_gcc14_x64.sh", yggr::string(ss_sh_gcc14_x64.str().c_str(), ss_sh_gcc14_x64.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_gcc14_x32d.sh", yggr::string(ss_sh_gcc14_x32d.str().c_str(), ss_sh_gcc14_x32d.str().size()));
-	write_to_file(cfg.test_bat_fname_ + "_gcc14_x32.sh", yggr::string(ss_sh_gcc14_x32.str().c_str(), ss_sh_gcc14_x32.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_gcc15_x64d.sh", yggr::string(ss_sh_gcc15_x64d.str().c_str(), ss_sh_gcc15_x64d.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_gcc15_x64.sh", yggr::string(ss_sh_gcc15_x64.str().c_str(), ss_sh_gcc15_x64.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_gcc15_x32d.sh", yggr::string(ss_sh_gcc15_x32d.str().c_str(), ss_sh_gcc15_x32d.str().size()));
+	write_to_file(cfg.test_bat_fname_ + "_gcc15_x32.sh", yggr::string(ss_sh_gcc15_x32.str().c_str(), ss_sh_gcc15_x32.str().size()));
 #endif // ONLY_MAKE_RUN_TEST_BAT
 
 	return 0;
