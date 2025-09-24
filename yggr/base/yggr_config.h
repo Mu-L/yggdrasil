@@ -199,6 +199,8 @@ YGGR_ANY_VAL_OP_EXCLUDE_UNSAFE_TYPE			yggr::any_val::any_operator_mgr_basic_t_re
 
 YGGR_MONGODB_NO_DECIMAL128					yggr::nsql_database_system not support decimal128
 
+YGGR_FOO_T_INFO_SUPPORT_STD_BIND			enable yggr::func::foo_t_info support std::bind
+
 */
 
 //compiler
@@ -418,6 +420,7 @@ YGGR_MONGODB_NO_DECIMAL128					yggr::nsql_database_system not support decimal128
 #include <yggr/base/endian.hpp>
 
 #include <yggr/base/noexcept_cfg.hpp>
+#include <yggr/base/override_cfg.hpp>
 #include <yggr/base/constexpr_cfg.hpp>
 #include <yggr/base/attribute_cfg.hpp>
 #include <yggr/base/if_constexpr_cfg.hpp>

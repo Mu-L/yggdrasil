@@ -54,7 +54,7 @@ namespace compaction_tool
 {
 
 template<typename TChar = char,
-			typename TTraits = typename charset::basic_string<TChar>::traits_type, 
+			typename TTraits = typename charset::basic_string<TChar>::traits_type,
 			typename TAlloc = typename charset::basic_string<TChar>::allocator_type,
 			template<typename _Char, typename _Traits, typename _Alloc>
 				class Basic_String = charset::basic_string
@@ -81,16 +81,16 @@ public:
 	{
 	}
 
-	lzma_data(const size_type& org_byte_size, 
-				const lzma_props_type& props, 
+	lzma_data(const size_type& org_byte_size,
+				const lzma_props_type& props,
 				const lzma_buf_type& buf)
 		: _org_byte_size(org_byte_size),
 			_props(props), _buf(buf)
 	{
 	}
 
-	lzma_data(const size_type& org_byte_size, 
-				const lzma_props_type& props, 
+	lzma_data(const size_type& org_byte_size,
+				const lzma_props_type& props,
 				BOOST_RV_REF(lzma_buf_type) buf)
 		: _org_byte_size(org_byte_size),
 			_props(props), _buf(boost::move(buf))
@@ -98,8 +98,8 @@ public:
 	}
 
 	template<typename InputIter>
-	lzma_data(const size_type& org_byte_size, 
-				const lzma_props_type& props, 
+	lzma_data(const size_type& org_byte_size,
+				const lzma_props_type& props,
 				InputIter s, InputIter e)
 		: _org_byte_size(org_byte_size),
 			_props(props), _buf(s, e)
@@ -107,10 +107,10 @@ public:
 	}
 
 	lzma_data(BOOST_RV_REF(this_type) right)
-		: _org_byte_size(boost::move(right._org_btye_size)),
+		: _org_byte_size(boost::move(right._org_byte_size)),
 			_props(boost::move(right._props)),
 			_buf(boost::move(right._buf))
-			
+
 	{
 	}
 
@@ -143,7 +143,7 @@ public:
 
 	this_type& operator=(const this_type& right)
 	{
-		if(this == &right) 
+		if(this == &right)
 		{
 			return *this;
 		}
@@ -227,15 +227,15 @@ void swap(YGGR_PP_TEMPLATE_TYPE2(lzma_data,
 									Basic_String)& l,
 			YGGR_PP_TEMPLATE_TYPE2(lzma_data,
 									YGGR_PP_TEMPLATE_PARAMS_TYPES( 3, T ),
-									Basic_String)& r) 
+									Basic_String)& r)
 {
-	l.swap(r); 
+	l.swap(r);
 }
 
 
 } // namespace swap_support
 
-using swap_support::swap; 
+using swap_support::swap;
 
 } // namespace compaction_tool
 } // namespace yggr

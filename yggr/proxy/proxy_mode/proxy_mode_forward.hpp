@@ -65,7 +65,7 @@ private:
 
 public:
 	proxy_mode_forward(void) {}
-	virtual ~proxy_mode_forward(void) {}
+	virtual ~proxy_mode_forward(void) YGGR_OVERRIDE {}
 
 
 protected:
@@ -73,7 +73,7 @@ protected:
 		pro_get_owner_info_container(owner_info_container_type& cont,
 									const owner_info_type& owner_info,
 									const store_type& oid_cont,
-									const utility::basic_args_holder_nv* pargs_holder) const
+									const utility::basic_args_holder_nv* pargs_holder) const YGGR_OVERRIDE
 	{
 		const ex_args_type* psid = 
 			pargs_holder?

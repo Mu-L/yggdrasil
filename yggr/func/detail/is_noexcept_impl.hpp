@@ -53,8 +53,6 @@ namespace detail
 		&& (YGGR_CPP_VER_17 <= YGGR_CPP_VERSION) \
 		&& !defined(BOOST_NO_CXX11_NOEXCEPT) // 106600 and later
 
-//#if 0 // test
-
 template<typename T, bool is_noexcept_v = 
 						(boost::callable_traits::is_noexcept<T>::value 
 							&& !boost::is_class<T>::value)>
@@ -89,7 +87,7 @@ struct is_noexcept_impl
 
 #if !( defined(BOOST_NO_CXX11_NOEXCEPT) \
 		|| defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES) \
-		|| (YGGR_CPP_VERSION < YGGR_CPP_VER_17) ) 
+		|| (YGGR_CPP_VERSION < YGGR_CPP_VER_17) )  // noexcept in function types started from C++17
 
 #define YGGR_PP_MAKE_IS_NOEXCEPT_IMPL_F( __cc__ ) \
 	template<typename R, typename ...Args> \

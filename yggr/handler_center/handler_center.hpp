@@ -399,13 +399,13 @@ public:
 	{
 	}
 
-	~handler_container(void)
+	virtual ~handler_container(void) YGGR_OVERRIDE
 	{
 	}
 
 protected:
 	virtual bool pro_invoke(const base_args_holder_type& ret,
-							const base_args_holder_type& params) const
+							const base_args_holder_type& params) const YGGR_OVERRIDE
 	{
 		detail_invoke_helper_type helper;
 		return helper.template call<E_params_length>(ret, _handler, params);

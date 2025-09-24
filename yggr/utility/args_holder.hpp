@@ -46,7 +46,7 @@ class bad_args_holder_cast
 	: public std::bad_cast
 {
 public:
-	virtual const char* what(void) const BOOST_NOEXCEPT_OR_NOTHROW //throw()
+	virtual const char* what(void) const BOOST_NOEXCEPT_OR_NOTHROW YGGR_OVERRIDE //throw()
 	{
 		return "yggr::bad_args_holder_cast: "
 				"failed conversion using yggr::utility::args_holder_ref_wrap_dynamic_cast_throw_if_nil";
@@ -92,7 +92,7 @@ public:
 	{
 	}
 
-	virtual ~args_holder_ref_wrap(void)
+	virtual ~args_holder_ref_wrap(void) YGGR_OVERRIDE
 	{
 	}
 
@@ -121,7 +121,7 @@ public:
 	{
 	}
 
-	virtual ~args_holder_ref_wrap(void)
+	virtual ~args_holder_ref_wrap(void) YGGR_OVERRIDE
 	{
 	}
 
@@ -225,7 +225,7 @@ public:
 	}
 
 
-	virtual ~args_holder(void)
+	virtual ~args_holder(void) YGGR_OVERRIDE
 	{
 	}
 
@@ -291,7 +291,7 @@ public:
 	{
 	}
 
-	virtual ~args_holder(void)
+	virtual ~args_holder(void) YGGR_OVERRIDE
 	{
 	}
 

@@ -28,7 +28,15 @@ THE SOFTWARE.
 #define __YGGR_NETWORK_IO_TCP_ASYNC_STRAND_IO_HPP__
 
 #include <yggr/base/yggrdef.h>
-#include <yggr/base/error_make.hpp>
+
+#include <yggr/network/type_traits/tags.hpp>
+#include <yggr/network/packets_support/packets_queue.hpp>
+#include <yggr/network/io/io_error_def.hpp>
+
+#include <yggr/system_controller/system_code.hpp>
+
+#include <yggr/container/array.hpp>
+#include <yggr/safe_container/safe_buffered_object.hpp>
 
 #include <yggr/bind/bind.hpp>
 #include <yggr/move/move.hpp>
@@ -39,15 +47,6 @@ THE SOFTWARE.
 
 #include <yggr/ppex/friend.hpp>
 #include <yggr/mplex/static_assert.hpp>
-
-#include <yggr/container/array.hpp>
-#include <yggr/safe_container/safe_buffered_object.hpp>
-
-#include <yggr/exception/exception.hpp>
-#include <yggr/system_controller/system_code.hpp>
-
-#include <yggr/network/type_traits/tags.hpp>
-#include <yggr/network/packets_support/packets_queue.hpp>
 
 #include <boost/smart_ptr/enable_shared_from_raw.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -109,23 +108,7 @@ public:
 	typedef send_data_buf_type data_buf_type;
 
 private:
-	//class error S----------------------------------------------------------
-
-	ERROR_MAKER_BEGIN("tcp_async_strand_io")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_17)
-			ERROR_CODE_DEF(E_invalid_recv_size)
-			ERROR_CODE_DEF(E_invalid_recv_head)
-			ERROR_CODE_DEF(E_invalid_recv_data)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_17)
-
-		ERROR_CODE_MSG_BEGIN()
-			ERROR_CODE_MSG(E_invalid_recv_size, "invalid recv size")
-			ERROR_CODE_MSG(E_invalid_recv_head, "invalid recv head")
-			ERROR_CODE_MSG(E_invalid_recv_data, "invalid recv data")
-		ERROR_CODE_MSG_END()
-	ERROR_MAKER_END()
-
-	//class error E----------------------------------------------------------
+	YGGR_PP_NETWORK_IO_ERROR_DEF("tcp_async_strand_io")
 
 private:
 	typedef utility::basic_args_holder_nv basic_args_holder_nv_type;

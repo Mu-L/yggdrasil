@@ -1,0 +1,6 @@
+<tool_splice_copilot_gendoc_cfg class_id="0" tracking_level="0" version="0">
+	<file_md_>./test_data/database_system_all.txt</file_md_>
+	<sp_beg1_>GitHub Copilot: `</sp_beg1_>
+	<sp_beg2_>` 文档</sp_beg2_>
+	<sp_end_>alucard-dracula: 为这个文件生成文档</sp_end_>
+</tool_splice_copilot_gendoc_cfg>

@@ -92,17 +92,17 @@ private:
 		{
 		}
 
-		~opacket_container(void)
+		virtual ~opacket_container(void) YGGR_OVERRIDE
 		{
 		}
 
 	public:
-		virtual bool empty(void) const
+		virtual bool empty(void) const YGGR_OVERRIDE
 		{
 			return _pak.empty();
 		}
 
-		virtual void send_packet(conn_type& conn) const
+		virtual void send_packet(conn_type& conn) const YGGR_OVERRIDE
 		{
 			conn.exec_send_packet(_pak, _handler);
 		}

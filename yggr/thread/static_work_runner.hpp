@@ -88,12 +88,12 @@ public:
 	{
 	}
 
-	~static_work_runner_link_handler(void)
+	virtual ~static_work_runner_link_handler(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual void run_handler(task_type& tk) const
+	virtual void run_handler(task_type& tk) const YGGR_OVERRIDE
 	{
 		(_handler)(tk);
 	}

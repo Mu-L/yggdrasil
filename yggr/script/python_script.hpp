@@ -62,10 +62,10 @@ private:
 	//class error S----------------------------------------------------------
 
 	ERROR_MAKER_BEGIN("python_script")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_19)
+		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_18)
 			ERROR_CODE_DEF(E_python_code_compile_error)
 			ERROR_CODE_DEF(E_python_code_runtime_error)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_19)
+		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_18)
 
 		ERROR_CODE_MSG_BEGIN()
 			ERROR_CODE_MSG(E_python_code_compile_error, "python code compile error")

@@ -41,9 +41,9 @@ struct charset_error_def
 {
 public:
 	ERROR_MAKER_BEGIN("charset")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_22)
+		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_7)
 			ERROR_CODE_DEF(E_charset_conver_failed)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_22)
+		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_7)
 
 		ERROR_CODE_MSG_BEGIN()
 			ERROR_CODE_MSG(E_charset_conver_failed, "charset_convter_failed")

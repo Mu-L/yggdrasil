@@ -357,12 +357,12 @@ public:
 		_handler_vt.push_back(handler_wrap);
 	}
 
-	~controller(void)
+	virtual ~controller(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool insert(const handler_wrap_type& handler_wrap)
+	virtual bool insert(const handler_wrap_type& handler_wrap) YGGR_OVERRIDE
 	{
 		handler_wrap_op_helper_type helper(handler_wrap);
 		return
@@ -373,7 +373,7 @@ public:
 						_1, boost::cref(helper) ) );
 	}
 
-	virtual std::size_t erase(const handler_wrap_type& handler_wrap)
+	virtual std::size_t erase(const handler_wrap_type& handler_wrap) YGGR_OVERRIDE
 	{
 		handler_wrap_op_helper_type helper(handler_wrap);
 		return
@@ -385,24 +385,24 @@ public:
 				: 0;
 	}
 
-	virtual void clear(void)
+	virtual void clear(void) YGGR_OVERRIDE
 	{
 		_handler_vt.clear();
 	}
 
 public:
-	virtual const std::type_info& type(void) const
+	virtual const std::type_info& type(void) const YGGR_OVERRIDE
 	{
 		return typeid(handler_type);
 	}
 
-	virtual bool empty(void) const
+	virtual bool empty(void) const YGGR_OVERRIDE
 	{
 		return _handler_vt.empty();
 	}
 
 protected:
-	virtual void pro_ctrl(const param_type& params) const
+	virtual void pro_ctrl(const param_type& params) const YGGR_OVERRIDE
 	{
 		typedef
 			handler_caller

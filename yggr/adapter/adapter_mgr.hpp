@@ -144,12 +144,12 @@ public:
 	{
 	}
 
-	~send_adapter(void)
+	~send_adapter(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual conv_to_send_result_type send(src_type& src, conv_to_send_arg_data_type std_data) const
+	virtual conv_to_send_result_type send(src_type& src, conv_to_send_arg_data_type std_data) const YGGR_OVERRIDE
 	{
 		return conver_type::template conv_to_send<real_data_type>(src, std_data);
 	}
@@ -247,12 +247,12 @@ public:
 	{
 	}
 
-	~recv_adapter(void)
+	~recv_adapter(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual conv_from_recv_result_type recv(conv_from_recv_arg_data_type data) const
+	virtual conv_from_recv_result_type recv(conv_from_recv_arg_data_type data) const YGGR_OVERRIDE
 	{
 		return conver_type::template conv_from_recv<real_data_type>(data);
 	}
@@ -659,7 +659,7 @@ public:
 	typedef adapter_register_type_def reg_def_type;
 
 private:
-	typedef unregister_adapter_helper this_type;
+	typedef check_enable_adapter_helper this_type;
 
 public:
 	template<typename AdapterMgr> inline
@@ -695,7 +695,7 @@ public:
 	typedef adapter_register_type_def reg_def_type;
 
 private:
-	typedef unregister_adapter_helper this_type;
+	typedef check_enable_adapter_helper this_type;
 
 public:
 	template<typename AdapterMgr> inline
@@ -1188,7 +1188,7 @@ protected:
 	// pro_check_enable_adapter
 	inline bool pro_check_enable_adapter_both_of_to_src(const send_adapter_id_type& send_id)
 	{
-		return 
+		return
 			_adapter_map.template get<0>().find(
 				send_id,
 				boost::bind(
@@ -1197,9 +1197,9 @@ protected:
 
 	inline bool pro_check_enable_adapter_both_of_from_src(const recv_adapter_id_type& recv_id)
 	{
-		return 
+		return
 			_adapter_map.template get<1>().find(
-				send_id,
+				recv_id,
 				boost::bind(
 					&this_type::handler_check_enable_adapter<typename t_mapping_type::tag_recv>, _1, _2));
 	}
@@ -1209,9 +1209,9 @@ protected:
 	{
 		typedef Tag tag_type;
 
-		return 
+		return
 			_adapter_map.template get<tag_type>().find(
-				send_id,
+				id,
 				boost::bind(
 					&this_type::handler_check_enable_adapter<tag_type>, _1, _2));
 	}
@@ -1341,7 +1341,7 @@ protected:
 															>::type::const_iterator
 													>& rst)
 	{
-		return 
+		return
 			(!(rst.second == cont.template get<Tag>().end()))
 			&& (*rst.second).template check_enable<Tag>();
 	}

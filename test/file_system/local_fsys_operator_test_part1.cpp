@@ -2595,7 +2595,7 @@ void test_move_directory(void)
 		local_fsys_operators::make_path_object("/storage/C5B8-A1D4/yggr_diff_vol_test_out/diff_test_move_directory/");
 #	else
 	local_fsys_operators::path_type diff_vol_root_dir_path =
-		local_fsys_operators::make_path_object("/run/media/alucard/win10_games/yggr_diff_vol_test_out/diff_test_move_directory/");
+		local_fsys_operators::make_path_object("/run/media/${USER}/win10_games/yggr_diff_vol_test_out/diff_test_move_directory/");
 #	endif // #	if defined(__ANDROID__) || defined(ANDROID)
 #elif defined(YGGR_AT_DARWIN)
 	local_fsys_operators::path_type diff_vol_root_dir_path =

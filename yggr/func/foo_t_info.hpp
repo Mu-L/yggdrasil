@@ -42,6 +42,7 @@ THE SOFTWARE.
 #include <yggr/mplex/null_t.hpp>
 #include <yggr/mplex/args.hpp>
 #include <yggr/mplex/revert_to_vector.hpp>
+#include <yggr/mplex/typename_caster.hpp>
 
 #include <yggr/func/is_callable.hpp>
 #include <yggr/func/bind_av_list_cast.hpp>
@@ -54,6 +55,7 @@ THE SOFTWARE.
 #include <boost/type_traits/add_reference.hpp>
 
 #include <boost/mpl/vector.hpp>
+#include <boost/mpl/at.hpp>
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/size_t.hpp>
 #include <boost/mpl/bool.hpp>
@@ -85,6 +87,10 @@ THE SOFTWARE.
 #include <boost/function_types/is_member_function_pointer.hpp>
 #include <boost/function_types/result_type.hpp>
 #include <boost/function_types/parameter_types.hpp>
+
+#if (YGGR_CPP_VER_11 <= YGGR_CPP_VERSION) && defined(YGGR_FOO_T_INFO_SUPPORT_STD_BIND)
+#	include <functional>
+#endif // (YGGR_CPP_VER_11 <= YGGR_CPP_VERSION) (YGGR_CPP_VER_11 <= YGGR_CPP_VERSION) && defined(YGGR_FOO_T_INFO_SUPPORT_STD_BIND)
 
 namespace yggr
 {
@@ -184,7 +190,6 @@ struct is_placeholder_arg_detail< boost::mpl::arg<N> >
 	: public boost::mpl::false_
 {
 };
-
 
 template<template<int _N> class Holder, int N>
 struct is_placeholder_arg_detail< Holder<N> >
@@ -319,7 +324,7 @@ public:
 	typedef typename
 		mplex::revert_to_vector
 		<
-			typename boost::function_types::parameter_types<noexcept_tpl_arg_type>::type 
+			typename boost::function_types::parameter_types<noexcept_tpl_arg_type>::type
 		>::type arg_list_type;
 
 
@@ -400,7 +405,7 @@ public:
 			typename boost::mpl::front<tpl_arg_params_list_type>::type
 		>::type class_type;
 
-	typedef typename 
+	typedef typename
 		mplex::revert_to_vector
 		<
 			typename boost::mpl::pop_front<tpl_arg_params_list_type>::type
@@ -723,11 +728,8 @@ struct foo_t_info_detail_is_any_func_if<T, true >
 };
 
 template<typename T>
-struct foo_t_info_detail
+struct foo_t_info_real_tpl_detail
 {
-private:
-	typedef foo_t_info_detail this_type;
-
 private:
 	typedef foo_t_info_detail_is_any_func_if<T> base_type;
 
@@ -767,7 +769,7 @@ public:
 	template< typename R \
 				YGGR_PP_SYMBOL_IF( __n__, YGGR_PP_SYMBOL_COMMA ) \
 				YGGR_PP_TEMPLATE_PARAMS_TYPES( __n__, typename T ) > \
-	struct foo_t_info_detail< \
+	struct foo_t_info_real_tpl_detail< \
 				BOOST_PP_CAT(boost::function, __n__)< \
 					R \
 					YGGR_PP_SYMBOL_IF( __n__, YGGR_PP_SYMBOL_COMMA ) \
@@ -814,7 +816,7 @@ public:
 				YGGR_PP_SYMBOL_IF( __n__, YGGR_PP_SYMBOL_COMMA ) \
 					YGGR_PP_TEMPLATE_PARAMS_TYPES( __n__, typename A ) \
 			YGGR_MEM_FN_CLASS_F() > \
-	struct foo_t_info_detail< \
+	struct foo_t_info_real_tpl_detail< \
 			boost::_mfi::YGGR_BIND_MF_NAME( \
 				BOOST_PP_CAT(BOOST_PP_IF(__is_const__, cmf, mf), __n__))< \
 					R, T \
@@ -901,10 +903,10 @@ public:
 
 // boost::function
 template<typename Signature>
-struct foo_t_info_detail< boost::function<Signature> >
+struct foo_t_info_real_tpl_detail< boost::function<Signature> >
 {
 private:
-	typedef foo_t_info_detail<Signature> base_type;
+	typedef foo_t_info_real_tpl_detail<Signature> base_type;
 	typedef boost::function<Signature> tpl_arg_type;
 
 public:
@@ -938,10 +940,10 @@ public:
 
 // bind
 template<typename R, typename F, typename L>
-struct foo_t_info_detail< boost::_bi::bind_t<R, F, L> >
+struct foo_t_info_real_tpl_detail< boost::_bi::bind_t<R, F, L> >
 {
 private:
-	typedef foo_t_info_detail<F> base_type;
+	typedef foo_t_info_real_tpl_detail<F> base_type;
 	typedef boost::_bi::bind_t<R, F, L> tpl_arg_type;
 
 public:
@@ -1012,7 +1014,7 @@ public:
 						av_list_type,
 						av_arg_list_type
 					>
-				>::type 
+				>::type
 		>::type arg_holder_list_type;
 
 	typedef typename base_type::is_const_type is_const_type;
@@ -1032,107 +1034,33 @@ public:
 	typedef foo_type type;
 };
 
-// std::bind
-
-#if !defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES)
-
-template<template<typename _R, typename _F, typename ..._Args> class BindT,
-			typename R, typename F, typename ...Args>
-struct foo_t_info_detail< BindT<R, F, Args...> >
+template<typename T, bool is_std_bind = false>
+struct foo_t_info_real_tpl_detail_sel
+	: public foo_t_info_real_tpl_detail<T>
 {
-private:
-	typedef foo_t_info_detail<F> base_type;
-	typedef BindT<R, F, Args...> tpl_arg_type;
-
-public:
-	typedef typename base_type::null_type null_type;
-
-	typedef typename base_type::result_type result_type;
-
-	typedef boost::mpl::true_ is_callable_type;
-	typedef boost::mpl::false_ is_native_foo_type;
-	typedef typename base_type::is_member_foo_type is_member_foo_type;
-	typedef typename base_type::has_va_list_type has_va_list_type;
-
-	typedef typename base_type::class_type class_type;
-
-	typedef typename base_type::arg_list_type arg_list_type;
-
-private:
-	typedef typename ::yggr::func::bind_av_list_cast<tpl_arg_type>::type av_list_type;
-
-	typedef typename
-		boost::mpl::copy_if
-		<
-			av_list_type,
-			detail::is_placeholder_arg<boost::mpl::_>,
-			boost::mpl::back_inserter< boost::mpl::vector<>::type >
-		>::type nord_av_arg_list_type;
-
-	typedef typename
-		boost::mpl::sort
-		<
-			nord_av_arg_list_type,
-			detail::placeholder_arg_less<boost::mpl::_1, boost::mpl::_2>
-		>::type ord_av_arg_list_type;
-
-	typedef typename
-		boost::mpl::if_
-		<
-			is_member_foo_type,
-			typename
-				boost::mpl::push_front
-				<
-					arg_list_type,
-					tag_object_reference
-					<
-						typename
-							boost::mpl::if_
-							<
-								typename base_type::is_const_type,
-								const class_type,
-								class_type
-							>::type
-					>
-				>::type,
-			arg_list_type
-		>::type av_arg_list_type;
-
-public:
-	typedef typename
-		mplex::revert_to_vector
-		<
-			typename
-				boost::mpl::transform
-				<
-					ord_av_arg_list_type,
-					detail::conv_to_arg
-					<
-						boost::mpl::_1,
-						av_list_type,
-						av_arg_list_type
-					>
-				>::type 
-		>::type arg_holder_list_type;
-
-	typedef typename base_type::is_const_type is_const_type;
-	typedef typename base_type::is_volatile_type is_volatile_type;
-	typedef typename base_type::is_noexcept_type is_noexcept_type;
-	typedef typename base_type::arg_list_size_type arg_list_size_type;
-	typedef boost::mpl::size_t<boost::mpl::size<arg_holder_list_type>::value> arg_holder_list_size_type;
-
-	typedef tpl_arg_type foo_type;
-	typedef typename boost::add_pointer<foo_type>::type foo_pointer_type;
-	typedef typename boost::add_reference<foo_type>::type foo_reference_type;
-
-	typedef typename base_type::foo_type native_foo_type;
-	typedef typename base_type::foo_pointer_type native_foo_pointer_type;
-	typedef typename base_type::foo_reference_type native_foo_reference_type;
-
-	typedef foo_type type;
 };
 
-#endif // YGGR_NO_CXX11_VARIADIC_TEMPLATES
+// std::bind impl
+#include <yggr/func/detail/foo_t_info_std_bind_impl.hpp>
+
+
+#if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+template<typename T>
+struct foo_t_info_detail
+	: public foo_t_info_real_tpl_detail_sel<T, false>
+{
+};
+
+#else
+
+template<typename T>
+struct foo_t_info_detail
+	: public foo_t_info_real_tpl_detail_sel<T, std::is_bind_expression<T>::value>
+{
+};
+
+#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+
 
 } // namespace detail
 

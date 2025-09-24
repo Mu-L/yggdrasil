@@ -70,7 +70,7 @@ public:
 	{
 	}
 	
-	~proxy_mode_reduce(void) 
+	virtual ~proxy_mode_reduce(void) YGGR_OVERRIDE
 	{
 	}
 
@@ -79,7 +79,7 @@ protected:
 		pro_get_owner_info_container(owner_info_container_type& cont,
 									const owner_info_type& owner_info,
 									const store_type& oid_cont,
-									const utility::basic_args_holder_nv*) const
+									const utility::basic_args_holder_nv*) const YGGR_OVERRIDE
 	{
 		typedef typename boost::range_const_iterator<vector_store_type>::type citer_type;
 		const vector_store_type& vt = mode_data_store_type::s_get_vector_store_of_base(oid_cont);

@@ -9,7 +9,7 @@
 #include <yggr/math/vector3d.hpp>
 #include <yggr/geometry/geo_line_segment.hpp>
 
-#include <yggr/geometry/algorithm_helper.hpp>
+#include <yggr/geometry/bresenham_disperse_helper.hpp>
 
 #include <list>
 
@@ -27,7 +27,7 @@ void algorithm_helper_test(void)
 	line_seg_type line_seg(pos_type(0, 0), pos_type(10, 20));
 
 	pos_list_type pos_list;
-	yggr::geometry::algorithm_helper::bresenham_disperse(line_seg, pos_list);
+	yggr::geometry::bresenham_disperse_helper::bresenham_disperse(line_seg, pos_list);
 
 	for(pos_list_citer_type i = pos_list.begin(), isize = pos_list.end(); i != isize; ++i)
 	{

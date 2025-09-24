@@ -92,14 +92,14 @@ public:
 	{
 	}
 
-	~dbs_mgr_command(void)
+	virtual ~dbs_mgr_command(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
 	virtual bool execute(conn_type& conn,
 						const in_user_data_type& in_data,
-						out_user_data_type& out_data ) const
+						out_user_data_type& out_data ) const YGGR_OVERRIDE
 	{
 		return (_handler)(conn, in_data, out_data);
 	}

@@ -52,7 +52,7 @@ private:
 	typedef yggr::archive::bson_iarchive<skip_auto_id> archive_type;
 
 private:
-    virtual const basic_iserializer & get_basic_serializer() const {
+    virtual const basic_iserializer & get_basic_serializer() const YGGR_OVERRIDE {
         return boost::serialization::singleton<
             iserializer<archive_type, T>
         >::get_const_instance();
@@ -78,13 +78,13 @@ private:
 	typedef yggr::archive::bson_iarchive<skip_auto_id> archive_type;
 
 private:
-    virtual void * heap_allocation() const {
+    virtual void * heap_allocation() const YGGR_OVERRIDE {
         detail::heap_allocation<T> h;
         T * t = h.get();
         h.release();
         return t;
     }
-    virtual const basic_iserializer & get_basic_serializer() const {
+    virtual const basic_iserializer & get_basic_serializer() const YGGR_OVERRIDE {
         return boost::serialization::singleton<
             iserializer<archive_type, T>
         >::get_const_instance();

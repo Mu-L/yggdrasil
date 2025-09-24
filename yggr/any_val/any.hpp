@@ -131,23 +131,23 @@ public:
 		{
 		}
 
-		virtual ~holder(void)
+		virtual ~holder(void) YGGR_OVERRIDE
 		{
 		}
 
 	public: // queries
 
-		virtual const std::type_info& type(void) const
+		virtual const std::type_info& type(void) const YGGR_OVERRIDE
 		{
 			return typeid(value_type);
 		}
 
-		virtual placeholder* clone(void) const
+		virtual placeholder* clone(void) const YGGR_OVERRIDE
 		{
 			return yggr_nothrow_new this_type(*boost::addressof(held));
 		}
 
-		virtual placeholder* clone(u8 (&data_buf)[store_buffer_size_type::value]) const
+		virtual placeholder* clone(u8 (&data_buf)[store_buffer_size_type::value]) const YGGR_OVERRIDE
 		{
 			assert(YGGR_PP_ALIGNED_STORAGE_SIZEOF(this_type) <= store_buffer_size_type::value);
 			memset(boost::addressof(data_buf[0]), 0, store_buffer_size_type::value);
@@ -155,7 +155,7 @@ public:
 			return new (pbuf) this_type(held);
 		}
 
-		virtual bool is_small(void) const
+		virtual bool is_small(void) const YGGR_OVERRIDE
 		{
 			return YGGR_PP_ALIGNED_STORAGE_SIZEOF(this_type) <= store_buffer_size_type::value;
 		}
@@ -555,7 +555,7 @@ public: // representation (public so any_cast can be non-friend)
 class bad_any_cast : public std::bad_cast
 {
 public:
-	virtual const char* what(void) const BOOST_NOEXCEPT_OR_NOTHROW //throw()
+	virtual const char* what(void) const BOOST_NOEXCEPT_OR_NOTHROW YGGR_OVERRIDE //throw() 
 	{
 		return "yggr::bad_any_cast: "
 				"failed conversion using yggr::any_cast";

@@ -131,7 +131,7 @@ public:
 			return *this;
 		}
 		_id = right._id;
-		_key = right.key;
+		_key = right._key;
 		return *this;
 	}
 

@@ -116,7 +116,7 @@ public:
 			ERROR_CODE_DEF(E_param_not_existed)
 			ERROR_CODE_DEF(E_non_operator)
 			ERROR_CODE_DEF(E_any_not_support_serialize)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_start_22)
+		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_22)
 
 		ERROR_CODE_MSG_BEGIN()
 			ERROR_CODE_MSG(E_empty_param, "empty param")

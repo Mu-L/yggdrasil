@@ -90,12 +90,12 @@ public:
 	{
 	}
 
-	~recver_handler(void)
+	virtual ~recver_handler(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual void run_handler(const task_type& tk) const
+	virtual void run_handler(const task_type& tk) const YGGR_OVERRIDE
 	{
 		(_handler)(true, tk);
 	}

@@ -108,12 +108,12 @@ public:
 	{
 	}
 
-	~action_table_calculator(void)
+	virtual ~action_table_calculator(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const
+	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const YGGR_OVERRIDE
 	{
 		seh::seh_type::s_safe_invoke(
 			boost::bind(&this_type::prv_run_it_wrap, this, boost::ref(runner), boost::ref(task)));
@@ -174,12 +174,12 @@ public:
 	{
 	}
 
-	~action_table_calculator(void)
+	virtual ~action_table_calculator(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const
+	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const YGGR_OVERRIDE
 	{
 		task_real_data_getter_type getter;
 		if(!seh::seh_type::s_safe_invoke(
@@ -248,12 +248,12 @@ public:
 	{
 	}
 
-	~action_table_calculator(void)
+	virtual ~action_table_calculator(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const
+	virtual void run_handler(this_work_runner_type& runner, this_task_type& task) const YGGR_OVERRIDE
 	{
 		task_real_data_getter_type getter;
 

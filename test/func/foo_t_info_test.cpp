@@ -1,5 +1,7 @@
 //foo_t_info_test.cpp
 
+#define YGGR_FOO_T_INFO_SUPPORT_STD_BIND
+
 #include <test/wait_any_key/wait_any_key.hpp>
 
 #include <yggr/func/foo_t_info.hpp>
@@ -399,51 +401,51 @@ void ne_test0(const T&)
 
 	typedef yggr::func::foo_t_info<now_foo_type> info_type;
 
-//	BOOST_MPL_ASSERT((typename info_type::is_callable_type));
-//	BOOST_MPL_ASSERT((typename info_type::is_native_foo_type));
-//	BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
-//	BOOST_MPL_ASSERT_NOT((typename info_type::is_const_type));
-//	BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
-//#if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
-//	BOOST_MPL_ASSERT_NOT((typename info_type::is_noexcept_type));
-//#else
-//	BOOST_MPL_ASSERT((typename info_type::is_noexcept_type));
-//#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, void>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, typename info_type::null_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_type, boost::mpl::vector<>::type >));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_type, boost::mpl::vector<>::type >));
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_type, now_foo_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_pointer_type, now_foo_ptr_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_reference_type, now_foo_ref_type>));
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_type, now_foo_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_pointer_type, now_foo_ptr_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_reference_type, now_foo_ref_type>));
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::type, now_foo_ptr_type>));
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_size_type, boost::mpl::size_t<0> >));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_size_type, boost::mpl::size_t<0> >));
-//
-//	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
-//	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_native_foo>));
-//	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
-//
-//	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_const>));
-//	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
-//	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 0>));
-//	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 0>));
-//
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<0>::type, typename info_type::null_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<1>::type, typename info_type::null_type>));
-//	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<2>::type, typename info_type::null_type>));
-//
-//#ifdef _DEBUG
-//	std::cout << info_type() << std::endl;
-//#endif // _DEBUG
+	BOOST_MPL_ASSERT((typename info_type::is_callable_type));
+	BOOST_MPL_ASSERT((typename info_type::is_native_foo_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_const_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
+#if (YGGR_CPP_VERSION < YGGR_CPP_VER_17) // noexcept in function types started from C++17
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_noexcept_type));
+#else
+	BOOST_MPL_ASSERT((typename info_type::is_noexcept_type));
+#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_17)
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, void>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, typename info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_type, boost::mpl::vector<>::type >));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_type, boost::mpl::vector<>::type >));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_type, now_foo_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_pointer_type, now_foo_ptr_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_reference_type, now_foo_ref_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_type, now_foo_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_pointer_type, now_foo_ptr_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_reference_type, now_foo_ref_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::type, now_foo_ptr_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_size_type, boost::mpl::size_t<0> >));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_size_type, boost::mpl::size_t<0> >));
+
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_native_foo>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
+
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_const>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 0>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 0>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<0>::type, typename info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<1>::type, typename info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<2>::type, typename info_type::null_type>));
+
+#ifdef _DEBUG
+	std::cout << info_type() << std::endl;
+#endif // _DEBUG
 
 }
 
@@ -461,11 +463,11 @@ void ne_test1(const T&)
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_const_type));
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
-#if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+#if (YGGR_CPP_VERSION < YGGR_CPP_VER_17) // noexcept in function types started from C++17
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_noexcept_type));
 #else
 	BOOST_MPL_ASSERT((typename info_type::is_noexcept_type));
-#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_17)
 
 	BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, int>));
 	BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, typename info_type::null_type>));
@@ -518,11 +520,11 @@ void ne_test2(const T&)
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_const_type));
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
-#if (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+#if (YGGR_CPP_VERSION < YGGR_CPP_VER_17) // noexcept in function types started from C++17
 	BOOST_MPL_ASSERT_NOT((typename info_type::is_noexcept_type));
 #else
 	BOOST_MPL_ASSERT((typename info_type::is_noexcept_type));
-#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+#endif // (YGGR_CPP_VERSION < YGGR_CPP_VER_17)
 
 	BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, short>));
 	BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, typename info_type::null_type>));
@@ -1261,6 +1263,83 @@ void b_test2_1(const T&, const NavT&)
 #endif // _DEBUG
 
 }
+
+// !!! do not deleted using test stl::bind only !!!
+# if 0
+template<typename T, typename NavT>
+void b_test2_1_stl(const T&, const NavT&)
+{
+	typedef T now_foo_type;
+	typedef typename boost::add_pointer<now_foo_type>::type now_foo_ptr_type;
+	typedef typename boost::add_reference<now_foo_type>::type now_foo_ref_type;
+
+	typedef NavT now_nav_foo_ptr_type;
+	typedef typename boost::remove_pointer<now_nav_foo_ptr_type>::type now_nav_foo_type;
+	typedef typename boost::add_reference<now_nav_foo_type>::type now_nav_foo_ref_type;
+
+	typedef yggr::func::foo_t_info<now_foo_type> info_type;
+
+	BOOST_MPL_ASSERT((typename info_type::is_callable_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_native_foo_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_const_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
+	BOOST_MPL_ASSERT_NOT((typename info_type::is_noexcept_type));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, short>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, typename info_type::null_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_type, boost::mpl::vector<int, int>::type >));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_type, boost::mpl::vector<int, int>::type >));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_type, now_foo_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_pointer_type, now_foo_ptr_type>));
+
+//	{
+//	    char* name = abi::__cxa_demangle(typeid(typename info_type::foo_type).name(), nullptr, nullptr, nullptr);
+//        std::cout << "aaaaaaaaaaaaaaaaa " << name << std::endl;
+//        free(name);
+//	}
+//	{
+//	    char* name = abi::__cxa_demangle(typeid(now_foo_type).name(), nullptr, nullptr, nullptr);
+//        std::cout << "aaaaaaaaaaaaaaaaa " << name << std::endl;
+//        free(name);
+//	}
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_reference_type, now_foo_ref_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_type, now_nav_foo_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_pointer_type, now_nav_foo_ptr_type>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_reference_type, now_nav_foo_ref_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::type, now_foo_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_size_type, boost::mpl::size_t<2> >));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_size_type, boost::mpl::size_t<2> >));
+
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_native_foo>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
+
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_const>));
+	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 2>));
+	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 2>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<0>::type, int>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<1>::type, int>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<2>::type, typename info_type::null_type>));
+
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg_holder<0>::type, int>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg_holder<1>::type, int>));
+	BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg_holder<2>::type, typename info_type::null_type>));
+
+#ifdef _DEBUG
+	std::cout << info_type() << std::endl;
+#endif // _DEBUG
+
+}
+
+#endif // 0, 1
 
 template<typename T, typename NavT>
 void b_test2_2(const T&, const NavT&)
@@ -2306,48 +2385,48 @@ void test_lambda_detail(const Lambda& lam)
 {
 	typedef Lambda now_foo_type;
 
-	typedef boost::add_pointer<now_foo_type>::type now_foo_ptr_type;
-	typedef boost::add_reference<now_foo_type>::type now_foo_ref_type;
+	typedef typename boost::add_pointer<now_foo_type>::type now_foo_ptr_type;
+	typedef typename boost::add_reference<now_foo_type>::type now_foo_ref_type;
 
 	typedef yggr::func::foo_t_info<now_foo_type> info_type;
 
 
-	BOOST_MPL_ASSERT((info_type::is_callable_type));
-	BOOST_MPL_ASSERT_NOT((info_type::is_native_foo_type));
-	BOOST_MPL_ASSERT_NOT((info_type::is_member_foo_type));
-	BOOST_MPL_ASSERT((info_type::is_const_type));
-	BOOST_MPL_ASSERT_NOT((info_type::is_volatile_type));
+	 BOOST_MPL_ASSERT((typename info_type::is_callable_type));
+	 BOOST_MPL_ASSERT_NOT((typename info_type::is_native_foo_type));
+	 BOOST_MPL_ASSERT_NOT((typename info_type::is_member_foo_type));
+	 BOOST_MPL_ASSERT((typename info_type::is_const_type));
+	 BOOST_MPL_ASSERT_NOT((typename info_type::is_volatile_type));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::result_type, bool>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::class_type, now_foo_type >));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_list_type, boost::mpl::vector<const int&, const int&>::type >));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_holder_list_type, boost::mpl::vector<const int&, const int&>::type >));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::result_type, bool>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::class_type, now_foo_type >));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_type, boost::mpl::vector<const int&, const int&>::type >));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_type, boost::mpl::vector<const int&, const int&>::type >));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_type, now_foo_type>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_pointer_type, now_foo_ptr_type>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::foo_reference_type, now_foo_ref_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_type, now_foo_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_pointer_type, now_foo_ptr_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::foo_reference_type, now_foo_ref_type>));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_type, info_type::null_type>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_pointer_type, info_type::null_type>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::native_foo_reference_type, info_type::null_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_type, typename info_type::null_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_pointer_type, typename info_type::null_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::native_foo_reference_type, typename info_type::null_type>));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::type, now_foo_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::type, now_foo_type>));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_list_size_type, boost::mpl::size_t<2> >));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg_holder_list_size_type, boost::mpl::size_t<2> >));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_list_size_type, boost::mpl::size_t<2> >));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::arg_holder_list_size_type, boost::mpl::size_t<2> >));
 
-	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
-	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_native_foo>));
-	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
+	 BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_callable>));
+	 BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_native_foo>));
+	 BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_member_foo>));
 
-	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_const>));
-	BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
-	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 2>));
-	BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 2>));
+	 BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::is_const>));
+	 BOOST_MPL_ASSERT_NOT((boost::mpl::bool_<info_type::is_volatile>));
+	 BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_list_size == 2>));
+	 BOOST_MPL_ASSERT((boost::mpl::bool_<info_type::arg_holder_list_size == 2>));
 
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<0>::type, const int&>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<1>::type, const int&>));
-	BOOST_MPL_ASSERT((boost::is_same<info_type::arg<2>::type, info_type::null_type>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<0>::type, const int&>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<1>::type, const int&>));
+	 BOOST_MPL_ASSERT((boost::is_same<typename info_type::template arg<2>::type, typename info_type::null_type>));
 
 #ifdef _DEBUG
 	std::cout << info_type() << std::endl;
@@ -2381,8 +2460,8 @@ int main(int argc, char* argv[])
 	test2(&foo2);
 
 	ne_test0(&nefoo0);
-	//ne_test1(&nefoo1);
-	//ne_test2(&nefoo2);
+	ne_test1(&nefoo1);
+	ne_test2(&nefoo2);
 
 	m_test0(&A::foo0);
 	m_test1(&A::foo1);
@@ -2418,7 +2497,11 @@ int main(int argc, char* argv[])
 	//a.cvfoo2(10, 20);
 	//boost::bind(&A::cvfoo2, &a, 10, 20)();
 
-#if !(YGGR_CPP_VERSION < YGGR_CPP_VER_11)
+#if !(YGGR_CPP_VERSION < YGGR_CPP_VER_11) && defined(YGGR_FOO_T_INFO_SUPPORT_STD_BIND)
+
+#if 0 // debug stl only
+	b_test2_1_stl(std::bind(&foo2, std::placeholders::_1, std::placeholders::_2), &foo2);
+#endif // 0, 1
 	b_test2_1(std::bind(&foo2, std::placeholders::_1, std::placeholders::_2), &foo2);
 	b_test2_2(std::bind(&foo2, 10, 20), &foo2);
 

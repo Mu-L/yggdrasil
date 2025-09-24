@@ -28,15 +28,19 @@ THE SOFTWARE.
 #define __YGGR_NETWORK_IO_UDP_ASYNC_STRAND_IO_HPP__
 
 #include <yggr/base/yggrdef.h>
+
+#include <yggr/network/udp_packet_wrap.hpp>
+#include <yggr/network/packets_support/packets_queue.hpp>
+#include <yggr/network/type_traits/tags.hpp>
+#include <yggr/network/io/io_error_def.hpp>
+
+#include <yggr/container/vector.hpp>
+
 #include <yggr/bind/bind.hpp>
 #include <yggr/utility/swap.hpp>
 #include <yggr/mplex/static_assert.hpp>
 #include <yggr/ppex/friend.hpp>
 #include <yggr/move/move.hpp>
-#include <yggr/container/vector.hpp>
-#include <yggr/network/type_traits/tags.hpp>
-#include <yggr/network/udp_packet_wrap.hpp>
-#include <yggr/network/packets_support/packets_queue.hpp>
 
 #include <boost/ref.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -95,23 +99,7 @@ private:
 	typedef udp_packet_wrap<data_buf_type> send_wrap_type;
 
 private:
-	//class error S----------------------------------------------------------
-
-	ERROR_MAKER_BEGIN("udp_async_strand_io")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_17)
-			ERROR_CODE_DEF(E_invalid_recv_size)
-			ERROR_CODE_DEF(E_invalid_recv_head)
-			ERROR_CODE_DEF(E_invalid_recv_data)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_17)
-
-		ERROR_CODE_MSG_BEGIN()
-			ERROR_CODE_MSG(E_invalid_recv_size, "invalid recv size")
-			ERROR_CODE_MSG(E_invalid_recv_head, "invalid recv head")
-			ERROR_CODE_MSG(E_invalid_recv_data, "invalid recv data")
-		ERROR_CODE_MSG_END()
-	ERROR_MAKER_END()
-
-	//class error E----------------------------------------------------------
+	YGGR_PP_NETWORK_IO_ERROR_DEF("udp_async_strand_io")
 
 private:
 	typedef udp_async_strand_io this_type;

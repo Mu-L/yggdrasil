@@ -127,12 +127,12 @@ public:
 	{
 	}
 
-	~timer_task(void)
+	virtual ~timer_task(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual yggr::u32 do_timer(void) const
+	virtual yggr::u32 do_timer(void) const YGGR_OVERRIDE
 	{
 		return ((_time_task_pak))();
 	}

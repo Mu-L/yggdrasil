@@ -828,9 +828,6 @@
     <ClInclude Include="geometry\conversion_helper.hpp">
       <Filter>Header Files\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="geometry\algorithm_helper.hpp">
-      <Filter>Header Files\geometry</Filter>
-    </ClInclude>
     <ClInclude Include="thread\this_thread.hpp">
       <Filter>Header Files\thread</Filter>
     </ClInclude>
@@ -4159,9 +4156,6 @@
       <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="geometry\detail\decasteljau.hpp">
-      <Filter>Header Files\geometry\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\detail\bezier_curvel.hpp">
       <Filter>Header Files\geometry\detail</Filter>
     </ClInclude>
     <ClInclude Include="serialization\multi_index_container_inserter.hpp">
@@ -8450,6 +8444,21 @@
     </ClInclude>
     <ClInclude Include="network\sender_checker\sender_non_checker.hpp">
       <Filter>Header Files\network\sender_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="base\override_cfg.hpp">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="func\detail\foo_t_info_std_bind_impl.hpp">
+      <Filter>Header Files\func\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\detail\bezier_curve.hpp">
+      <Filter>Header Files\geometry\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\bresenham_disperse_helper.hpp">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="network\io\io_error_def.hpp">
+      <Filter>Header Files\network\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

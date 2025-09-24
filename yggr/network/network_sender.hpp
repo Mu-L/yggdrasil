@@ -41,8 +41,8 @@ template<typename NetEntity,
 			typename Mutex = boost::shared_mutex,
 			yggr::u32 version = 0,
 			template<
-				typename _T, 
-				typename _Mutex, 
+				typename _T,
+				typename _Mutex,
 				yggr::u32 _version> class Getter = ptr_single >
 class network_sender
 {
@@ -90,7 +90,7 @@ public:
 	{
 		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
-		return 
+		return
 			ptr
 			&& chker(ptr, key, netinfo, data, handler)
 			&& ptr->send_packet(key, netinfo, data, handler);
@@ -101,7 +101,7 @@ public:
 	{
 		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
-		return 
+		return
 			ptr
 			&& chker(ptr, key, pak, handler)
 			&& ptr->send_packet(key, pak, handler);
@@ -113,9 +113,9 @@ public:
 		checker_type chker;
 		net_entity_ptr_type ptr(getter_type::get_ins());
 
-		return 
-			ptr 
-			&& chker(ptr, key, pak, handler)
+		return
+			ptr
+			&& chker(ptr, key, pak)
 			&& ptr->send_packet(key, pak);
 	}
 

@@ -76,7 +76,7 @@ public:
 	{
 	}
 
-	~proxy_mode_source_hash(void) 
+	virtual ~proxy_mode_source_hash(void) 
 	{
 	}
 

@@ -143,12 +143,12 @@ public:
 	{
 	}
 
-	~db_notify(void)
+	virtual ~db_notify(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool execute(void)
+	virtual bool execute(void) YGGR_OVERRIDE
 	{
 		bool bret = base_type::_runner.execute(_key, base_type::_in_user_data, base_type::_out_user_data);
 		// the _handler is owned currently db_notify, so don't copy it
@@ -197,12 +197,12 @@ public:
 	{
 	}
 
-	~db_notify(void)
+	virtual ~db_notify(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool execute(void)
+	virtual bool execute(void) YGGR_OVERRIDE
 	{
 		return base_type::_runner.execute(_key, base_type::_in_user_data, base_type::_out_user_data);
 	}
@@ -257,12 +257,12 @@ public:
 	{
 	}
 
-	~db_cmd_notify(void)
+	virtual ~db_cmd_notify(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool execute(void)
+	virtual bool execute(void) YGGR_OVERRIDE
 	{
 		bool bret = base_type::_runner.run_command(_handler_cmd, base_type::_in_user_data, base_type::_out_user_data);
 		(_handler_after_cmd)(bret, base_type::_out_user_data);
@@ -312,12 +312,12 @@ public:
 	{
 	}
 
-	~db_cmd_notify(void)
+	virtual ~db_cmd_notify(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool execute(void)
+	virtual bool execute(void) YGGR_OVERRIDE
 	{
 		return base_type::_runner.run_command(_handler_cmd, base_type::_in_user_data, base_type::_out_user_data);
 	}

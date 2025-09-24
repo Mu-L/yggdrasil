@@ -609,7 +609,11 @@ void swap(typename packet<Archive_Partner>::buf_type& l, packet<Archive_Partner>
 template<typename Archive_Partner, typename Other_Archive_Partner> inline
 void swap(packet<Archive_Partner>& l, packet<Other_Archive_Partner>& r)
 {
+#if defined(__clang__) && (__clang__)
+	l.swap(r);
+#else
 	l.template swap(r);
+#endif // #if defined(__clang__) && (__clang__)
 }
 
 template<typename Archive_Partner> inline
@@ -621,7 +625,11 @@ void swap(packet<Archive_Partner>& l, packet<Archive_Partner>& r)
 template<typename Archive_Partner, typename Other_Archive_Partner> inline
 void swap(packet<Archive_Partner>& l, ref_packet<Other_Archive_Partner>& r)
 {
+#if defined(__clang__) && (__clang__)
+	l.swap(r);
+#else
 	l.template swap(r);
+#endif // #if defined(__clang__) && (__clang__)
 }
 
 } // namespace swap_support
@@ -1120,7 +1128,11 @@ void swap(typename ref_packet<Archive_Partner>::buf_type& l, ref_packet<Archive_
 template<typename Archive_Partner, typename Other_Archive_Partner> inline
 void swap(ref_packet<Archive_Partner>& l, ref_packet<Other_Archive_Partner>& r)
 {
+#if defined(__clang__) && (__clang__)
+	l.swap(r);
+#else
 	l.template swap(r);
+#endif // #if defined(__clang__) && (__clang__)
 }
 
 template<typename Archive_Partner> inline
@@ -1132,7 +1144,11 @@ void swap(ref_packet<Archive_Partner>& l, ref_packet<Archive_Partner>& r)
 template<typename Archive_Partner, typename Other_Archive_Partner> inline
 void swap(ref_packet<Archive_Partner>& l, packet<Other_Archive_Partner>& r)
 {
+#if defined(__clang__) && (__clang__)
+	l.swap(r);
+#else
 	l.template swap(r);
+#endif // #if defined(__clang__) && (__clang__)
 }
 
 } // namespace swap_support

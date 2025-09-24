@@ -39,6 +39,17 @@ namespace network
 namespace packets_support
 {
 
+#define YGGR_PP_PACKETS_CHECKER_ERROR_MAKER_DEF() \
+	ERROR_MAKER_BEGIN("packets_checker") \
+		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_10 + 10) \
+			ERROR_CODE_DEF(E_invalid_packet) \
+		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_10) \
+	\
+		ERROR_CODE_MSG_BEGIN() \
+			ERROR_CODE_MSG(E_invalid_packet, "invalid_packet") \
+		ERROR_CODE_MSG_END() \
+	ERROR_MAKER_END() \
+
 template<typename OwnerInfo>
 struct basic_owner_info_parser
 {
@@ -72,15 +83,7 @@ public:
 	typedef basic_owner_info_parser<owner_info_type> owner_id_parser_type;
 
 public:
-	ERROR_MAKER_BEGIN("packets_checker")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_10 + 10)
-			ERROR_CODE_DEF(E_invalid_packet)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_10)
-
-		ERROR_CODE_MSG_BEGIN()
-			ERROR_CODE_MSG(E_invalid_packet, "invalid_packet")
-		ERROR_CODE_MSG_END()
-	ERROR_MAKER_END()
+	YGGR_PP_PACKETS_CHECKER_ERROR_MAKER_DEF()
 
 private:
 	typedef packets_checker this_type;
@@ -125,15 +128,7 @@ public:
 	typedef basic_owner_info_parser<owner_info_type> owner_id_parser_type;
 
 public:
-	ERROR_MAKER_BEGIN("packets_checker")
-		ERROR_CODE_DEF_BEGIN(exception::exception_sort::E_code_start_10 + 10)
-			ERROR_CODE_DEF(E_invalid_packet)
-		ERROR_CODE_DEF_END(exception::exception_sort::E_code_end_10)
-
-		ERROR_CODE_MSG_BEGIN()
-			ERROR_CODE_MSG(E_invalid_packet, "invalid_packet")
-		ERROR_CODE_MSG_END()
-	ERROR_MAKER_END()
+	YGGR_PP_PACKETS_CHECKER_ERROR_MAKER_DEF()
 
 private:
 	typedef packets_checker this_type;

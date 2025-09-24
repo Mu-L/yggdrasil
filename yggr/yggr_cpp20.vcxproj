@@ -205,6 +205,7 @@
 		<ClInclude Include="base\new.hpp"/>
 		<ClInclude Include="base\noexcept_cfg.hpp"/>
 		<ClInclude Include="base\obj_creator.hpp"/>
+		<ClInclude Include="base\override_cfg.hpp"/>
 		<ClInclude Include="base\pragma_message.hpp"/>
 		<ClInclude Include="base\ptr_single.hpp"/>
 		<ClInclude Include="base\random.h"/>
@@ -857,6 +858,7 @@
 		<ClInclude Include="func\bind_av_list_cast.hpp"/>
 		<ClInclude Include="func\cast_to_functional_base.hpp"/>
 		<ClInclude Include="func\detail\add_noexcept_impl.hpp"/>
+		<ClInclude Include="func\detail\foo_t_info_std_bind_impl.hpp"/>
 		<ClInclude Include="func\detail\foo_t_maker_vmacro.hpp"/>
 		<ClInclude Include="func\detail\foo_t_maker_vtpl.hpp"/>
 		<ClInclude Include="func\detail\is_noexcept_impl.hpp"/>
@@ -885,9 +887,9 @@
 		<ClInclude Include="fuzzy\filter_string.hpp"/>
 		<ClInclude Include="fuzzy\fuzzy_string_config.hpp"/>
 		<ClInclude Include="fuzzy\fuzzy_maker.hpp"/>
-		<ClInclude Include="geometry\algorithm_helper.hpp"/>
+		<ClInclude Include="geometry\bresenham_disperse_helper.hpp"/>
 		<ClInclude Include="geometry\conversion_helper.hpp"/>
-		<ClInclude Include="geometry\detail\bezier_curvel.hpp"/>
+		<ClInclude Include="geometry\detail\bezier_curve.hpp"/>
 		<ClInclude Include="geometry\detail\bresenham_disperse.hpp"/>
 		<ClInclude Include="geometry\detail\decasteljau.hpp"/>
 		<ClInclude Include="geometry\geo_bezier_curve.hpp"/>
@@ -1081,6 +1083,7 @@
 		<ClInclude Include="network\heart\heart_packet_def.hpp"/>
 		<ClInclude Include="network\heart\heart_timer_task_mixer_pak.hpp"/>
 		<ClInclude Include="network\heart\heart_timer_task_pak.hpp"/>
+		<ClInclude Include="network\io\io_error_def.hpp"/>
 		<ClInclude Include="network\io\tcp_async_strand_io.hpp"/>
 		<ClInclude Include="network\io\tcp_sync_io.hpp"/>
 		<ClInclude Include="network\io\udp_async_strand_io.hpp"/>

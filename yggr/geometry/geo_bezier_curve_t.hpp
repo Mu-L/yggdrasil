@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include <yggr/mplex/static_assert.hpp>
 #include <yggr/mplex/reference_to_value_t.hpp>
 #include <yggr/ppex/foo_params.hpp>
-#include <yggr/geometry/detail/bezier_curvel.hpp>
+#include <yggr/geometry/detail/bezier_curve.hpp>
 #include <yggr/range_ex/range_iterator_ex.hpp>
 #include <yggr/range_ex/range_value_ex.hpp>
 

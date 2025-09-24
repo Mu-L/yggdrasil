@@ -1055,11 +1055,11 @@ ptree_string_type& gen_format_jni(ptree_string_type& out,
 
 		if(ws_ftitle == "yggr_test_only" || ws_ftitle == "yggr_test_server_client")
 		{
-			ss << "#${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+			ss << "#${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk V=1 > yggr_jni.log 2>&1\n"
-				<< "#${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "#${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk\n"
-				<< "#${var_ndk_build_cmd} -j12 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "#${var_ndk_build_cmd} -j20 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk\n\n"
 
 				<< "#find ${var_middir_local} -type d -name 'objs*' -exec rm -fr {} \\;\n\n"
@@ -1069,11 +1069,11 @@ ptree_string_type& gen_format_jni(ptree_string_type& out,
 		}
 		else
 		{
-			ss << "#${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+			ss << "#${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk V=1 > yggr_jni.log 2>&1\n"
-				<< "${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk\n"
-				<< "${var_ndk_build_cmd} -j12 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "${var_ndk_build_cmd} -j20 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_a.mk\n\n"
 
 				<< "find ${var_middir_local} -type d -name 'objs*' -exec rm -fr {} \\;\n\n"
@@ -1082,25 +1082,25 @@ ptree_string_type& gen_format_jni(ptree_string_type& out,
 				;
 		}
 
-		ss << "${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+		ss << "${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 				<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_so.mk\n"
-			<< "${var_ndk_build_cmd} -j12 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+			<< "${var_ndk_build_cmd} -j20 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 				<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_so.mk\n\n"
 			;
 
 		if(ws_ftitle == "yggr_lib_only")
 		{
-			ss << "#${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+			ss << "#${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_exe.mk\n"
-				<< "#${var_ndk_build_cmd} -j12 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "#${var_ndk_build_cmd} -j20 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_exe.mk\n\n"
 				;
 		}
 		else
 		{
-			ss << "${var_ndk_build_cmd} -j12 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+			ss << "${var_ndk_build_cmd} -j20 NDK_DEBUG=1 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_exe.mk\n"
-				<< "${var_ndk_build_cmd} -j12 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
+				<< "${var_ndk_build_cmd} -j20 NDK_DEBUG=0 NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application_" 
 					<< ws_ftitle << "_" << cpp_ver << ".mk APP_BUILD_SCRIPT=jni/Android_" << ws_ftitle << "_exe.mk\n\n"
 				;
 		}

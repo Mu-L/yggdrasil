@@ -75,7 +75,7 @@ public:
 	{
 	}
 
-	~proxy_mode_blanace(void) 
+	virtual ~proxy_mode_blanace(void) YGGR_OVERRIDE
 	{
 	}
 
@@ -84,7 +84,7 @@ protected:
 		pro_get_owner_info_container(owner_info_container_type& cont,
 										const owner_info_type& owner_info,
 										const store_type& oid_cont,
-										const utility::basic_args_holder_nv*) const
+										const utility::basic_args_holder_nv*) const YGGR_OVERRIDE
 	{
 		const vector_store_type& vt = mode_data_store_type::s_get_vector_store_of_base(oid_cont);
 		if(boost::empty(vt))

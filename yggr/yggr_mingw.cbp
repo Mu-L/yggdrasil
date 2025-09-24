@@ -188,6 +188,7 @@
 		<Unit filename="base/new.hpp"/>
 		<Unit filename="base/noexcept_cfg.hpp"/>
 		<Unit filename="base/obj_creator.hpp"/>
+		<Unit filename="base/override_cfg.hpp"/>
 		<Unit filename="base/pragma_message.hpp"/>
 		<Unit filename="base/ptr_single.hpp"/>
 		<Unit filename="base/random.h"/>
@@ -850,6 +851,7 @@
 		<Unit filename="func/bind_av_list_cast.hpp"/>
 		<Unit filename="func/cast_to_functional_base.hpp"/>
 		<Unit filename="func/detail/add_noexcept_impl.hpp"/>
+		<Unit filename="func/detail/foo_t_info_std_bind_impl.hpp"/>
 		<Unit filename="func/detail/foo_t_maker_vmacro.hpp"/>
 		<Unit filename="func/detail/foo_t_maker_vtpl.hpp"/>
 		<Unit filename="func/detail/is_noexcept_impl.hpp"/>
@@ -879,10 +881,10 @@
 		<Unit filename="fuzzy/fuzzy_maker.hpp"/>
 		<Unit filename="fuzzy/fuzzy_string.hpp"/>
 		<Unit filename="fuzzy/fuzzy_string_config.hpp"/>
-		<Unit filename="geometry/algorithm_helper.hpp"/>
 		<Unit filename="geometry/bresenham_disperse.hpp"/>
+		<Unit filename="geometry/bresenham_disperse_helper.hpp"/>
 		<Unit filename="geometry/conversion_helper.hpp"/>
-		<Unit filename="geometry/detail/bezier_curvel.hpp"/>
+		<Unit filename="geometry/detail/bezier_curve.hpp"/>
 		<Unit filename="geometry/detail/bresenham_disperse.hpp"/>
 		<Unit filename="geometry/detail/decasteljau.hpp"/>
 		<Unit filename="geometry/geo_bezier_curve.hpp"/>
@@ -1096,6 +1098,7 @@
 		<Unit filename="network/heart/heart_timer_task_mixer_pak.hpp"/>
 		<Unit filename="network/heart/heart_timer_task_pak.hpp"/>
 		<Unit filename="network/hn_conv.hpp"/>
+		<Unit filename="network/io/io_error_def.hpp"/>
 		<Unit filename="network/io/tcp_async_strand_io.hpp"/>
 		<Unit filename="network/io/tcp_sync_io.hpp"/>
 		<Unit filename="network/io/udp_async_strand_io.hpp"/>

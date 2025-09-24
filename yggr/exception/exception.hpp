@@ -94,12 +94,12 @@ public:
 	{
 	}
 
-	~exception_log_helper(void)
+	virtual ~exception_log_helper(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool append(const error_code_type& e)
+	virtual bool append(const error_code_type& e) YGGR_OVERRIDE
 	{
 		typedef typename store_conv_type::result_type rst_type;
 
@@ -139,12 +139,12 @@ public:
 	{
 	}
 
-	~exception_log_helper(void)
+	virtual ~exception_log_helper(void) YGGR_OVERRIDE
 	{
 	}
 
 public:
-	virtual bool append(const error_code_type& e)
+	virtual bool append(const error_code_type& e) YGGR_OVERRIDE
 	{
 		return _pacc && _pacc->append(e.code(), e);
 	}

@@ -142,7 +142,7 @@ class uuid
 public:
 	typedef id_n<16> base_type;
 
-private:
+public:
 	// variant
 	YGGR_STATIC_CONSTANT(u32, variant_ncs = 0); // NCS backward compatibility
 	YGGR_STATIC_CONSTANT(u32, variant_rfc_4122 = variant_ncs + 1); // defined in RFC 4122 document
