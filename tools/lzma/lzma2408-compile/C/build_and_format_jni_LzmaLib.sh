@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_ndk_root=/d/android_devel/Android/Sdk/ndk/28.0.12674087
 var_ndk_build_cmd=${var_ndk_root}/ndk-build.cmd

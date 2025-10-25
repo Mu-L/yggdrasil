@@ -16,7 +16,7 @@ var_usr_cmake_cxx=default
 #var_usr_cmake_cc=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 #var_usr_cmake_cxx=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 
-var_usr_cmake_compiler_version=clang-darwin16
+var_usr_cmake_compiler_version="clang-darwin$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)"
 
 #var_usr_cmake_c_standard=cstd_ver
 #var_usr_cmake_cxx_standard=cppstd_ver

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_src_pak_dir=$1
 var_dst_pak_dir=$2

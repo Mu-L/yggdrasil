@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_outdir=$1
 #var_statc_tag=$2

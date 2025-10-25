@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rm -f yggr_lua_base_type.so
 

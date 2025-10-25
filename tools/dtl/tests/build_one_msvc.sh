@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # usage: build_one_msvc.sh BUILDFLAG TARGETFILE.cpp
 # example: sh build_one_msvc.sh debug hello.cpp
 # this file should be located under the project directory

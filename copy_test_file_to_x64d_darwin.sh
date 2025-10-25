@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-target_dir_exe=./Debug-x64/clang-darwin16
+var_clang_tag="clang-darwin$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)"
+
+target_dir_exe=./Debug-x64/${var_clang_tag}
 target_dir_lib=./lib/Debug-x64
 
 cp -f ./lua_hello_dll/test_lua_hello_dll.lua ${target_dir_exe}/

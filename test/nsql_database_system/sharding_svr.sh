@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cfg_dir=~/mongodb_data/dev_db_sharding_svr/config
 route_dir=~/mongodb_data/dev_db_sharding_svr/route

@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
-   var_dyld_lib_path="/Users/alucard/third_part/boost_182_x64/lib"
-   var_dyld_lib_path="${var_dyld_lib_path}:/Users/alucard/third_part/libicu58/lib"
-   #var_dyld_lib_path="${var_dyld_lib_path}:/Users/alucard/third_part/libiconv/lib"
+   var_dyld_lib_path="/Users/${USER}/third_part/boost_182_x64/lib"
+   var_dyld_lib_path="${var_dyld_lib_path}:/Users/${USER}/third_part/libicu58/lib"
+   #var_dyld_lib_path="${var_dyld_lib_path}:/Users/${USER}/third_part/libiconv/lib"
    var_dyld_lib_path="${var_dyld_lib_path}:${DYLD_LIBRARY_PATH}"
    export DYLD_LIBRARY_PATH="${var_dyld_lib_path}"
 fi

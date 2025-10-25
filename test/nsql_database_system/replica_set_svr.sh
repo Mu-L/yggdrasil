@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 data_dir1=~/mongodb_data/dev_db_replica_set_svr/rep1/data
 data_dir2=~/mongodb_data/dev_db_replica_set_svr/rep2/data

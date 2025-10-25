@@ -256,7 +256,7 @@
 		<Project filename="test/mplex_cast_to_container_test_mingw_cpp17.cbp"/>
 		<Project filename="test/mplex_conv_to_tuple_test_mingw_cpp17.cbp"/>
 		<Project filename="test/mplex_get_reference_if_in_test_mingw_cpp17.cbp"/>
-		<Project filename="test/mplex_interger_log2_test_mingw_cpp17.cbp"/>
+		<Project filename="test/mplex_integer_log2_test_mingw_cpp17.cbp"/>
 		<Project filename="test/mplex_limits_test_mingw_cpp17.cbp"/>
 		<Project filename="test/mplex_pointer_int_test_mingw_cpp17.cbp"/>
 		<Project filename="test/mplex_pointer_to_reference_t_test_mingw_cpp17.cbp"/>

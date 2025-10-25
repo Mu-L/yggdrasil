@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 AndroidTargetVersion=35
 AndroidTarget=riscv64-linux-android

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ln -s libdll_cal_test.so dll_cal_test.so
 ln -s liblua_calculator.so lua_calculator.so

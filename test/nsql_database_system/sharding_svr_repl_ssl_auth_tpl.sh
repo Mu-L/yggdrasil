@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 data_root_dir=$1
 

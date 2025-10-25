@@ -47,11 +47,7 @@ struct pointer_to_reference_t_imp<T, false>
 	: public
 		boost::add_reference
 		<
-			typename 
-				boost::remove_volatile
-				< 
-					typename unwrap_pointer< T >::type 
-				>::type
+			typename unwrap_pointer< T >::type
 		>
 {
 };
@@ -61,15 +57,43 @@ struct pointer_to_reference_t_imp<T, true>
 	: public
 		boost::add_reference
 		< 
-			typename 
-				boost::remove_volatile
-				<
-					typename boost::remove_pointer<T>::type 
-				>::type
+			typename boost::remove_pointer<T>::type 
 		>
 		
 {
 };
+
+//template<typename T, bool is_native_ptr>
+//struct pointer_to_reference_t_no_volatile_imp;
+//
+//template<typename T>
+//struct pointer_to_reference_t_no_volatile_imp<T, false>
+//	: public
+//		boost::add_reference
+//		<
+//			typename 
+//				boost::remove_volatile
+//				< 
+//					typename unwrap_pointer< T >::type 
+//				>::type
+//		>
+//{
+//};
+//
+//template<typename T>
+//struct pointer_to_reference_t_no_volatile_imp<T, true>
+//	: public
+//		boost::add_reference
+//		< 
+//			typename 
+//				boost::remove_volatile
+//				<
+//					typename boost::remove_pointer<T>::type 
+//				>::type
+//		>
+//		
+//{
+//};
 
 } // namespace detail
 
@@ -78,6 +102,12 @@ struct pointer_to_reference_t
 	: public detail::pointer_to_reference_t_imp<T, boost::is_pointer<T>::value>
 {
 };
+
+//template<typename T>
+//struct pointer_to_reference_t_no_volatile
+//	: public detail::pointer_to_reference_t_no_volatile_imp<T, boost::is_pointer<T>::value>
+//{
+//};
 
 } // namespace mplex
 } // namespace yggr

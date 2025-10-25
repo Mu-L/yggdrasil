@@ -1,16 +1,16 @@
-#mplex_interger_log2_test CMakeLists.txt
+#mplex_integer_log2_test CMakeLists.txt
 
-project(mplex_interger_log2_test)
+project(mplex_integer_log2_test)
 
-message(STATUS "build-sub-project [ mplex_interger_log2_test ]")
+message(STATUS "build-sub-project [ mplex_integer_log2_test ]")
 
-set(var_proj_name mplex_interger_log2_test)
+set(var_proj_name mplex_integer_log2_test)
 
 set(var_root_proj_dir ${PROJECT_SOURCE_DIR}/../../..)
 set(var_proj_src_dir ${var_root_proj_dir}/test)
 
 set(var_proj_src_list 
-		${var_proj_src_dir}/mplex/interger_log2_test.cpp
+		${var_proj_src_dir}/mplex/integer_log2_test.cpp
 )
 
 set(var_proj_bin_outdir ${var_root_proj_dir}/${USRDEF_CMAKE_BIN_OUTDIR})

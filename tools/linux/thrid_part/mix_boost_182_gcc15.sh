@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 out_dir=boost_182
 x64_dir=boost_182_x64

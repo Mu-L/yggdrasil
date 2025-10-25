@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 AndoridNDKRoot=/d/android_devel/Android/Sdk/ndk/28.0.12674087
 AndroidToolChain=${AndoridNDKRoot}/toolchains/llvm/prebuilt/windows-x86_64

@@ -23,7 +23,13 @@ set(var_proj_include_dirs
 		${USRDEF_CMAKE_INCLUDE_DIRS}
 )
 
-set(var_proj_c_defineds "-DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_USE_MACOSX ${USRDEF_CMAKE_DEFINEDS}")
+set(var_proj_c_defineds_tmp "-DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 ${USRDEF_CMAKE_DEFINEDS}")
+
+if("${USRDEF_CMAKE_OSX_SDK_NAME}" STREQUAL "macosx")
+	set(var_proj_c_defineds "-DLUA_USE_MACOSX ${var_proj_c_defineds_tmp}")
+else()
+	set(var_proj_c_defineds "-DLUA_USE_IOS ${var_proj_c_defineds_tmp}")
+endif()
 
 set(var_proj_c_defineds_debug "-D_DEBUG ${USRDEF_CMAKE_DEFINEDS_DEBUG}")
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_cross_build_dir=$1
 

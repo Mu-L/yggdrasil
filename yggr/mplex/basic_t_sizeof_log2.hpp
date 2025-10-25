@@ -40,7 +40,7 @@ namespace mplex
 namespace detail
 {
 
-typedef interger_log2_failed basic_t_sizeof_log2_failed;
+typedef integer_log2_failed basic_t_sizeof_log2_failed;
 
 template< typename T, 
 			bool checkable = 

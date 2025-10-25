@@ -17,11 +17,12 @@ collection_foo(){
 #	echo "var_src_root_dir = ${var_src_root_dir}"
 #	echo "var_prefix_stage_dir = ${var_prefix_stage_dir}"
 
-	var_sh_file="cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}.sh"
+	var_sh_file="cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh"
 
 	var_src_bin_dir="${var_src_root_dir}/Release-x64/${var_clang_tag}"
 	var_src_lib_dir="${var_src_root_dir}/lib"
 	var_src_inc_dir="${var_src_root_dir}/include"
+	var_src_darwin_cmake_install_inc_dir="${var_src_root_dir}/darwin-cmake-install-include"
 
 	var_prefix_sln_dir="${var_prefix_stage_dir}/${var_sln_name}-${var_sdk_name}"
 	var_prefix_sln_bin_dir="${var_prefix_sln_dir}/bin"
@@ -52,11 +53,22 @@ collection_foo(){
 	if [ -d "${var_src_inc_dir}" ]; then
 		cp -fr "${var_src_inc_dir}" "${var_prefix_sln_dir}/"
 	fi
+
+	if [ -d "${var_src_inc_dir}" ]; then
+		cp -fr "${var_src_root_dir}/yggr" "${var_prefix_sln_inc_dir}/"
+	fi
+
 }
 
 var_sln_name=yggr
-var_clang_tag="clang-darwin16"
-var_cpp_ver="cpp20"
+var_clang_main_ver=$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)
+var_clang_tag="clang-darwin${var_clang_main_ver}"
+var_cpp_ver_num="20"
+var_cpp_ver="cpp${var_cpp_ver_num}"
+
+if [ 17 -le ${var_clang_main_ver} -a ${var_cpp_ver_num} -lt 17 ]; then
+	var_cpp_ver="cpp17"
+fi
 
 var_sln_dir="${var_local_dir}/../.."
 var_prefix_stage_dir="${var_sln_dir}/stage_prefix"

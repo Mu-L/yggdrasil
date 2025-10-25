@@ -34,4 +34,4 @@ android:
 darwin:
 1. open macos console
 2. cd you_icu_source_path/icu4c/source/icu_darwin_build
-3. build-libicu-darwin16.sh
+3. build-libicu-darwin.sh

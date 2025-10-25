@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 clt_pem=./cert/client.pem
 ca_pem=./cert/ca.pem

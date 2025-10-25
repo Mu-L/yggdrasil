@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 target_dir=./Debug-x64/gcc15
 

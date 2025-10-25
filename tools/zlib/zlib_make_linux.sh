@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #:In order to maintain the habit of using LINUX, zlib only compiles the RELEASE version
 

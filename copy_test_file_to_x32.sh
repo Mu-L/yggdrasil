@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 target_dir=./Release-x32/gcc15
 

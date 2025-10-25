@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ ! "${LD_LIBRARY_PATH}" = "" ]; then
     LD_LIBRARY_PATH=${LD_LIBRARY_PATH_TMP}

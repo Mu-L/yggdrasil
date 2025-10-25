@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 
 var_local_dir=$(cd `dirname $0`; pwd)
 

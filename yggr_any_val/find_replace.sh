@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 find ./ -type f -name '*.cpp' -exec sed -i 's/\(YGGR_PP_ANY_VAL_REGISTER_MUTABLE_BINARY_OPERATOR\)(pmgr, \(plus_set\), bool,/\1_UNSAFE(pmgr, \2, bool,/g' {} \;
 find ./ -type f -name '*.cpp' -exec sed -i 's/\(YGGR_PP_ANY_VAL_REGISTER_MUTABLE_BINARY_OPERATOR\)(pmgr, \(plus_set\),\(.*\), bool)/\1_UNSAFE(pmgr, \2,\3, bool)/g' {} \;

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mv ./run_test_mgw14_x32d.bat ./run_test_mgw15_x32d.bat
 mv ./run_test_mgw14_x64.bat ./run_test_mgw15_x64.bat

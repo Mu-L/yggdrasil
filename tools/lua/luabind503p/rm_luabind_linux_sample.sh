@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rm -f ./include/include_linux.cbp 
 rm -f ./include/include_linux_cpp03.cbp 

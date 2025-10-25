@@ -13,7 +13,7 @@ build-luajit210-android-32.sh // using msys2
 build-luajit210-android-64.sh // using msys2
 
 darwin:
-build-luajit21-darwin16_yggr.sh
+build-luajit21-darwin_yggr.sh
 
 note:
 1.  When compiling luajit with mingw,  

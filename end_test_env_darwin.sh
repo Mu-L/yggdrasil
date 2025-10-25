@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ ! "${DYLD_LIBRARY_PATH_TMP}" = "" ]; then
     DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH_TMP}

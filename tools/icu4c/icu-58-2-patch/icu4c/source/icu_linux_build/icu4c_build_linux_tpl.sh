@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_outdir=$1
 var_cflag=$2

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 sh make_luabind_linux_tpl.sh 503 501
 sh make_luabind_linux_tpl.sh 503 502

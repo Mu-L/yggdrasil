@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # usage: build.sh [targets]
 # this file should be located under ZA/dtl
 

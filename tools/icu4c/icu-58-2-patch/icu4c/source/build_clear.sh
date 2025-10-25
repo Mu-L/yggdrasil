@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rm -fr ./data/obj
 rm -fr ./data/out

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 dir1="\.\.\/tools\/base64"
 dir2="\.\.\/tools\/blowfish"

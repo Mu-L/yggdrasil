@@ -252,7 +252,7 @@ source begin_test_env_android_termux.sh
 ./mplex_cast_to_container_test --batch-test
 ./mplex_conv_to_tuple_test --batch-test
 ./mplex_get_reference_if_in_test --batch-test
-./mplex_interger_log2_test --batch-test
+./mplex_integer_log2_test --batch-test
 ./mplex_limits_test --batch-test
 ./mplex_pointer_int_test --batch-test
 ./mplex_pointer_to_reference_t_test --batch-test

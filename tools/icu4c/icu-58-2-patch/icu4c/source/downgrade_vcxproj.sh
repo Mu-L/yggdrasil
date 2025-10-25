@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 find ./ -type f -name '*.vcxproj' -exec sed -i 's/<WindowsTargetPlatformVersion>.*<\/WindowsTargetPlatformVersion>//g' {} \;

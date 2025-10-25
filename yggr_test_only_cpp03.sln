@@ -510,7 +510,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mplex_conv_to_tuple_test", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mplex_get_reference_if_in_test", "test\mplex_get_reference_if_in_test_cpp03.vcxproj", "{6A3CDC1C-9BD9-46BF-8363-D38CFF6783F7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mplex_interger_log2_test", "test\mplex_interger_log2_test_cpp03.vcxproj", "{FCB9C392-34EE-449C-8B9F-20D92E46D813}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mplex_integer_log2_test", "test\mplex_integer_log2_test_cpp03.vcxproj", "{FCB9C392-34EE-449C-8B9F-20D92E46D813}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mplex_limits_test", "test\mplex_limits_test_cpp03.vcxproj", "{344DA1EB-8C6B-49A6-BB5E-EB35B3C780D1}"
 EndProject

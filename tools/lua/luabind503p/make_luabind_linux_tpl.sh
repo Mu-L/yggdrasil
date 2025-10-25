@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 luaver_old=lua$1
 luaver_new=lua$2

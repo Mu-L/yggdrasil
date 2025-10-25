@@ -1,0 +1,3 @@
+iodbc (option)
+
+mysql-connect-odbc-for-mac download address: https://dev.mysql.com/downloads/connector/odbc

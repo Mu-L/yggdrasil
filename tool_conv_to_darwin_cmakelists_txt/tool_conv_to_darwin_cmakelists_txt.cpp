@@ -1248,7 +1248,7 @@ ptree_string_type& conv_to_cbws_cmakelists_txt(ptree_string_type& out,
 		<< "endif()\n\n"
 		;
 
-	ss << "#set(USRDEF_CMAKE_COMPILER_VERSION \"clang-darwin16\")\n"
+	ss << "#set(USRDEF_CMAKE_COMPILER_VERSION \"clang-darwin17\")\n"
 		<< "#set(USRDEF_CMAKE_BUILD_LD_ARCH_TAG \"a\")\n"
 		<< "#set(USRDEF_CMAKE_BUILD_ARCH_BITS \"64\")\n"
 		<< "set(USRDEF_CMAKE_BOOST_VERSION \"1_82\")\n"
@@ -1924,7 +1924,8 @@ yggr::utf8_string& gen_cmake_build_tpl_call_sh(yggr::utf8_string& out_str)
 		<< "#var_usr_cmake_cc=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang\n"
 		<< "#var_usr_cmake_cxx=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++\n\n"
 
-		<< "var_usr_cmake_compiler_version=clang-darwin16\n\n"
+		//<< "var_usr_cmake_compiler_version=\"clang-darwin16\"\n\n"
+		<< "var_usr_cmake_compiler_version=\"clang-darwin$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\"\n\n"
 
 		<< "#var_usr_cmake_c_standard=" << "cstd_ver" << "\n"
 		<< "#var_usr_cmake_cxx_standard=" << "cppstd_ver" << "\n\n"
@@ -2112,11 +2113,13 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_sh(yggr::utf8_string& o
 		<< "#\techo \"var_src_root_dir = ${var_src_root_dir}\"\n"
 		<< "#\techo \"var_prefix_stage_dir = ${var_prefix_stage_dir}\"\n\n"
 
-		<< "\tvar_sh_file=\"cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}.sh\"\n\n"
+		//<< "\tvar_sh_file=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh\"\n\n"
+		<< "\tvar_sh_file=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh\"\n\n"
 
 		<< "\tvar_src_bin_dir=\"${var_src_root_dir}/Release-x64/${var_clang_tag}\"\n"
 		<< "\tvar_src_lib_dir=\"${var_src_root_dir}/lib\"\n"
-		<< "\tvar_src_inc_dir=\"${var_src_root_dir}/include\"\n\n"
+		<< "\tvar_src_inc_dir=\"${var_src_root_dir}/include\"\n"
+		<< "\tvar_src_darwin_cmake_install_inc_dir=\"${var_src_root_dir}/darwin-cmake-install-include\"\n\n"
 
 		<< "\tvar_prefix_sln_dir=\"${var_prefix_stage_dir}/${var_sln_name}-${var_sdk_name}\"\n"
 		<< "\tvar_prefix_sln_bin_dir=\"${var_prefix_sln_dir}/bin\"\n"
@@ -2146,13 +2149,40 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_sh(yggr::utf8_string& o
 
 		<< "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
 		<< "\t\tcp -fr \"${var_src_inc_dir}\" \"${var_prefix_sln_dir}/\"\n" 
-		<< "\tfi\n"
-		<< "}\n\n"
-		;
+		<< "\tfi\n\n";
+
+		if(cbws_infos.cbws_title_ == "yggr"
+			|| cbws_infos.cbws_title_ == "yggr_lib_only")
+		{
+			ss << "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
+				<< "\t\tcp -fr \"${var_src_root_dir}/yggr\" \"${var_prefix_sln_inc_dir}/\"\n" 
+				<< "\tfi\n\n";
+		}
+		else
+		{
+			ss << "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
+				<< "\t\tcp -fr \"${var_src_inc_dir}\" \"${var_prefix_sln_dir}/\"\n" 
+				<< "\telif [ -d \"${var_src_darwin_cmake_install_inc_dir}\" ]; then\n"
+				<< "\t\trm -fr \"${var_prefix_sln_dir}/include\"\n"
+				<< "\t\tcp -fr \"${var_src_darwin_cmake_install_inc_dir}\" \"${var_prefix_sln_dir}/include\"\n"
+				<< "\telse\n"
+				<< "\t\techo \"warning: no include or install-include dir, need create it !!!!!\"\n"
+				<< "\tfi\n\n";
+		}
+
+    ss << "}\n\n";
 
 	ss << "var_sln_name=" << cbws_infos.cbws_title_ << "\n"
-		<< "var_clang_tag=\"clang-darwin16\"\n"
-		<< "var_cpp_ver=\"" << cpp_ver << "\"\n\n"
+		//<< "var_clang_tag=\"clang-darwin$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\"\n"
+		//<< "var_cpp_ver=\"" << cpp_ver << "\"\n\n"
+		<< "var_clang_main_ver=$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\n"
+		<< "var_clang_tag=\"clang-darwin${var_clang_main_ver}\"\n"
+		<< "var_cpp_ver_num=\"" << cpp_ver.substr(3, 2) << "\"\n"
+		<< "var_cpp_ver=\"cpp${var_cpp_ver_num}\"\n\n"
+
+		<< "if [ 17 -le ${var_clang_main_ver} -a ${var_cpp_ver_num} -lt 17 ]; then\n"
+		<< "\tvar_cpp_ver=\"cpp17\"\n"
+		<< "fi\n\n"
 
 		<< "var_sln_dir=\"${var_local_dir}/../..\"\n"
 		<< "var_prefix_stage_dir=\"${var_sln_dir}/stage_prefix\"\n\n"
@@ -2226,6 +2256,7 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 		<< "\tvar_prefix_sln_bin_dir=\"${var_prefix_sln_dir}/bin\"\n"
 		<< "\tvar_prefix_sln_lib_dir=\"${var_prefix_sln_dir}/lib\"\n"
 		<< "\tvar_prefix_sln_inc_dir=\"${var_prefix_sln_dir}/include\"\n\n"
+		<< "\tvar_src_darwin_cmake_install_inc_dir=\"${var_src_root_dir}/darwin-cmake-install-include\"\n\n"
 
 		<< "\tif [ -d \"${var_prefix_sln_dir}\" ]; then\n"
 		<< "\t\trm -fr \"${var_prefix_sln_dir}\"\n"
@@ -2238,7 +2269,8 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 		<< "\tfi\n\n"
 
 		<< "\tif [ \"${var_sdk_name}\" = \"iphoneos\" ]; then\n"
-		<< "\t\tvar_sh_file=\"cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}.sh\"\n"
+		//<< "\t\tvar_sh_file=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh\"\n"
+		<< "\t\tvar_sh_file=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh\"\n"
 		<< "\t\t#	echo \"sh ${var_sh_file}\"\n"
 		<< "\t\tsh \"${var_sh_file}\"\n\n"
 
@@ -2257,7 +2289,8 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 		<< "\t\tvar_prefix_sln_bin_dir_x86_64=\"${var_prefix_sln_bin_dir}/x86_64\"\n"
 		<< "\t\tvar_prefix_sln_lib_dir_x86_64=\"${var_prefix_sln_lib_dir}/x86_64\"\n\n"
 
-		<< "\t\tvar_sh_file_x86_64=\"cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}-x86_64.sh\"\n"
+		//<< "\t\tvar_sh_file_x86_64=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-x86_64.sh\"\n"
+		<< "\t\tvar_sh_file_x86_64=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-x86_64.sh\"\n"
 		<< "\t\t#	echo \"sh ${var_sh_file}\"\n"
 		<< "\t\tsh \"${var_sh_file_x86_64}\"\n\n"
 
@@ -2273,7 +2306,8 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 		<< "\t\tvar_prefix_sln_bin_dir_arm64=\"${var_prefix_sln_bin_dir}/arm64\"\n"
 		<< "\t\tvar_prefix_sln_lib_dir_arm64=\"${var_prefix_sln_lib_dir}/arm64\"\n\n"
 
-		<< "\t\tvar_sh_file_arm64=\"cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}-arm64.sh\"\n"
+		//<< "\t\tvar_sh_file_arm64=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-arm64.sh\"\n"
+		<< "\t\tvar_sh_file_arm64=\"cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-arm64.sh\"\n"
 		<< "\t\t#	echo \"sh ${var_sh_file}\"\n"
 		<< "\t\tsh \"${var_sh_file_arm64}\"\n\n"
 
@@ -2306,7 +2340,7 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 
 		<< "\t\tfor var_fpath in ${var_x86_so_list}\n"
 		<< "\t\tdo\n"
-		<< "\t\tvar_fname=${var_fpath##*/}\n\n"
+		<< "\t\t\tvar_fname=${var_fpath##*/}\n\n"
 			
 		<< "\t\t\tif [ -f \"${var_prefix_sln_lib_dir_arm64}/${var_fname}\" ]; then\n"
 		<< "\t\t\t\tvar_cmd_create=\"lipo -create ${var_fpath} ${var_prefix_sln_lib_dir_arm64}/${var_fname} -output ${var_prefix_sln_lib_dir}/${var_fname}\"\n"
@@ -2322,7 +2356,7 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 
 		<< "\t\tfor var_fpath in ${var_x86_dylib_list}\n" 
 		<< "\t\tdo\n"
-		<< "\t\tvar_fname=${var_fpath##*/}\n\n"
+		<< "\t\t\tvar_fname=${var_fpath##*/}\n\n"
 			
 		<< "\t\t\tif [ -f \"${var_prefix_sln_lib_dir_arm64}/${var_fname}\" ]; then\n"
 		<< "\t\t\t\tvar_cmd_create=\"lipo -create ${var_fpath} ${var_prefix_sln_lib_dir_arm64}/${var_fname} -output ${var_prefix_sln_lib_dir}/${var_fname}\"\n"
@@ -2348,17 +2382,41 @@ yggr::utf8_string& gen_cmake_darwin_build_and_collection_lipo_sh(yggr::utf8_stri
 		<< "\t\t\t\teval ${var_cmd_check}\n"
 		<< "\t\t\tfi\n"
 		<< "\t\tdone\n"
-		<< "\tfi\n\n"
+		<< "\tfi\n\n";
+		
+		if(cbws_infos.cbws_title_ == "yggr"
+			|| cbws_infos.cbws_title_ == "yggr_lib_only")
+		{
+			ss << "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
+				<< "\t\tcp -fr \"${var_src_root_dir}/yggr\" \"${var_prefix_sln_inc_dir}/\"\n" 
+				<< "\tfi\n\n";
+		}
+		else
+		{
+			ss << "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
+				<< "\t\tcp -fr \"${var_src_inc_dir}\" \"${var_prefix_sln_dir}/\"\n" 
+				<< "\telif [ -d \"${var_src_darwin_cmake_install_inc_dir}\" ]; then\n"
+				<< "\t\trm -fr \"${var_prefix_sln_dir}/include\"\n"
+				<< "\t\tcp -fr \"${var_src_darwin_cmake_install_inc_dir}\" \"${var_prefix_sln_dir}/include\"\n"
+				<< "\telse\n"
+				<< "\t\techo \"warning: no include or install-include dir, need create it !!!!!\"\n"
+				<< "\tfi\n\n";
+		}
 
-		<< "\tif [ -d \"${var_src_inc_dir}\" ]; then\n"
-		<< "\t\tcp -fr \"${var_src_inc_dir}\" \"${var_prefix_sln_dir}/\"\n"
-		<< "\tfi\n"
-		<< "}\n\n"
-		;
+    ss << "}\n\n";
+
 
 	ss << "var_sln_name=" << cbws_infos.cbws_title_ << "\n"
-		<< "var_clang_tag=\"clang-darwin16\"\n"
-		<< "var_cpp_ver=\"" << cpp_ver << "\"\n\n"
+		//<< "var_clang_tag=\"clang-darwin$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\"\n"
+		//<< "var_cpp_ver=\"" << cpp_ver << "\"\n\n"
+		<< "var_clang_main_ver=$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\n"
+		<< "var_clang_tag=\"clang-darwin${var_clang_main_ver}\"\n"
+		<< "var_cpp_ver_num=\"" << cpp_ver.substr(3, 2) << "\"\n"
+		<< "var_cpp_ver=\"cpp${var_cpp_ver_num}\"\n\n"
+
+		<< "if [ 17 -le ${var_clang_main_ver} -a ${var_cpp_ver_num} -lt 17 ]; then\n"
+		<< "\tvar_cpp_ver=\"cpp17\"\n"
+		<< "fi\n\n"
 
 		<< "var_sln_dir=\"${var_local_dir}/../..\"\n"
 		<< "var_prefix_stage_dir=\"${var_sln_dir}/stage_prefix\"\n\n"
@@ -2419,76 +2477,76 @@ bool fix_workspace_file_one_gen_cmake_build_sh(const cb::cbws_infos& cbws_infos,
 	yggr::utf8_string cmake_all_build_and_collection_lipo_cpp17("cmake_all_build_and_collection_lipo_cpp17.sh");
 	yggr::utf8_string cmake_all_build_and_collection_lipo_cpp20("cmake_all_build_and_collection_lipo_cpp20.sh");
 
-	yggr::utf8_string cmake_build_macosx_cpp11_x86_64("cmake-build-macosx-clang-darwin16-cpp11-x86_64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14_x86_64("cmake-build-macosx-clang-darwin16-cpp14-x86_64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17_x86_64("cmake-build-macosx-clang-darwin16-cpp17-x86_64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20_x86_64("cmake-build-macosx-clang-darwin16-cpp20-x86_64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11_x86_64("cmake-build-macosx-clang-darwin-cpp11-x86_64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14_x86_64("cmake-build-macosx-clang-darwin-cpp14-x86_64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17_x86_64("cmake-build-macosx-clang-darwin-cpp17-x86_64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20_x86_64("cmake-build-macosx-clang-darwin-cpp20-x86_64.sh");
 
-	yggr::utf8_string cmake_build_macosx_cpp11_arm64("cmake-build-macosx-clang-darwin16-cpp11-arm64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14_arm64("cmake-build-macosx-clang-darwin16-cpp14-arm64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17_arm64("cmake-build-macosx-clang-darwin16-cpp17-arm64.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20_arm64("cmake-build-macosx-clang-darwin16-cpp20-arm64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11_arm64("cmake-build-macosx-clang-darwin-cpp11-arm64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14_arm64("cmake-build-macosx-clang-darwin-cpp14-arm64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17_arm64("cmake-build-macosx-clang-darwin-cpp17-arm64.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20_arm64("cmake-build-macosx-clang-darwin-cpp20-arm64.sh");
 
-	yggr::utf8_string cmake_build_macosx_cpp11("cmake-build-macosx-clang-darwin16-cpp11.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14("cmake-build-macosx-clang-darwin16-cpp14.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17("cmake-build-macosx-clang-darwin16-cpp17.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20("cmake-build-macosx-clang-darwin16-cpp20.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11("cmake-build-macosx-clang-darwin-cpp11.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14("cmake-build-macosx-clang-darwin-cpp14.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17("cmake-build-macosx-clang-darwin-cpp17.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20("cmake-build-macosx-clang-darwin-cpp20.sh");
 
-	yggr::utf8_string cmake_build_iphoneos_cpp11("cmake-build-iphoneos-clang-darwin16-cpp11.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp14("cmake-build-iphoneos-clang-darwin16-cpp14.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp17("cmake-build-iphoneos-clang-darwin16-cpp17.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp20("cmake-build-iphoneos-clang-darwin16-cpp20.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp11("cmake-build-iphoneos-clang-darwin-cpp11.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp14("cmake-build-iphoneos-clang-darwin-cpp14.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp17("cmake-build-iphoneos-clang-darwin-cpp17.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp20("cmake-build-iphoneos-clang-darwin-cpp20.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11_x86_64("cmake-build-iphonesimulator-clang-darwin16-cpp11-x86_64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14_x86_64("cmake-build-iphonesimulator-clang-darwin16-cpp14-x86_64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17_x86_64("cmake-build-iphonesimulator-clang-darwin16-cpp17-x86_64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20_x86_64("cmake-build-iphonesimulator-clang-darwin16-cpp20-x86_64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11_x86_64("cmake-build-iphonesimulator-clang-darwin-cpp11-x86_64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14_x86_64("cmake-build-iphonesimulator-clang-darwin-cpp14-x86_64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17_x86_64("cmake-build-iphonesimulator-clang-darwin-cpp17-x86_64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20_x86_64("cmake-build-iphonesimulator-clang-darwin-cpp20-x86_64.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11_arm64("cmake-build-iphonesimulator-clang-darwin16-cpp11-arm64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14_arm64("cmake-build-iphonesimulator-clang-darwin16-cpp14-arm64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17_arm64("cmake-build-iphonesimulator-clang-darwin16-cpp17-arm64.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20_arm64("cmake-build-iphonesimulator-clang-darwin16-cpp20-arm64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11_arm64("cmake-build-iphonesimulator-clang-darwin-cpp11-arm64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14_arm64("cmake-build-iphonesimulator-clang-darwin-cpp14-arm64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17_arm64("cmake-build-iphonesimulator-clang-darwin-cpp17-arm64.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20_arm64("cmake-build-iphonesimulator-clang-darwin-cpp20-arm64.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11("cmake-build-iphonesimulator-clang-darwin16-cpp11.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14("cmake-build-iphonesimulator-clang-darwin16-cpp14.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17("cmake-build-iphonesimulator-clang-darwin16-cpp17.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20("cmake-build-iphonesimulator-clang-darwin16-cpp20.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11("cmake-build-iphonesimulator-clang-darwin-cpp11.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14("cmake-build-iphonesimulator-clang-darwin-cpp14.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17("cmake-build-iphonesimulator-clang-darwin-cpp17.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20("cmake-build-iphonesimulator-clang-darwin-cpp20.sh");
 
 	//xcode
-	yggr::utf8_string cmake_build_macosx_cpp11_x86_64_xcode("cmake-build-macosx-clang-darwin16-cpp11-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14_x86_64_xcode("cmake-build-macosx-clang-darwin16-cpp14-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17_x86_64_xcode("cmake-build-macosx-clang-darwin16-cpp17-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20_x86_64_xcode("cmake-build-macosx-clang-darwin16-cpp20-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11_x86_64_xcode("cmake-build-macosx-clang-darwin-cpp11-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14_x86_64_xcode("cmake-build-macosx-clang-darwin-cpp14-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17_x86_64_xcode("cmake-build-macosx-clang-darwin-cpp17-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20_x86_64_xcode("cmake-build-macosx-clang-darwin-cpp20-x86_64-xcode.sh");
 
-	yggr::utf8_string cmake_build_macosx_cpp11_arm64_xcode("cmake-build-macosx-clang-darwin16-cpp11-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14_arm64_xcode("cmake-build-macosx-clang-darwin16-cpp14-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17_arm64_xcode("cmake-build-macosx-clang-darwin16-cpp17-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20_arm64_xcode("cmake-build-macosx-clang-darwin16-cpp20-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11_arm64_xcode("cmake-build-macosx-clang-darwin-cpp11-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14_arm64_xcode("cmake-build-macosx-clang-darwin-cpp14-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17_arm64_xcode("cmake-build-macosx-clang-darwin-cpp17-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20_arm64_xcode("cmake-build-macosx-clang-darwin-cpp20-arm64-xcode.sh");
 
-	yggr::utf8_string cmake_build_macosx_cpp11_xcode("cmake-build-macosx-clang-darwin16-cpp11-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp14_xcode("cmake-build-macosx-clang-darwin16-cpp14-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp17_xcode("cmake-build-macosx-clang-darwin16-cpp17-xcode.sh");
-	yggr::utf8_string cmake_build_macosx_cpp20_xcode("cmake-build-macosx-clang-darwin16-cpp20-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp11_xcode("cmake-build-macosx-clang-darwin-cpp11-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp14_xcode("cmake-build-macosx-clang-darwin-cpp14-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp17_xcode("cmake-build-macosx-clang-darwin-cpp17-xcode.sh");
+	yggr::utf8_string cmake_build_macosx_cpp20_xcode("cmake-build-macosx-clang-darwin-cpp20-xcode.sh");
 
-	yggr::utf8_string cmake_build_iphoneos_cpp11_xcode("cmake-build-iphoneos-clang-darwin16-cpp11-xcode.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp14_xcode("cmake-build-iphoneos-clang-darwin16-cpp14-xcode.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp17_xcode("cmake-build-iphoneos-clang-darwin16-cpp17-xcode.sh");
-	yggr::utf8_string cmake_build_iphoneos_cpp20_xcode("cmake-build-iphoneos-clang-darwin16-cpp20-xcode.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp11_xcode("cmake-build-iphoneos-clang-darwin-cpp11-xcode.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp14_xcode("cmake-build-iphoneos-clang-darwin-cpp14-xcode.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp17_xcode("cmake-build-iphoneos-clang-darwin-cpp17-xcode.sh");
+	yggr::utf8_string cmake_build_iphoneos_cpp20_xcode("cmake-build-iphoneos-clang-darwin-cpp20-xcode.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp11-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp14-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp17-x86_64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp20-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp11-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp14-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp17-x86_64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20_x86_64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp20-x86_64-xcode.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11_arm64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp11-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14_arm64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp14-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17_arm64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp17-arm64-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20_arm64_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp20-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11_arm64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp11-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14_arm64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp14-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17_arm64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp17-arm64-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20_arm64_xcode("cmake-build-iphonesimulator-clang-darwin-cpp20-arm64-xcode.sh");
 
-	yggr::utf8_string cmake_build_iphonesimulator_cpp11_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp11-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp14_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp14-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp17_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp17-xcode.sh");
-	yggr::utf8_string cmake_build_iphonesimulator_cpp20_xcode("cmake-build-iphonesimulator-clang-darwin16-cpp20-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp11_xcode("cmake-build-iphonesimulator-clang-darwin-cpp11-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp14_xcode("cmake-build-iphonesimulator-clang-darwin-cpp14-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp17_xcode("cmake-build-iphonesimulator-clang-darwin-cpp17-xcode.sh");
+	yggr::utf8_string cmake_build_iphonesimulator_cpp20_xcode("cmake-build-iphonesimulator-clang-darwin-cpp20-xcode.sh");
 
 	// tpl
 	yggr::utf8_string str_cmake_build_tpl;
@@ -2573,7 +2631,7 @@ bool fix_workspace_file_one_gen_cmake_build_sh(const cb::cbws_infos& cbws_infos,
 
 	{
 		yggr::utf8_string str_cmake_all_build_and_collection;
-		gen_cmake_darwin_build_and_collection_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp14");
+		gen_cmake_darwin_build_and_collection_lipo_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp14");
 
 #if ONLY_MAKE_RUN_TEST()
 		std::cout << "write " << cmake_darwin_dir + "/" + cmake_all_build_and_collection_lipo_cpp14 << std::endl;
@@ -2584,7 +2642,7 @@ bool fix_workspace_file_one_gen_cmake_build_sh(const cb::cbws_infos& cbws_infos,
 
 	{
 		yggr::utf8_string str_cmake_all_build_and_collection;
-		gen_cmake_darwin_build_and_collection_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp17");
+		gen_cmake_darwin_build_and_collection_lipo_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp17");
 
 #if ONLY_MAKE_RUN_TEST()
 		std::cout << "write " << cmake_darwin_dir + "/" + cmake_all_build_and_collection_lipo_cpp17 << std::endl;
@@ -2595,7 +2653,7 @@ bool fix_workspace_file_one_gen_cmake_build_sh(const cb::cbws_infos& cbws_infos,
 
 	{
 		yggr::utf8_string str_cmake_all_build_and_collection;
-		gen_cmake_darwin_build_and_collection_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp20");
+		gen_cmake_darwin_build_and_collection_lipo_sh(str_cmake_all_build_and_collection, cbws_infos, "cpp20");
 
 #if ONLY_MAKE_RUN_TEST()
 		std::cout << "write " << cmake_darwin_dir + "/" + cmake_all_build_and_collection_lipo_cpp20 << std::endl;
@@ -2875,7 +2933,7 @@ yggr::utf8_string& make_yggr_run_test_sh(yggr::utf8_string& out_str,
 											const file_list_type& fixed_cbs_flist_exe,
 											bool is_debug)
 {
-	yggr::string target_dir = is_debug? "Debug-x64/clang-darwin16" : "Release-x64/clang-darwin16";
+	yggr::string target_dir = is_debug? "Debug-x64/${var_clang_tag}" : "Release-x64/${var_clang_tag}";
 	yggr::string env_sh_file = is_debug? "begin_test_env_darwin_x64d.sh" : "begin_test_env_darwin_x64.sh";
 	yggr::string dylib_dir = is_debug? "lib/Debug-x64" : "lib/Release-x64";
 	yggr::string test_dir = "test";
@@ -2884,6 +2942,8 @@ yggr::utf8_string& make_yggr_run_test_sh(yggr::utf8_string& out_str,
 
 	ss << "#!/bin/sh\n\n"
 
+		<< "var_clang_tag=\"clang-darwin$(clang --version | awk \'/version/ {print $4}\' | cut -d. -f1)\"\n\n"
+		
 		<< "source ./" << env_sh_file << "\n\n"
 
 		<< "rm -f " << test_dir << "/yggr_lua_base_type.so\n"
@@ -3000,7 +3060,7 @@ void fix_workspace_files(const file_list_type& cbws_flist,
 			
 				if(make_yggr_run_test_sh(run_test_code, fixed_cbs_flist_exe_now, true/*debug*/).size())
 				{
-					yggr::utf8_string run_test_fname = yggr::utf8_string(ws_dir.c_str()) + "/run_test_clang-darwin16_x64d.sh";
+					yggr::utf8_string run_test_fname = yggr::utf8_string(ws_dir.c_str()) + "/run_test_clang-darwin_x64d.sh";
 	#if ONLY_MAKE_RUN_TEST()
 					std::cout << run_test_fname << ": " << std::endl;
 					std::cout << run_test_code << std::endl;
@@ -3015,7 +3075,7 @@ void fix_workspace_files(const file_list_type& cbws_flist,
 			
 				if(make_yggr_run_test_sh(run_test_code, fixed_cbs_flist_exe_now, false/*release*/).size())
 				{
-					yggr::utf8_string run_test_fname = yggr::utf8_string(ws_dir.c_str()) + "/run_test_clang-darwin16_x64.sh";
+					yggr::utf8_string run_test_fname = yggr::utf8_string(ws_dir.c_str()) + "/run_test_clang-darwin_x64.sh";
 	#if ONLY_MAKE_RUN_TEST()
 					std::cout << run_test_fname << ": " << std::endl;
 					std::cout << run_test_code << std::endl;

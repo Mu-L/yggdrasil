@@ -101,7 +101,7 @@ using zlib ;
 
 #using python 
 #    : $(var_python_ver)
-#    : $(var_python_root_path)/bin/python3 
+#    : $(var_python_root_path)/bin/python$(var_python_ver)
 #    : $(var_python_root_path)/include/python$(var_python_ver)
 #    : $(var_python_root_path)/lib ;
 
@@ -109,7 +109,7 @@ if $(var_python_root_path) != ""
 {
     using python 
         : $(var_python_ver)
-        : $(var_python_root_path)/bin/python3 
+        : $(var_python_root_path)/bin/python$(var_python_ver)
         : $(var_python_root_path)/include/python$(var_python_ver)
         : $(var_python_root_path)/lib ;
 }

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 source ./begin_test_env_linux_x64.sh
 rm -f Release-x64/gcc15/yggr_lua_base_type.so
 rm -f Release-x64/gcc15/mongo_crypt_v1.so
@@ -254,7 +254,7 @@ ln -s /usr/local/lib64/mongo_crypt/mongo_crypt_v1.so mongo_crypt_v1.so
 ../Release-x64/gcc15/mplex_cast_to_container_test --batch-test
 ../Release-x64/gcc15/mplex_conv_to_tuple_test --batch-test
 ../Release-x64/gcc15/mplex_get_reference_if_in_test --batch-test
-../Release-x64/gcc15/mplex_interger_log2_test --batch-test
+../Release-x64/gcc15/mplex_integer_log2_test --batch-test
 ../Release-x64/gcc15/mplex_limits_test --batch-test
 ../Release-x64/gcc15/mplex_pointer_int_test --batch-test
 ../Release-x64/gcc15/mplex_pointer_to_reference_t_test --batch-test

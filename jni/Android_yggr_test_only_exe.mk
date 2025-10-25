@@ -262,7 +262,7 @@ subdirs := \
 	$(LOCAL_PATH)/../test/Android_mplex_cast_to_container_test.mk \
 	$(LOCAL_PATH)/../test/Android_mplex_conv_to_tuple_test.mk \
 	$(LOCAL_PATH)/../test/Android_mplex_get_reference_if_in_test.mk \
-	$(LOCAL_PATH)/../test/Android_mplex_interger_log2_test.mk \
+	$(LOCAL_PATH)/../test/Android_mplex_integer_log2_test.mk \
 	$(LOCAL_PATH)/../test/Android_mplex_limits_test.mk \
 	$(LOCAL_PATH)/../test/Android_mplex_pointer_int_test.mk \
 	$(LOCAL_PATH)/../test/Android_mplex_pointer_to_reference_t_test.mk \

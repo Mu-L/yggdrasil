@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 AndoridNDKRoot=$1
 AndroidToolChain=$2

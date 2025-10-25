@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 clang -arch x86_64 -E -dM - < /dev/null > macos_clang16_x64_macro.txt
 clang -arch arm64 -E -dM - < /dev/null > macos_clang16_a64_macro.txt

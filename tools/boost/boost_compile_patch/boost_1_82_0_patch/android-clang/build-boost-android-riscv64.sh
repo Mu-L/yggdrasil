@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_android_api=35
 AndroidTargetVersion=${var_android_api}

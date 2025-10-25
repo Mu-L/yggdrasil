@@ -256,7 +256,7 @@ cp -fr ../Debug-Win32/vc100/yggr_lua_base_type.dll ./
 "../Debug-Win32/vc100/mplex_cast_to_container_test.exe" --batch-test
 "../Debug-Win32/vc100/mplex_conv_to_tuple_test.exe" --batch-test
 "../Debug-Win32/vc100/mplex_get_reference_if_in_test.exe" --batch-test
-"../Debug-Win32/vc100/mplex_interger_log2_test.exe" --batch-test
+"../Debug-Win32/vc100/mplex_integer_log2_test.exe" --batch-test
 "../Debug-Win32/vc100/mplex_limits_test.exe" --batch-test
 "../Debug-Win32/vc100/mplex_pointer_int_test.exe" --batch-test
 "../Debug-Win32/vc100/mplex_pointer_to_reference_t_test.exe" --batch-test

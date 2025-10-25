@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 
 svr_pem=~/mongodb_data/cert/server.pem
 clt_pem=~/mongodb_data/cert/client.pem

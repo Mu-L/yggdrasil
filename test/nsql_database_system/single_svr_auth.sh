@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 data_dir=~/mongodb_data/dev_db_single_svr_auth/data
 log_file=~/mongodb_data/dev_db_single_svr_auth/data_log.txt

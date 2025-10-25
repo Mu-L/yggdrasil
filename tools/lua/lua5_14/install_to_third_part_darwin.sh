@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 install_one_foo() {
     var_local_dir=$1
@@ -31,7 +31,7 @@ install_one_foo() {
 var_local_dir=$(cd `dirname $0`; pwd)
 
 var_proj_name="lua5_14"
-var_third_part_root_dir="/Users/alucard"
+var_third_part_root_dir="/Users/${USER}"
 var_prefix_name="lua_514"
 
 var_sdk_name=macosx

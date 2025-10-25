@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 
 data_dir1=~/mongodb_data/dev_db_replica_set_lansvr_ssl_auth/rep1/data
 data_dir2=~/mongodb_data/dev_db_replica_set_lansvr_ssl_auth/rep2/data

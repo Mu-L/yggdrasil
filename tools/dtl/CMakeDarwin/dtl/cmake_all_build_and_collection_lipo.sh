@@ -26,6 +26,8 @@ collection_foo(){
 	var_prefix_sln_lib_dir="${var_prefix_sln_dir}/lib"
 	var_prefix_sln_inc_dir="${var_prefix_sln_dir}/include"
 
+	var_src_darwin_cmake_install_inc_dir="${var_src_root_dir}/darwin-cmake-install-include"
+
 	if [ -d "${var_prefix_sln_dir}" ]; then
 		rm -fr "${var_prefix_sln_dir}"
 	fi
@@ -37,7 +39,7 @@ collection_foo(){
 	fi
 
 	if [ "${var_sdk_name}" = "iphoneos" ]; then
-		var_sh_file="cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}.sh"
+		var_sh_file="cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh"
 		#	echo "sh ${var_sh_file}"
 		sh "${var_sh_file}"
 
@@ -56,7 +58,7 @@ collection_foo(){
 		var_prefix_sln_bin_dir_x86_64="${var_prefix_sln_bin_dir}/x86_64"
 		var_prefix_sln_lib_dir_x86_64="${var_prefix_sln_lib_dir}/x86_64"
 
-		var_sh_file_x86_64="cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}-x86_64.sh"
+		var_sh_file_x86_64="cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-x86_64.sh"
 		#	echo "sh ${var_sh_file}"
 		sh "${var_sh_file_x86_64}"
 
@@ -72,7 +74,7 @@ collection_foo(){
 		var_prefix_sln_bin_dir_arm64="${var_prefix_sln_bin_dir}/arm64"
 		var_prefix_sln_lib_dir_arm64="${var_prefix_sln_lib_dir}/arm64"
 
-		var_sh_file_arm64="cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}-arm64.sh"
+		var_sh_file_arm64="cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}-arm64.sh"
 		#	echo "sh ${var_sh_file}"
 		sh "${var_sh_file_arm64}"
 
@@ -105,7 +107,7 @@ collection_foo(){
 
 		for var_fpath in ${var_x86_so_list}
 		do
-		var_fname=${var_fpath##*/}
+			var_fname=${var_fpath##*/}
 
 			if [ -f "${var_prefix_sln_lib_dir_arm64}/${var_fname}" ]; then
 				var_cmd_create="lipo -create ${var_fpath} ${var_prefix_sln_lib_dir_arm64}/${var_fname} -output ${var_prefix_sln_lib_dir}/${var_fname}"
@@ -121,7 +123,7 @@ collection_foo(){
 
 		for var_fpath in ${var_x86_dylib_list}
 		do
-		var_fname=${var_fpath##*/}
+			var_fname=${var_fpath##*/}
 
 			if [ -f "${var_prefix_sln_lib_dir_arm64}/${var_fname}" ]; then
 				var_cmd_create="lipo -create ${var_fpath} ${var_prefix_sln_lib_dir_arm64}/${var_fname} -output ${var_prefix_sln_lib_dir}/${var_fname}"
@@ -151,12 +153,24 @@ collection_foo(){
 
 	if [ -d "${var_src_inc_dir}" ]; then
 		cp -fr "${var_src_inc_dir}" "${var_prefix_sln_dir}/"
+	elif [ -d "${var_src_darwin_cmake_install_inc_dir}" ]; then
+		rm -fr "${var_prefix_sln_dir}/include"
+		cp -fr "${var_src_darwin_cmake_install_inc_dir}" "${var_prefix_sln_dir}/include"
+	else
+		echo "warning: no include or install-include dir, need create it !!!!!"
 	fi
+
 }
 
 var_sln_name=dtl
-var_clang_tag="clang-darwin16"
-var_cpp_ver="cpp11"
+var_clang_main_ver=$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)
+var_clang_tag="clang-darwin${var_clang_main_ver}"
+var_cpp_ver_num="11"
+var_cpp_ver="cpp${var_cpp_ver_num}"
+
+if [ 17 -le ${var_clang_main_ver} -a ${var_cpp_ver_num} -lt 17 ]; then
+	var_cpp_ver="cpp17"
+fi
 
 var_sln_dir="${var_local_dir}/../.."
 var_prefix_stage_dir="${var_sln_dir}/stage_prefix"

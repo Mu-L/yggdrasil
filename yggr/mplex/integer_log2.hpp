@@ -44,7 +44,7 @@ namespace mplex
 namespace detail
 {
 
-typedef null_type interger_log2_failed;
+typedef null_type integer_log2_failed;
 
 template<std::size_t N>
 struct integer_log2_chk;
@@ -78,7 +78,7 @@ struct integer_log2_cal;
 
 template<std::size_t N>
 struct integer_log2_cal<boost::mpl::false_, N>
-	: public interger_log2_failed
+	: public integer_log2_failed
 {
 };
 
@@ -96,7 +96,7 @@ struct integer_log2_cal<boost::mpl::true_, 1>
 
 } // namespace detail
 
-using detail::interger_log2_failed;
+using detail::integer_log2_failed;
 
 template<std::size_t N>
 struct integer_log2

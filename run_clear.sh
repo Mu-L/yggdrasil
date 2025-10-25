@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -d "./tools/cyrus-sasl2/krb5-1.21.3-final/src/not-remove-lib" ]; then
 	mv -f ./tools/cyrus-sasl2/krb5-1.21.3-final/src/not-remove-lib ./tools/cyrus-sasl2/krb5-1.21.3-final/src/lib

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # errors.user-error : "$(ICU_ICUUC_NAME)" ;
 

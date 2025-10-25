@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 var_prefix_dir=$1
 var_openssl_dir=$2

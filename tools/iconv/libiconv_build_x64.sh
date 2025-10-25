@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export CFLAGS="-O3 -m64"
 export LDFLAGS="-s -m64"

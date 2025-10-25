@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 AndroidTargetVersion=21
 AndroidTarget=aarch64-linux-android

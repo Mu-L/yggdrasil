@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 find ./ -type d -exec chmod a+rx {} \;
 find ./ -type f -exec chmod a-x {} \;

@@ -17,7 +17,7 @@ collection_foo(){
 #	echo "var_src_root_dir = ${var_src_root_dir}"
 #	echo "var_prefix_stage_dir = ${var_prefix_stage_dir}"
 
-	var_sh_file="cmake-build-${var_sdk_name}-${var_clang_tag}-${var_cpp_ver}.sh"
+	var_sh_file="cmake-build-${var_sdk_name}-clang-darwin-${var_cpp_ver}.sh"
 
 	var_src_bin_dir="${var_src_root_dir}/Release-x64/${var_clang_tag}"
 	var_src_lib_dir="${var_src_root_dir}/lib"
@@ -55,8 +55,17 @@ collection_foo(){
 }
 
 var_sln_name=luabind_jit21
-var_clang_tag="clang-darwin16"
-var_cpp_ver="cpp20"
+#var_clang_tag="clang-darwin$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)"
+#var_cpp_ver="cpp20"
+
+var_clang_main_ver=$(clang --version | awk '/version/ {print $4}' | cut -d. -f1)
+var_clang_tag="clang-darwin${var_clang_main_ver}"
+var_cpp_ver_num="20"
+var_cpp_ver="cpp${var_cpp_ver_num}"
+
+if [ 17 -le ${var_clang_main_ver} -a ${var_cpp_ver_num} -lt 17 ]; then
+	var_cpp_ver="cpp17"
+fi
 
 var_sln_dir="${var_local_dir}/../.."
 var_prefix_stage_dir="${var_sln_dir}/stage_prefix"
