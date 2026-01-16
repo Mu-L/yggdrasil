@@ -55,14 +55,6 @@ namespace packet
 namespace detail
 {
 
-//#if !defined(_MSC_VER)
-//template<typename T>
-//struct detail_packet_info_caster
-//{
-//	typedef ::yggr::packet::packet_info<> type;
-//};
-//
-//#endif // _MSC_VER
 
 #ifndef YGGR_NO_CXX11_VARIADIC_TEMPLATES
 

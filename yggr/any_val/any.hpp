@@ -671,7 +671,7 @@ ValueType unsafe_any_cast(Any & operand)
 	// to generate specialization of remove_reference for your class
 	// See type traits library documentation for details
 	BOOST_STATIC_ASSERT(!boost::is_reference<nonref>::value);
-#endif
+#endif //BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 	nonref * result = ::yggr::unsafe_any_cast<nonref, Any>(&operand);
 	if(!result)
@@ -689,7 +689,7 @@ ValueType unsafe_any_cast(const Any & operand)
 	// The comment in the above version of 'any_cast' explains when this
 	// assert is fired and what to do.
 	BOOST_STATIC_ASSERT(!boost::is_reference<nonref>::value);
-#endif
+#endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 	return ::yggr::unsafe_any_cast<const nonref &>(const_cast<any_type &>(operand));
 }

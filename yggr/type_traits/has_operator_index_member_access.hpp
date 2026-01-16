@@ -138,7 +138,6 @@ struct _has_op_idx_mem_acc<T[N]>
 
 
 } // namespace detail
-} // namespace type_traits
 
 template<typename F>
 struct has_operator_index_member_access_class
@@ -167,6 +166,11 @@ struct has_operator_index_member_access
 		>::type
 {
 };
+
+} // namespace type_traits
+
+using type_traits::has_operator_index_member_access_class;
+using type_traits::has_operator_index_member_access;
 
 } // namespace yggr
 

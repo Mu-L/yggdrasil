@@ -42,6 +42,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -50,31 +52,20 @@ namespace detail
 template<typename T>
 struct remove_cv_ref_detail
 	: public
-		boost::remove_reference
+		boost::remove_cv
 		<
-			typename boost::remove_cv<T>::type
+			typename boost::remove_reference<T>::type
 		>
 {
 };
 
 #else
 
-//template<typename T>
-//struct remove_cv_ref_detail
-//	: public boost::remove_cv_ref<T>
-//{
-//};
-
 template<typename T>
 struct remove_cv_ref_detail
-	: public
-		boost::remove_reference
-		<
-			typename boost::remove_cv<T>::type
-		>
+	: public boost::remove_cv_ref<T>
 {
 };
-
 
 #endif // BOOST_VERSION
 
@@ -86,6 +77,10 @@ struct remove_cv_ref
 	: public detail::remove_cv_ref_detail<T>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::remove_cv_ref;
 
 } // namespace yggr
 

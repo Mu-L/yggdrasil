@@ -636,9 +636,9 @@ public:
 	{
 		base_type& base = *this;
 #if BOOST_VERSION < 105300
-	boost::xtime_get(&base, boost::TIME_UTC);
+		boost::xtime_get(&base, boost::TIME_UTC);
 #else
-	boost::xtime_get(&base, boost::TIME_UTC_);
+		boost::xtime_get(&base, boost::TIME_UTC_);
 #endif // BOOST_VERSION
 	}
 

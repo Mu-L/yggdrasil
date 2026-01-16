@@ -201,6 +201,8 @@ YGGR_MONGODB_NO_DECIMAL128					yggr::nsql_database_system not support decimal128
 
 YGGR_FOO_T_INFO_SUPPORT_STD_BIND			enable yggr::func::foo_t_info support std::bind
 
+YGGR_MPLEX_TYPENAME_CASTER_DEPRECATED_CPP98 enable yggr::mplex::typename_caster full features. if seted, typename_caster not support cpp98, default: disable
+
 */
 
 //compiler
@@ -403,7 +405,11 @@ YGGR_FOO_T_INFO_SUPPORT_STD_BIND			enable yggr::func::foo_t_info support std::bi
 #		undef _WIN32_WINNT
 #	endif
 #	if !defined(_WIN32_WINNT)
-#		define _WIN32_WINNT 0x0600
+#		if (_MSC_VER < 1700)
+#			define _WIN32_WINNT 0x0600
+#		else
+#			define _WIN32_WINNT 0x0601
+#		endif // _MSC_VER < 1700
 #	endif // _WIN32_WINNT
 #endif //YGGR_AT_WINDOWS
 

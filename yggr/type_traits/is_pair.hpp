@@ -38,6 +38,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct is_pair
@@ -55,6 +57,10 @@ struct is_pair< std::pair<T1, T2> >
 	: public boost::mpl::true_
 {
 };
+
+} // namespace type_traits
+
+using type_traits::is_pair;
 
 } // namespace yggr
 

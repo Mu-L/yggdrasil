@@ -64,8 +64,9 @@ struct start_data_loader;
 //	template<typename Packet>
 //	start_data_type operator()(Packet& pak) const
 //	{
-//		start_data_type
-//		return start_data_type(id);
+//		start_data_type s;
+//      pak.load(s);
+//      return s;
 //	}
 //}
 

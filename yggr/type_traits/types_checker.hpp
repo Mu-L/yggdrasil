@@ -37,6 +37,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -58,14 +60,15 @@ struct unsigned_value_checker_detail
 };
 
 } // namespace detail
+} // namespace type_traits
 } // namespace yggr
 
 
 #define YGGR_PP_SIGNED_CHECKER_TRUE_IMPL( __type__ ) \
-	namespace yggr { namespace detail \
+	namespace yggr { namespace type_traits { namespace detail \
 	template<> \
 	struct signed_value_checker_detail< __type__ > \
-		: public boost::mpl::true_ {}; } } \
+		: public boost::mpl::true_ {}; } } }
 
 
 //YGGR_PP_SIGNED_CHECKER_TRUE_IMPL(you_type)
@@ -73,12 +76,18 @@ struct unsigned_value_checker_detail
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct signed_value_checker
 	: public detail::signed_value_checker_detail<T>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::signed_value_checker;
 
 } // namespace yggr
 

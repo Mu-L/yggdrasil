@@ -41,6 +41,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct is_convertible_size_t
@@ -68,6 +70,10 @@ struct is_convertible_size_t
 		>::type
 {
 };
+
+} // namespace type_traits
+
+using type_traits::is_convertible_size_t;
 
 } // namespace yggr
 

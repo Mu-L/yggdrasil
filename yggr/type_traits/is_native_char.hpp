@@ -38,6 +38,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 //template<typename T>
 //struct is_native_char
@@ -93,6 +95,10 @@ struct is_native_char
 		>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::is_native_char;
 
 } // namespace yggr
 

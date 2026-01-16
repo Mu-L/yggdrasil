@@ -190,6 +190,7 @@
 		<Unit filename="base/obj_creator.hpp"/>
 		<Unit filename="base/override_cfg.hpp"/>
 		<Unit filename="base/pragma_message.hpp"/>
+		<Unit filename="base/pragma_warning.hpp"/>
 		<Unit filename="base/ptr_single.hpp"/>
 		<Unit filename="base/random.h"/>
 		<Unit filename="base/ref_count_info.h"/>
@@ -766,6 +767,7 @@
 		<Unit filename="container_ex/allocator_traits.hpp"/>
 		<Unit filename="container_ex/array.hpp"/>
 		<Unit filename="container_ex/array_t_maker.hpp"/>
+		<Unit filename="container_ex/begin_getter.hpp"/>
 		<Unit filename="container_ex/container_category_check.hpp"/>
 		<Unit filename="container_ex/container_compare_t.hpp"/>
 		<Unit filename="container_ex/container_key_t.hpp"/>
@@ -775,6 +777,8 @@
 		<Unit filename="container_ex/deque_regularisation.hpp"/>
 		<Unit filename="container_ex/detail/is_allocator_detail.hpp"/>
 		<Unit filename="container_ex/detail/is_container_detail.hpp"/>
+		<Unit filename="container_ex/detail/riter_t_getter.hpp"/>
+		<Unit filename="container_ex/end_getter.hpp"/>
 		<Unit filename="container_ex/get_element.hpp"/>
 		<Unit filename="container_ex/has_allocator_t.hpp"/>
 		<Unit filename="container_ex/has_compare_t.hpp"/>
@@ -789,6 +793,8 @@
 		<Unit filename="container_ex/list_regularisation.hpp"/>
 		<Unit filename="container_ex/map_options_t.hpp"/>
 		<Unit filename="container_ex/map_regularisation.hpp"/>
+		<Unit filename="container_ex/rbegin_getter.hpp"/>
+		<Unit filename="container_ex/rend_getter.hpp"/>
 		<Unit filename="container_ex/set_options_t.hpp"/>
 		<Unit filename="container_ex/set_regularisation.hpp"/>
 		<Unit filename="container_ex/vector_options_t.hpp"/>
@@ -2649,11 +2655,13 @@
 		<Unit filename="type_traits/alignment_of.hpp"/>
 		<Unit filename="type_traits/bits_to_types.hpp"/>
 		<Unit filename="type_traits/bytes_to_types.hpp"/>
+		<Unit filename="type_traits/const_arg_t.hpp"/>
 		<Unit filename="type_traits/detail/integer_sequence.hpp"/>
 		<Unit filename="type_traits/detail/native_t_detail.hpp"/>
 		<Unit filename="type_traits/detail/operator_result_stream_patch.hpp"/>
 		<Unit filename="type_traits/detail/original_t_detail.hpp"/>
 		<Unit filename="type_traits/detail/pointer_checker_of_wrapper.hpp"/>
+		<Unit filename="type_traits/fwd_arg_t.hpp"/>
 		<Unit filename="type_traits/half_types.hpp"/>
 		<Unit filename="type_traits/has_base_t.hpp"/>
 		<Unit filename="type_traits/has_char_t.hpp"/>
@@ -2693,10 +2701,12 @@
 		<Unit filename="utility/bit_counter.hpp"/>
 		<Unit filename="utility/cast_pointer_to_int.hpp"/>
 		<Unit filename="utility/copy_or_move_or_swap.hpp"/>
+		<Unit filename="utility/default_value_comparer.hpp"/>
 		<Unit filename="utility/filler_t.hpp"/>
 		<Unit filename="utility/floating_native_cast.hpp"/>
 		<Unit filename="utility/get_element.hpp"/>
 		<Unit filename="utility/get_element_default.hpp"/>
+		<Unit filename="utility/identity.hpp"/>
 		<Unit filename="utility/marked_ref.hpp"/>
 		<Unit filename="utility/member_var_modify_helper.hpp"/>
 		<Unit filename="utility/pair.hpp"/>

@@ -53,7 +53,7 @@ THE SOFTWARE.
 
 #else
 
-#	define YGGR_TYPEOF( __expr__ ) decltype( __expr__ )
+#	define YGGR_TYPEOF decltype
 #	define YGGR_TYPEOF_TPL YGGR_TYPEOF
 
 #	define YGGR_TYPEOF_NESTED_TYPEDEF( __name__, __expr__ ) \

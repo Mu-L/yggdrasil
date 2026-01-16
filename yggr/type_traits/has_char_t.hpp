@@ -34,7 +34,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
 
@@ -64,6 +65,10 @@ struct has_char_t
 	: public detail::_has_char_t<Container>::type
 {
 };
+
+} // namespace type_traits
+
+using type_traits::has_char_t;
 
 } // namespace yggr
 

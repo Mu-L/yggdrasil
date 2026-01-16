@@ -32,6 +32,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -122,6 +124,16 @@ struct original_rvref_t
 	: public detail::original_rvref_t_detail<T>
 {
 };
+
+} // namspace type_traits
+
+using type_traits::original_t;
+using type_traits::original_pointer_t;
+using type_traits::original_const_pointer_t;
+using type_traits::original_ref_t;
+using type_traits::original_cref_t;
+using type_traits::original_rvref_t;
+
 
 }// namespace yggr
 

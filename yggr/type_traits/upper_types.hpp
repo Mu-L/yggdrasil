@@ -41,15 +41,17 @@ THE SOFTWARE.
 #include <boost/mpl/if.hpp>
 
 #define YGGR_PP_UPPER_FLOAT_DEF(__src__, __dst__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> struct upper_float< __src__ > { \
-		typedef __dst__ type; }; }
+		typedef __dst__ type; }; } }
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
+
 template<typename T>
 struct upper_float_detail
 	: public
@@ -70,6 +72,10 @@ struct upper_float
 {
 };
 
+} // namespace type_traits
+
+using type_traits::upper_float;
+
 } // namespace yggr
 
 
@@ -78,11 +84,13 @@ struct upper_float
 //-----------------upper_signed end-----------------------
 
 #define YGGR_PP_UPPER_SIGNED_DEF(__src__, __dst__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits {\
 	template<> struct upper_signed< __src__ > { \
-		typedef __dst__ type; }; }
+		typedef __dst__ type; }; } }
 
 namespace yggr
+{
+namespace type_traits
 {
 namespace detail
 {
@@ -116,6 +124,10 @@ struct upper_signed
 {
 };
 
+} // namespace type_traits
+
+using type_traits::upper_signed;
+
 } // namespace yggr
 
 //-----------------upper_signed end-----------------------
@@ -123,13 +135,14 @@ struct upper_signed
 //-----------------upper_unsigned end-----------------------
 
 #define YGGR_PP_UPPER_UNSIGNED_DEF(__src__, __dst__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> struct upper_unsigned< __src__ > { \
-		typedef __dst__ type; }; }
+		typedef __dst__ type; }; }}
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
 
@@ -147,19 +160,24 @@ struct upper_unsigned
 {
 };
 
+} // namespace type_traits
+
+using type_traits::upper_unsigned;
+
 } // namespace yggr
 
 
 //-----------------upper_unsigned end-----------------------
 
 #define YGGR_PP_UPPER_INTEGER_DEF(__src__, __dst__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> struct upper_integer< __src__ > { \
-		typedef __dst__ type; }; }
+		typedef __dst__ type; }; }}
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
 
@@ -182,6 +200,10 @@ struct upper_integer
 	: public detail::upper_integer_detail<T>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::upper_integer;
 
 } // namespace yggr
 

@@ -32,6 +32,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<std::size_t ByteSize>
 struct bytes_to_signed
@@ -51,6 +53,12 @@ struct bytes_to_float
 	: public bits_to_float<(ByteSize << 3)> // ByteSize * 8
 {
 };
+
+} // namespace type_traits
+
+using type_traits::bytes_to_signed;
+using type_traits::bytes_to_unsigned;
+using type_traits::bytes_to_float;
 
 } // namespace yggr
 

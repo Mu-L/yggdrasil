@@ -55,7 +55,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rend<Cont>,
-		typename range_ex::range_reverse_iterator_ex<Cont>
+		typename range_ex::range_reverse_iterator_ex<Cont>::type
 	>::type
 	rend(Cont& cont)
 {
@@ -79,7 +79,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rend<Cont>,
-		typename range_ex::range_reverse_iterator_ex<const Cont>
+		typename range_ex::range_reverse_iterator_ex<const Cont>::type
 	>::type
 	rend(const Cont& cont)
 {
@@ -103,7 +103,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rend<Cont>,
-		typename range_ex::range_reverse_iterator_ex<const Cont>
+		typename range_ex::range_reverse_iterator_ex<const Cont>::type
 	>::type
 	crend(const Cont& cont)
 {

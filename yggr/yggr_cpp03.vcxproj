@@ -202,6 +202,7 @@
 		<ClInclude Include="base\obj_creator.hpp"/>
 		<ClInclude Include="base\override_cfg.hpp"/>
 		<ClInclude Include="base\pragma_message.hpp"/>
+		<ClInclude Include="base\pragma_warning.hpp"/>
 		<ClInclude Include="base\ptr_single.hpp"/>
 		<ClInclude Include="base\random.h"/>
 		<ClInclude Include="base\ref_count_info.h"/>
@@ -777,6 +778,7 @@
 		<ClInclude Include="container_ex\allocator_traits.hpp"/>
 		<ClInclude Include="container_ex\array.hpp"/>
 		<ClInclude Include="container_ex\array_t_maker.hpp"/>
+		<ClInclude Include="container_ex\begin_getter.hpp"/>
 		<ClInclude Include="container_ex\container_category_check.hpp"/>
 		<ClInclude Include="container_ex\container_compare_t.hpp"/>
 		<ClInclude Include="container_ex\container_key_t.hpp"/>
@@ -786,6 +788,8 @@
 		<ClInclude Include="container_ex\deque_regularisation.hpp"/>
 		<ClInclude Include="container_ex\detail\is_allocator_detail.hpp"/>
 		<ClInclude Include="container_ex\detail\is_container_detail.hpp"/>
+		<ClInclude Include="container_ex\detail\riter_t_getter.hpp"/>
+		<ClInclude Include="container_ex\end_getter.hpp"/>
 		<ClInclude Include="container_ex\get_element.hpp"/>
 		<ClInclude Include="container_ex\has_allocator_t.hpp"/>
 		<ClInclude Include="container_ex\has_compare_t.hpp"/>
@@ -800,6 +804,8 @@
 		<ClInclude Include="container_ex\list_regularisation.hpp"/>
 		<ClInclude Include="container_ex\map_options_t.hpp"/>
 		<ClInclude Include="container_ex\map_regularisation.hpp"/>
+		<ClInclude Include="container_ex\rbegin_getter.hpp"/>
+		<ClInclude Include="container_ex\rend_getter.hpp"/>
 		<ClInclude Include="container_ex\set_options_t.hpp"/>
 		<ClInclude Include="container_ex\set_regularisation.hpp"/>
 		<ClInclude Include="container_ex\vector_options_t.hpp"/>
@@ -2646,11 +2652,13 @@
 		<ClInclude Include="type_traits\alignment_of.hpp"/>
 		<ClInclude Include="type_traits\bits_to_types.hpp"/>
 		<ClInclude Include="type_traits\bytes_to_types.hpp"/>
+		<ClInclude Include="type_traits\const_arg_t.hpp"/>
 		<ClInclude Include="type_traits\detail\integer_sequence.hpp"/>
 		<ClInclude Include="type_traits\detail\native_t_detail.hpp"/>
 		<ClInclude Include="type_traits\detail\operator_result_stream_patch.hpp"/>
 		<ClInclude Include="type_traits\detail\original_t_detail.hpp"/>
 		<ClInclude Include="type_traits\detail\pointer_checker_of_wrapper.hpp"/>
+		<ClInclude Include="type_traits\fwd_arg_t.hpp"/>
 		<ClInclude Include="type_traits\half_types.hpp"/>
 		<ClInclude Include="type_traits\has_base_t.hpp"/>
 		<ClInclude Include="type_traits\has_char_t.hpp"/>
@@ -2683,8 +2691,10 @@
 		<ClInclude Include="type_traits\upper_types.hpp"/>
 		<ClInclude Include="utility\args_anchor.hpp"/>
 		<ClInclude Include="utility\args_holder_nv.hpp"/>
+		<ClInclude Include="utility\default_value_comparer.hpp"/>
 		<ClInclude Include="utility\get_element.hpp"/>
 		<ClInclude Include="utility\get_element_default.hpp"/>
+		<ClInclude Include="utility\identity.hpp"/>
 		<ClInclude Include="utility\marked_ref.hpp"/>
 		<ClInclude Include="utility\bit_counter.hpp"/>
 		<ClInclude Include="utility\cast_pointer_to_int.hpp"/>

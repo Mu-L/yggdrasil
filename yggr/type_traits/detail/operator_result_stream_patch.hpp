@@ -36,6 +36,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename Char, typename Traits, typename R>
 struct bitwise_left_shift_operator_result< std::basic_ostream<Char, Traits>, R >
@@ -50,6 +52,11 @@ struct bitwise_right_shift_operator_result< std::basic_istream<Char, Traits>, R 
 public:
     typedef std::basic_istream<Char, Traits>& type;
 };
+
+} // namespace type_traits
+
+using type_traits::bitwise_left_shift_operator_result;
+using type_traits::bitwise_right_shift_operator_result;
 
 } // namespace yggr
 

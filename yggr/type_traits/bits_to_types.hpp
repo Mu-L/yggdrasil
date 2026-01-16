@@ -32,6 +32,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -54,20 +56,21 @@ struct bits_to_float_detail
 };
 
 } // namespace detail
+} // namespace type_traits
 } // namespace yggr
 
 
 #define YGGR_PP_BITS_TO_SIGNED_DEF( __bits_size__, __type__ ) \
-	namespace yggr { namespace detail { \
-	template<> struct bits_to_signed_detail< __bits_size__ >{ typedef __type__ type; }; }}
+	namespace yggr { namespace type_traits { namespace detail { \
+	template<> struct bits_to_signed_detail< __bits_size__ >{ typedef __type__ type; }; }}}
 
 #define YGGR_PP_BITS_TO_UNSIGNED_DEF( __bits_size__, __type__ ) \
-	namespace yggr { namespace detail { \
-	template<> struct bits_to_unsigned_detail< __bits_size__ >{ typedef __type__ type; }; }}
+	namespace yggr { namespace type_traits { namespace detail { \
+	template<> struct bits_to_unsigned_detail< __bits_size__ >{ typedef __type__ type; }; }}}
 
 #define YGGR_PP_BITS_TO_FLOAT_DEF( __bits_size__, __type__ ) \
-	namespace yggr { namespace detail { \
-	template<> struct bits_to_float_detail< __bits_size__ >{ typedef __type__ type; }; }}
+	namespace yggr { namespace type_traits { namespace detail { \
+	template<> struct bits_to_float_detail< __bits_size__ >{ typedef __type__ type; }; }}}
 
 
 YGGR_PP_BITS_TO_SIGNED_DEF((1 << 3), s8)
@@ -85,6 +88,8 @@ YGGR_PP_BITS_TO_FLOAT_DEF((8 << 3), f64)
 
 
 namespace yggr
+{
+namespace type_traits
 {
 
 template<std::size_t BitSize>
@@ -105,6 +110,12 @@ struct bits_to_float
 	: public detail::bits_to_float_detail<BitSize>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::bits_to_signed;
+using type_traits::bits_to_unsigned;
+using type_traits::bits_to_float;
 
 } // namespace yggr
 

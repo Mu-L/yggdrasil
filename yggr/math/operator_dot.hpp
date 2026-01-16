@@ -42,7 +42,7 @@ public:
 	typedef T value_type;
 
 private:
-	typedef typename ::yggr::detail::operator_result_t_getter<value_type>::type chk_type;
+	typedef typename ::yggr::type_traits::detail::operator_result_t_getter<value_type>::type chk_type;
 	typedef boost::reference_wrapper<T const> val_cref_type;
 
 private:

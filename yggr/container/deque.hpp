@@ -122,7 +122,7 @@ typename
 	tmp.swap(c);
 }
 
-#if BOOST_VERSON < 107100
+#if BOOST_VERSION < 107100
 
 template<typename T, typename A> inline
 typename
@@ -176,7 +176,7 @@ typename
 	tmp.swap(c);
 }
 
-#endif // BOOST_VERSON < 107100
+#endif // BOOST_VERSION < 107100
 
 //emplace
 #if !defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES)

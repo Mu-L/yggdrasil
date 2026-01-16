@@ -34,9 +34,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
-namespace detail
+namespace type_traits
 {
-
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 
@@ -47,6 +46,9 @@ struct is_convertible
 };
 
 #else
+
+namespace detail
+{
 
 template <typename From, typename To>
 struct is_convertible_impl
@@ -65,6 +67,8 @@ public:
 	typedef boost::mpl::bool_< (sizeof(dispatch(trigger())) == sizeof(true_t)) > type;
 };
 
+} // namespace detail
+
 template <typename T, typename U>
 struct is_convertible
 	: public is_convertible_impl<T, U>::type
@@ -73,9 +77,9 @@ struct is_convertible
 
 #endif // (_MSC_VER) && (_MSC_VER >= 1400)
 
-} // namespace detail
+} // namespace type_traits
 
-using detail::is_convertible;
+using type_traits::is_convertible;
 
 } // namespace yggr
 

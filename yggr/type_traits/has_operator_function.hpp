@@ -43,7 +43,6 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
 namespace type_traits
 {
 namespace detail
@@ -129,12 +128,11 @@ struct _has_op_func<F, false>
 };
 
 } // namespace detail
-} // namespace type_traits
 
 template<typename F>
 struct has_operator_function_class
 	: public 
-		type_traits::detail::_has_op_func_class
+		detail::_has_op_func_class
 		<
 			typename 
 				boost::remove_reference
@@ -148,7 +146,7 @@ struct has_operator_function_class
 template<typename F>
 struct has_operator_function
 	: public 
-		type_traits::detail::_has_op_func
+		detail::_has_op_func
 		<
 			typename 
 				boost::remove_reference
@@ -158,6 +156,11 @@ struct has_operator_function
 		>::type
 {
 };
+
+} // namespace type_traits
+
+using type_traits::has_operator_function_class;
+using type_traits::has_operator_function;
 
 } // namespace yggr
 

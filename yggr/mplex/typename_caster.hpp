@@ -36,6 +36,27 @@ namespace mplex
 {
 namespace detail
 {
+#if !defined(YGGR_NO_CXX11_VARIADIC_TEMPLATES) \
+		&& defined(YGGR_MPLEX_TYPENAME_CASTER_DEPRECATED_CPP98)
+
+template<typename T>
+struct typename_caster
+{
+
+	template<template<typename ..._Args> class Dst>
+	struct apply
+	{
+		typedef T type;
+	};
+
+};
+
+#else
+
+template<typename T>
+struct typename_caster;
+
+#endif // YGGR_NO_CXX11_VARIADIC_TEMPLATES
 
 template<typename T>
 struct typename_caster;

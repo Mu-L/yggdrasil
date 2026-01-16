@@ -38,14 +38,14 @@ namespace yggr
 
 #ifndef YGGR_NO_CXX11_VARIADIC_TEMPLATES
 
-template<typename T, typename ...Args> inline
+template<typename T, typename ...Args> YGGR_CONSTEXPR_OR_INLINE
 typename boost::enable_if<boost::is_same<T, void>, void>::type
 	default_value(BOOST_FWD_REF(Args)... args) 
 {
 	return;
 }
 
-template<typename T, typename ...Args> inline
+template<typename T, typename ...Args> YGGR_CXX17_CONSTEXPR_OR_INLINE
 typename boost::disable_if<boost::is_same<T, void>, T>::type
 	default_value(BOOST_FWD_REF(Args)... args) 
 {

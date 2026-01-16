@@ -37,7 +37,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
 
@@ -69,6 +70,11 @@ struct is_nude_reference
 		>
 {
 };
+
+} // namspace type_traits
+
+using type_traits::is_reference;
+using type_traits::is_nude_reference;
 
 } // namespace yggr
 

@@ -40,6 +40,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -54,38 +56,42 @@ public:
 };
 
 } // namespace detail
+} // namespace type_traits
 } // namespace yggr
 
 #define YGGR_PP_TYPE_TRAITS_BINARY_OPERATOR_RESULT(__op_name__, __op__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 		template<typename L, typename R> \
 		struct BOOST_PP_CAT(__op_name__, _operator_result) { \
 			public: \
 			typedef \
 				YGGR_TYPEOF_TPL( \
-					(declval< typename ::yggr::detail::operator_result_t_getter<L>::type >()) \
+					(declval< typename detail::operator_result_t_getter<L>::type >()) \
 					YGGR_PP_OPEN( __op__ ) \
-					(declval< typename ::yggr::detail::operator_result_t_getter<R>::type >()) ) type; }; }
+					(declval< typename detail::operator_result_t_getter<R>::type >()) ) type; }; } \
+		using type_traits::BOOST_PP_CAT(__op_name__, _operator_result); }
 
 #define YGGR_PP_TYPE_TRAITS_BEFORE_UNARY_OPERATOR_RESULT(__op_name__, __op__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 		template<typename T> \
 		struct BOOST_PP_CAT(__op_name__, _operator_result) { \
 			public: \
 			typedef \
 				YGGR_TYPEOF_TPL( \
 					YGGR_PP_OPEN( __op__ ) \
-					declval< typename ::yggr::detail::operator_result_t_getter<T>::type >() ) type; }; }
+					declval< typename detail::operator_result_t_getter<T>::type >() ) type; }; } \
+		using type_traits::BOOST_PP_CAT(__op_name__, _operator_result); }
 
 #define YGGR_PP_TYPE_TRAITS_AFTER_UNARY_OPERATOR_RESULT(__op_name__, __op__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 		template<typename T> \
 		struct BOOST_PP_CAT(__op_name__, _operator_result) { \
 			public: \
 			typedef \
 				YGGR_TYPEOF_TPL( \
-					declval< typename ::yggr::detail::operator_result_t_getter<T>::type >() \
-					YGGR_PP_OPEN( __op__ ) ) type; }; }
+					declval< typename detail::operator_result_t_getter<T>::type >() \
+					YGGR_PP_OPEN( __op__ ) ) type; }; } \
+		using type_traits::BOOST_PP_CAT(__op_name__, _operator_result); }
 
 // math operator
 

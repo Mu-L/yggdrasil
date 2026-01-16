@@ -67,6 +67,8 @@ struct _is_pointer_wrapper
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct is_pointer_wrapper
@@ -113,6 +115,13 @@ struct is_native_pointer
 		>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::is_pointer_wrapper;
+using type_traits::is_pointer;
+using type_traits::is_native_pointer;
+
 
 } // namespace yggr
 

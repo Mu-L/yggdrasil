@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include <yggr/mplex/null_t.hpp>
 
 #include <boost/range/iterator.hpp>
+#include <boost/range/const_iterator.hpp>
 #include <boost/range/has_range_iterator.hpp>
 
 namespace yggr

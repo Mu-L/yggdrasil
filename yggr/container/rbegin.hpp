@@ -55,7 +55,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rbegin<Cont>,
-		typename range_ex::range_reverse_iterator_ex<Cont>
+		typename range_ex::range_reverse_iterator_ex<Cont>::type
 	>::type
 	rbegin(Cont& cont)
 {
@@ -79,7 +79,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rbegin<Cont>,
-		typename range_ex::range_reverse_iterator_ex<const Cont>
+		typename range_ex::range_const_reverse_iterator_ex<Cont>::type
 	>::type
 	rbegin(const Cont& cont)
 {
@@ -103,7 +103,7 @@ typename
 	boost::disable_if
 	<
 		detail::has_any_rbegin<Cont>,
-		typename range_ex::range_reverse_iterator_ex<const Cont>
+		typename range_ex::range_const_reverse_iterator_ex<Cont>::type
 	>::type
 	crbegin(const Cont& cont)
 {

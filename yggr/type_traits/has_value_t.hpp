@@ -34,7 +34,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
+namespace type_traits
+{
 namespace detail
 {
 
@@ -65,7 +66,10 @@ struct has_value_t
 {
 };
 
-} // namespace yggr
+} // namespace type_traits
 
+using type_traits::has_value_t;
+
+} // namespace yggr
 
 #endif // __YGGR_TYPE_TRAITS_HAS_VALUE_T_HPP__

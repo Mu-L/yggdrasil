@@ -30,6 +30,7 @@ THE SOFTWARE.
 #include <yggr/base/yggrdef.h>
 #include <yggr/mplex/null_t.hpp>
 #include <yggr/ppex/typedef.hpp>
+#include <yggr/type_traits/traits.hpp>
 
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/size.hpp>
@@ -84,32 +85,32 @@ struct _typename_expand< Other_Cont<Args...> >
 #endif // YGGR_NO_CXX11_VARIADIC_TEMPLATES
 
 
-template<typename T, typename N, bool NLessSize>
+template<typename T, typename N, bool NLessSize, typename Def = mplex::null_type>
 struct _safe_arg;
 
-template<typename T, typename N>
-struct _safe_arg<T, N, false>
-	: public mplex::null_type
+template<typename T, typename N, typename Def>
+struct _safe_arg<T, N, false, Def>
+	: public yggr::traits<Def>
 {
 };
 
-template<typename T, typename N>
-struct _safe_arg<T, N, true>
+template<typename T, typename N, typename Def>
+struct _safe_arg<T, N, true, Def>
 	: public boost::mpl::at<T, N>
 {
 };
 
-template<typename T, std::size_t N, bool NLessSize>
+template<typename T, std::size_t N, bool NLessSize, typename Def = mplex::null_type>
 struct _safe_arg_c;
 
-template<typename T, std::size_t N>
-struct _safe_arg_c<T, N, false>
-	: public mplex::null_type
+template<typename T, std::size_t N, typename Def>
+struct _safe_arg_c<T, N, false, Def>
+	: public yggr::traits<Def>
 {
 };
 
-template<typename T, std::size_t N>
-struct _safe_arg_c<T, N, true>
+template<typename T, std::size_t N, typename Def>
+struct _safe_arg_c<T, N, true, Def>
 	: public boost::mpl::at_c<T, N>
 {
 };
@@ -138,37 +139,53 @@ public:
 	{
 	};
 
-	template<typename N>
-	struct safe_arg
+	template<typename N, typename Def = mplex::null_type>
+	struct safe_arg_default
 		: public
 			detail::_safe_arg
 			<
 				base_type, 
 				N, 
-				boost::mpl::less<N, typename base_type::size_type>::value
+				boost::mpl::less<N, typename base_type::size_type>::value,
+				Def
 			>
 	{
 	};
 
-	template<std::size_t N>
-	struct safe_arg_c
+	template<std::size_t N, typename Def = mplex::null_type>
+	struct safe_arg_c_default
 		: public 
 			detail::_safe_arg_c
 			<
 				base_type, 
 				N, 
-				static_cast<bool>(N < base_type::size_type::value)
+				static_cast<bool>(N < base_type::size_type::value),
+				Def
 			>
+	{
+	};
+
+	template<typename N>
+	struct safe_arg
+		: public safe_arg_default<N>
+	{
+	};
+
+	template<std::size_t N>
+	struct safe_arg_c
+		: public safe_arg_c_default<N>
 	{
 	};
 };
 
+// typename_expand_size
 template<typename T>
 struct typename_expand_size
 	: public typename_expand<T>::size_type
 {
 };
 
+//typename_expand_t_get
 template<typename T, typename N>
 struct typename_expand_t_get
 	: public typename_expand<T>
@@ -197,32 +214,48 @@ public:
 	typedef typename arg_type::type type;
 };
 
-template<typename T, typename N>
-struct typename_expand_t_get_safe
+// typename_expand_t_get_safe_default
+template<typename T, typename N, typename Def = mplex::null_type>
+struct typename_expand_t_get_safe_default
 	: public typename_expand<T>
 {
 public:
 	typedef typename_expand<T> base_type;
 
 private:
-	typedef typename base_type::template safe_arg<N> arg_type;
+	typedef Def default_type;
+	typedef typename base_type::template safe_arg_default<N, default_type> arg_type;
 
 public:
 	typedef typename arg_type::type type;
 };
 
-template<typename T, std::size_t N>
-struct typename_expand_get_safe
+template<typename T, std::size_t N, typename Def = mplex::null_type>
+struct typename_expand_get_safe_default
 	: public typename_expand<T>
 {
 public:
 	typedef typename_expand<T> base_type;
 
 private:
-	typedef typename base_type::template safe_arg_c<N> arg_type;
+	typedef Def default_type;
+	typedef typename base_type::template safe_arg_c_default<N, default_type> arg_type;
 
 public:
 	typedef typename arg_type::type type;
+};
+
+// typename_expand_t_get_safe
+template<typename T, typename N>
+struct typename_expand_t_get_safe
+	: public typename_expand_t_get_safe_default<T, N>
+{
+};
+
+template<typename T, std::size_t N>
+struct typename_expand_get_safe
+	: public typename_expand_get_safe_default<T, N>
+{
 };
 
 } // namespace mplex

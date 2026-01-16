@@ -37,6 +37,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct reference_trans
@@ -49,6 +51,10 @@ struct reference_trans
 		>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::reference_trans;
 
 } // namespace yggr
 

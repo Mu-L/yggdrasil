@@ -53,16 +53,6 @@ public:
 			ptr->next_send();
 		}
 
-//#if defined(_MSC_VER)
-//		s.prv_recv_packet_helper(
-//			yggr::make_tuple(
-//				boost::bind(
-//					&session_type::handler_recv,
-//						s.this_type::shared_from_this(), _1, _2 ),
-//				boost::bind(
-//					&session_type::handler_close_level_error,
-//					s.this_type::shared_from_this() ) ) );
-//#else
 		s.prv_recv_packet_helper(
 			yggr::make_tuple(
 				boost::bind(
@@ -71,7 +61,6 @@ public:
 				boost::bind(
 					&session_type::handler_close_level_error,
 					s.shared_from_this() ) ) );
-//#endif // _MSC_VER
 
 	}
 };

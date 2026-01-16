@@ -60,7 +60,7 @@ THE SOFTWARE.
 
 #if !defined(YGGR_NO_CXX17_HDR_STRING_VIEW)
 #	if !defined(BOOST_NO_CXX17_HDR_STRING_VIEW)
-#		if (_LIBCPP_VERSION < 4000) || (__cplusplus <= 201402L)
+#		if !defined(_LIBCPP_VERSION) || (_LIBCPP_VERSION < 4000) || (__cplusplus <= 201402L)
 #			define YGGR_NO_CXX17_HDR_STRING_VIEW
 #		endif //(_LIBCPP_VERSION < 4000) || (__cplusplus <= 201402L)
 #	else

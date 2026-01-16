@@ -64,8 +64,6 @@ struct _is_class_pointer
 };
 
 } // namespace detail
-} // namespace type_traits
-
 
 template<typename T>
 struct is_class_pointer
@@ -73,6 +71,9 @@ struct is_class_pointer
 {
 };
 
+} // namespace type_traits
+
+using type_traits::is_class_pointer;
 
 } // namespace yggr
 

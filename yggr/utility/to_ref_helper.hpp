@@ -41,30 +41,29 @@ namespace utility
 
 struct to_ref_helper
 {
-	template<typename T> inline 
-	static const T& to_cref(const T& t)
+	template<typename T> YGGR_STATIC_CONSTEXPR_OR_INLINE_STATIC 
+	const T& to_cref(const T& t)
 	{
 		return t;
 	}
 
-	template<typename T> inline
-	static T& to_ref(const T& t)
+	template<typename T> YGGR_STATIC_CONSTEXPR_OR_INLINE_STATIC
+	T& to_ref(const T& t)
 	{
 		return const_cast<T&>(t);
 	}
 
-	template<typename T> inline
-	static 
-		typename 
-			boost::enable_if
+	template<typename T> YGGR_CXX17_STATIC_CONSTEXPR_OR_INLINE_STATIC
+	typename 
+		boost::enable_if
+		<
+			boost::mpl::and_
 			<
-				boost::mpl::and_
-				<
-					has_base_t<T>,
-					boost::is_base_of<typename T::base_type, T>
-				>,
-				const typename T::base_type& 
-			>::type
+				has_base_t<T>,
+				boost::is_base_of<typename T::base_type, T>
+			>,
+			const typename T::base_type& 
+		>::type
 		to_base_cref(const T& t)
 	{
 		typedef typename T::base_type base_type;
@@ -72,18 +71,17 @@ struct to_ref_helper
 		return base;
 	}
 
-	template<typename T> inline
-	static 
-		typename 
-			boost::enable_if
+	template<typename T> YGGR_CXX17_STATIC_CONSTEXPR_OR_INLINE_STATIC
+	typename 
+		boost::enable_if
+		<
+			boost::mpl::and_
 			<
-				boost::mpl::and_
-				<
-					has_base_t<T>,
-					boost::is_base_of<typename T::base_type, T>
-				>,
-				typename T::base_type& 
-			>::type
+				has_base_t<T>,
+				boost::is_base_of<typename T::base_type, T>
+			>,
+			typename T::base_type& 
+		>::type
 		to_base_ref(const T& t)
 	{
 		typedef typename T::base_type base_type;
@@ -91,14 +89,13 @@ struct to_ref_helper
 		return base;
 	}
 
-	template<typename Base, typename T> inline
-	static 
-		typename 
-			boost::enable_if
-			<
-				boost::is_base_of<Base, T>,
-				const Base& 
-			>::type
+	template<typename Base, typename T> YGGR_CXX17_STATIC_CONSTEXPR_OR_INLINE_STATIC
+	typename 
+		boost::enable_if
+		<
+			boost::is_base_of<Base, T>,
+			const Base& 
+		>::type
 		to_base_cref(const T& t)
 	{
 		typedef Base base_type;
@@ -106,14 +103,13 @@ struct to_ref_helper
 		return base;
 	}
 
-	template<typename Base, typename T> inline
-	static 
-		typename 
-			boost::enable_if
-			<
-				boost::is_base_of<Base, T>,
-				Base& 
-			>::type
+	template<typename Base, typename T> YGGR_CXX17_STATIC_CONSTEXPR_OR_INLINE_STATIC
+	typename 
+		boost::enable_if
+		<
+			boost::is_base_of<Base, T>,
+			Base& 
+		>::type
 		to_base_ref(const T& t)
 	{
 		typedef Base base_type;

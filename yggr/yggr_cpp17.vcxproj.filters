@@ -8460,6 +8460,36 @@
     <ClInclude Include="network\io\io_error_def.hpp">
       <Filter>Header Files\network\io</Filter>
     </ClInclude>
+    <ClInclude Include="base\pragma_warning.hpp">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="container_ex\begin_getter.hpp">
+      <Filter>Header Files\container_ex</Filter>
+    </ClInclude>
+    <ClInclude Include="container_ex\end_getter.hpp">
+      <Filter>Header Files\container_ex</Filter>
+    </ClInclude>
+    <ClInclude Include="container_ex\rbegin_getter.hpp">
+      <Filter>Header Files\container_ex</Filter>
+    </ClInclude>
+    <ClInclude Include="container_ex\rend_getter.hpp">
+      <Filter>Header Files\container_ex</Filter>
+    </ClInclude>
+    <ClInclude Include="container_ex\detail\riter_t_getter.hpp">
+      <Filter>Header Files\container_ex\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="type_traits\const_arg_t.hpp">
+      <Filter>Header Files\type_traits</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\identity.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="type_traits\fwd_arg_t.hpp">
+      <Filter>Header Files\type_traits</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\default_value_comparer.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="support\max_min_undef.ipp">

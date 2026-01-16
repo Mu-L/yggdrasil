@@ -33,6 +33,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -123,6 +125,15 @@ struct native_rvref_t
 	: public detail::native_rvref_t_detail<T>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::native_t;
+using type_traits::native_pointer_t;
+using type_traits::native_const_pointer_t;
+using type_traits::native_ref_t;
+using type_traits::native_cref_t;
+using type_traits::native_rvref_t;
 
 }// namespace yggr
 

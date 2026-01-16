@@ -43,7 +43,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
+namespace type_traits
+{
 // integer_t
 template<std::size_t>
 struct tag_integer_t
@@ -65,25 +66,34 @@ struct tag_real_t
 	typedef f64 type;
 };
 
+} // namespace type_traits
+
+using type_traits::tag_integer_t;
+using type_traits::tag_uinteger_t;
+using type_traits::tag_real_t;
+
 } // namespace yggr
 
 #define YGGR_PP_INTEGER_T_DEF(__size__, __type__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> \
 	struct tag_integer_t< __size__ > { \
-		typedef __type__ type; }; }
+		typedef __type__ type; }; } \
+	using type_traits::tag_integer_t; }
 
 #define YGGR_PP_UINTEGER_T_DEF(__size__, __type__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> \
 	struct tag_uinteger_t< __size__ > { \
-		typedef __type__ type; }; }
+		typedef __type__ type; }; }\
+	using type_traits::tag_uinteger_t; }
 
 #define YGGR_PP_REAL_T_DEF(__size__, __type__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> \
 	struct tag_real_t< __size__ > { \
-		typedef __type__ type; }; }
+		typedef __type__ type; }; }\
+	using type_traits::tag_real_t; }
 
 
 // integer
@@ -136,6 +146,8 @@ YGGR_PP_REAL_T_DEF(8, f64)
 	typename YGGR_PP_REAL_T_TYPE( __size__ )
 
 namespace yggr
+{
+namespace type_traits
 {
 
 template<typename T>
@@ -268,13 +280,20 @@ struct tag_upper_number_t
 	YGGR_STATIC_CONSTANT(std::size_t, value = Upper);
 };
 
+} // namespace type_traits
+
+using type_traits::tag_number_t;
+using type_traits::tag_low_number_t;
+using type_traits::tag_upper_number_t;
+
 } // namespace yggr
 
 #define YGGR_PP_NUMBER_T_DEF(__type__, __number_t__) \
-	namespace yggr { \
+	namespace yggr { namespace type_traits { \
 	template<> \
 	struct tag_integer_t< __type__ > { \
-		typedef __number_t__ type; }; }
+		typedef __number_t__ type; }; } \
+	using type_traits::tag_integer_t; }
 
 #define YGGR_PP_NUMBER_T( __type__ ) \
 	yggr::tag_number_t< __type__ >

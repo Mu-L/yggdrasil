@@ -34,12 +34,18 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct is_enum
 	: public boost::mpl::bool_< boost::is_enum<T>::value >
 {
 };
+
+} // namespace type_traits
+
+using type_traits::is_enum;
 
 } // namespace yggr
 

@@ -33,6 +33,7 @@ THE SOFTWARE.
 #include <boost/mpl/or.hpp>
 
 #include <boost/range/reverse_iterator.hpp>
+#include <boost/range/const_reverse_iterator.hpp>
 #include <boost/range/has_range_iterator.hpp>
 
 namespace yggr
@@ -58,12 +59,42 @@ struct range_reverse_iterator_ex_impl<false, T>
 {
 };
 
+template<bool has_iter, typename T>
+struct range_const_reverse_iterator_ex_impl;
+
+template<typename T>
+struct range_const_reverse_iterator_ex_impl<true, T>
+	: public boost::range_const_reverse_iterator<T>
+{
+};
+
+template<typename T>
+struct range_const_reverse_iterator_ex_impl<false, T>
+	: public mplex::null_type
+{
+};
+
 } // namespace detail
 
 template<typename T>
 struct range_reverse_iterator_ex 
 	: public 
 		detail::range_reverse_iterator_ex_impl
+		<
+			boost::mpl::or_
+			<
+				boost::has_range_iterator<T>,
+				boost::has_range_const_iterator<T>
+			>::type::value,
+			T
+		>
+{
+};
+
+template<typename T>
+struct range_const_reverse_iterator_ex 
+	: public 
+		detail::range_const_reverse_iterator_ex_impl
 		<
 			boost::mpl::or_
 			<

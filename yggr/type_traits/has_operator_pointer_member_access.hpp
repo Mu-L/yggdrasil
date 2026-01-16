@@ -38,7 +38,6 @@ THE SOFTWARE.
 
 namespace yggr
 {
-
 namespace type_traits
 {
 namespace detail
@@ -114,7 +113,6 @@ struct _has_op_ptr_mem_acc<F, false>
 };
 
 } // namespace detail
-} // namespace type_traits
 
 template<typename F>
 struct has_operator_pointer_member_access_class
@@ -143,6 +141,11 @@ struct has_operator_pointer_member_access
 		>::type
 {
 };
+
+} // namespace type_traits
+
+using type_traits::has_operator_pointer_member_access_class;
+using type_traits::has_operator_pointer_member_access;
 
 } // namespace yggr
 

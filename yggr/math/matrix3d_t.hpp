@@ -72,6 +72,8 @@ class matrix3d;
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -88,6 +90,7 @@ public:
 };
 
 } // namespace detail
+} // namespace type_traits
 } // namespace yggr
 
 namespace yggr

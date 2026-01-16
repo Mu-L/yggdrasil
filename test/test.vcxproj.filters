@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mplex\pointer_to_reference_t_test.cpp">
+    <ClCompile Include="utility\default_value_comparer_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

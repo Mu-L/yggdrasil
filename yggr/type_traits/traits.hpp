@@ -31,12 +31,18 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 
 template<typename T>
 struct traits
 {
 	typedef T type;
 };
+
+} // namespace type_traits
+
+using type_traits::traits;
 
 } // namespace yggr
 

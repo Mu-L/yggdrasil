@@ -32,6 +32,8 @@ THE SOFTWARE.
 
 namespace yggr
 {
+namespace type_traits
+{
 namespace detail
 {
 
@@ -48,6 +50,7 @@ public:
 };
 
 } // namespace detail
+} // namespace type_traits
 } // namespace yggr
 
 #endif // __YGGR_TYPE_TRAITS_NATIVE_T_DETAIL_HPP__

@@ -35,11 +35,12 @@ THE SOFTWARE.
 #include <boost/type_traits/is_floating_point.hpp>
 
 #define YGGR_PP_HALF_T_DEF(__src__, __dst__) \
-	namespace yggr { \
-	template<> struct half_t< __src__ > { \
-		typedef __dst__ type; }; }
+	namespace yggr { namespace type_traits { \
+	template<> struct half_t< __src__ > { typedef __dst__ type; }; }}
 
 namespace yggr
+{
+namespace type_traits
 {
 namespace detail
 {
@@ -89,6 +90,10 @@ struct half_t
 	: public detail::half_t_detail<T>
 {
 };
+
+} // namespace type_traits
+
+using type_traits::half_t;
 
 } // namespace yggr
 

@@ -88,6 +88,8 @@ using make_integer_sequence = __make_integer_seq<integer_sequence, T, N>;
 
 #		else
 
+namespace type_traits
+{
 // detail::make_integer_sequence_impl
 namespace detail
 {
@@ -171,6 +173,13 @@ using make_index_sequence = make_integer_sequence<std::size_t, N>;
 // index_sequence_for
 template<typename... T> 
 using index_sequence_for = make_integer_sequence<std::size_t, sizeof...(T)>;
+
+} // namespace type_traits
+
+using type_traits::make_integer_sequence;
+using type_traits::index_sequence;
+using type_traits::make_index_sequence;
+using type_traits::index_sequence_for;
 
 } // namespace yggr
 

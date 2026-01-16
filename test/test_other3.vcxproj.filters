@@ -20,7 +20,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lua\lua_base_type_test_d64.cpp">
+    <ClCompile Include="utility\identity_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
